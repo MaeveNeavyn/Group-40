@@ -6,7 +6,7 @@ public class HeyWorld {
 		// TODO Auto-generated method stub
 
 		System.out.println("Whatsup World");
-		
+		System.out.println("Goodbye World");
 	}
 
 }
