@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author katec
- *
- */
-module TestHelloWorld {
-}
