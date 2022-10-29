@@ -4,7 +4,7 @@ public class Game {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		//Board board = new Board();
+		Board board = new Board();
 		Player[] players = new Player[2];
 		View view = new View();
 		players[0] = new Player(view.getName());

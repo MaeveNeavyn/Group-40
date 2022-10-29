@@ -35,5 +35,11 @@ public class Player {
 	{
 		return score;
 	}
+	
+	public int[] getRolls()
+	{
+		int [] rolls = {roll1,roll2};
+		return rolls;
+	}
 
 }
