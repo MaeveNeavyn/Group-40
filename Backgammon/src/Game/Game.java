@@ -9,8 +9,9 @@ public class Game {
 		View view = new View();
 		players[0] = new Player(view.getName());
 		players[1] = new Player(view.getName());
-		//System.out.println("Player 1 is: " + players[0].getName());
-		//System.out.println("Player 2 is: " + players[1].getName());
+		view.displayWelcome();
+		view.displayBoard(board, players[0], players[1]);
+		
 
 	}
 

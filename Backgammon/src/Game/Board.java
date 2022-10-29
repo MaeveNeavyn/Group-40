@@ -18,6 +18,7 @@ public class Board {
 			if (isRedStartPoint(i))
 			{
 				points.get(i).push(Checkers.RED_CHECKER);
+				
 			}
 			else if (isBlueStartPoint(i))
 			{
@@ -52,6 +53,11 @@ public class Board {
 			
 		}
 		return false;
+	}
+	
+	public Stack<Checkers> getPoint(int index)
+	{
+		return points.get(index);
 	}
 
 }

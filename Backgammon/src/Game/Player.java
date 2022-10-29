@@ -3,14 +3,13 @@ package Game;
 public class Player {
 	
 	private String name;
-	private int pips;
 	private int score;
 	private int roll1, roll2;
+	private int pips;
 	
 	Player (String name) 
 	{
 		this.name = name;
-		pips = 167;
 		score = 0;
 	}
 	
@@ -31,6 +30,7 @@ public class Player {
 		return pips;
 	}
 	
+	
 	public int getScore()
 	{
 		return score;
@@ -41,5 +41,10 @@ public class Player {
 		int [] rolls = {roll1,roll2};
 		return rolls;
 	}
+	public void movePlayed (Command command, Board board)
+	{
+		
+	}
+	
 
 }
