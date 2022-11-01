@@ -5,6 +5,7 @@ public class Board {
 	
 	public final static int NUM_POINTS = 24;
 	private List<Stack<Checkers>> points; 
+	private List<Stack<Checkers>> middle_lane;
 	private BlueCheckers blue_pile;
 	private RedCheckers red_pile;
 	
