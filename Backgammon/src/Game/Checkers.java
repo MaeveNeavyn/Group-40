@@ -1,20 +1,13 @@
 package Game;
 
-public enum Checkers {
+public class Checkers {
 	
-		RED_CHECKER (DisplayColour.RED + "●" , CheckerColour.RED),
-		BLUE_CHECKER (DisplayColour.BLUE + "●" , CheckerColour.BLUE);
-		
-		
-		private String symbol;
 		private CheckerColour colour;
 
 
-		Checkers(String symbol, CheckerColour colour)
+		Checkers(CheckerColour colour)
 		{
 			this.colour = colour;
-			this.symbol = symbol;
-			// TODO Auto-generated constructor stub
 		}
 		
 		public CheckerColour getcolour()
@@ -24,7 +17,13 @@ public enum Checkers {
 		
 		public String toString()
 		{
-			return symbol;
+			if (getcolour() == CheckerColour.RED)
+			{
+				return "🔴";
+			}
+			else 
+				
+			return "🔵";
 		}
 
 
