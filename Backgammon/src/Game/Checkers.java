@@ -19,11 +19,11 @@ public class Checkers {
 		{
 			if (getcolour() == CheckerColour.RED)
 			{
-				return "🔴";
+				return "X";
 			}
 			else 
 				
-			return "🔵";
+			return "O";
 		}
 
 

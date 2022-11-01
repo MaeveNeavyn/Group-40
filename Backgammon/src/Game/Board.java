@@ -7,8 +7,6 @@ public class Board {
 	private List<Stack<Checkers>> points; 
 	private BlueCheckers blue_pile;
 	private RedCheckers red_pile;
-	private final static int[] RED_START = {1, 1, 12, 12, 12, 12, 12, 17, 17, 17, 19, 19, 19, 19, 19};
-	private final static int[] BLUE_START = {24, 24, 13, 13, 13, 13, 13, 8, 8, 8, 6, 6, 6, 6, 6};
 	
 	
 	Board()
@@ -21,11 +19,14 @@ public class Board {
 			points.add(new Stack<>());
 			if (isRedStartPoint(i))
 			{
+				
+				for (int j = 0; j<noRedCheckers(i); j++)
 				points.get(i).push(red_pile.pop());
 				
 			}
 			else if (isBlueStartPoint(i))
 			{
+				for (int j = 0; j<noBlueCheckers(i); j++)
 				points.get(i).push(blue_pile.pop());
 			}
 		}
@@ -35,33 +36,77 @@ public class Board {
 	
 	private boolean isRedStartPoint(int index)
 	{
-		for(int i=0; i<RED_START.length; i++)
+		if (index == 0 || index == 11 || index == 16 || index == 18)
 		{
-			if (RED_START[i] ==index)
-			{
-				return true;
-			}
-			
+			return true;
 		}
-		return false;
+		else
+			return false;
+		
+	}
+	
+	public int noRedCheckers(int index)
+	{
+		if (index==0)
+		{
+			return 2;
+		}
+		else if (index == 11)
+		{
+			return 5;
+		}
+		else if (index == 16)
+		{
+			return 3;
+		}
+		else if (index == 18)
+		{
+			return 5;	
+		}
+		else
+			return 0;
 	}
 	
 	private boolean isBlueStartPoint(int index)
 	{
-		for(int i=0; i<BLUE_START.length; i++)
+		if (index == 5 || index == 7 || index == 12 || index == 23)
 		{
-			if (BLUE_START[i] ==index)
-			{
-				return true;
-			}
-			
+			return true;
 		}
-		return false;
+		else
+			return false;
+		
 	}
+	
+	public int noBlueCheckers(int index)
+	{
+		if (index==23)
+		{
+			return 2;
+		}
+		else if (index == 12)
+		{
+			return 5;
+		}
+		else if (index == 7)
+		{
+			return 3;
+		}
+		else if (index == 5)
+		{
+			return 5;	
+		}
+		else
+			return 0;
+	}
+	
+	
 	
 	public Stack<Checkers> getPoint(int index)
 	{
 		return points.get(index);
 	}
+	
+	
 
 }

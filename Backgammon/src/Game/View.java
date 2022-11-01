@@ -27,8 +27,8 @@ public class View {
 		displayPlayer(player1);
 		displayPlayer(player2);
 		System.out.println(" | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | ");  
-		List<Checkers> point1 = board.getPoint(0);
-		System.out.println("Printing point 1 : "+ point1.toString());
+		for (int i=0; i<24;i++)
+		System.out.println("Printing point " + i + " : "+ board.getPoint(i).toString());
 	}
 	
 	
