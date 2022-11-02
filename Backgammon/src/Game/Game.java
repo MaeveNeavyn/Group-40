@@ -10,8 +10,28 @@ public class Game {
 		players[0] = new Player(view.getName());
 		players[1] = new Player(view.getName());
 		view.displayWelcome();
-		view.displayBoard(board, players[0], players[1]);
+		Command command;
 		
+		//do {
+			
+			view.displayBoard(board, players[0], players[1]);
+			boolean commandDone = false;
+			
+			for(int i=0; i<=1; i++)
+			do {
+				command = view.getUserInput(players[i]); 
+				if (command.isRoll()) {
+					commandDone = true;
+				} else if (command.isQuit()) {
+					commandDone = true;
+					view.displayQuit();
+				}
+				
+			}
+			while (!commandDone);
+			
+		//}while (!commandDone);
+			
 
 	}
 

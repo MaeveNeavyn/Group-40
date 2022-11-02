@@ -3,7 +3,10 @@ import java.util.*;
 
 public class View {
 	
+	//private final static String BLANK = "   ";
+
 	Scanner in;
+	Command command;
 	
 	View () {
 		in = new Scanner(System.in);
@@ -14,6 +17,36 @@ public class View {
 		System.out.println("Welcome to Backgammon");
 	}
 	
+	public String getName () {
+		System.out.print("Enter the player name: ");
+		String name = in.nextLine();
+		return name;
+	}
+	
+	
+	
+	public Command getCommand () {
+		return command;
+	}
+	
+	public Command getUserInput (Player player) {
+		boolean commandEntered = false;
+		do {
+			System.out.print("Enter command: ");
+			String input = in.nextLine();
+			/*if (Command.isValid(input)) {
+				command = new Command(input);
+				commandEntered = true;
+			} else {
+				System.out.println("The command is invalid. Try again.");
+			}*/
+		}
+		while (!commandEntered);
+		return command;
+	}
+	
+	
+	
 	public void displayPlayer( Player player)
 	{
 		System.out.println("Player: " + player.getName());
@@ -21,6 +54,9 @@ public class View {
 		System.out.println("Score: " + player.getScore());
 		
 	}
+	
+	
+	
 	
 	public void displayBoard (Board board, Player player1, Player player2)
 	{
@@ -32,12 +68,16 @@ public class View {
 	}
 	
 	
-	
-	public String getName () {
-		System.out.print("Enter the player name: ");
-		String name = in.nextLine();
-		return name;
+	public void displayMove (Player player) {
+		System.out.println(player + "rolls " + player.getRolls() + ". ");
+		
 	}
+	
+	
+	public void displayQuit () {
+		System.out.println("Quit");
+	}
+	
 	
 	
 	

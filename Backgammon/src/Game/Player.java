@@ -11,6 +11,8 @@ public class Player {
 	{
 		this.name = name;
 		score = 0;
+		roll1 = 1;
+		roll2 = 1;
 	}
 	
 	public void move (int roll1, int roll2, Board board )
