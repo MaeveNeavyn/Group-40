@@ -17,14 +17,17 @@ public class Game {
 			view.displayBoard(board, players[0], players[1]);
 			boolean commandDone = false;
 			
-			for(int i=0; i<=1; i++)
+			//for(int i=0; i<=1; i++){
+			
 			do {
-				command = view.getUserInput(players[i]); 
+				command = view.getUserInput(players[0]); //issue with printing player name
 				if (command.isRoll()) {
+					view.displayMove(players[0]);
 					commandDone = true;
 				} else if (command.isQuit()) {
-					commandDone = true;
 					view.displayQuit();
+					commandDone = true;
+					
 				}
 				
 			}
@@ -33,6 +36,7 @@ public class Game {
 		//}while (!commandDone);
 			
 
-	}
+	
 
+}
 }

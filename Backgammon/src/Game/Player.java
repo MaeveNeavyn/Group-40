@@ -40,6 +40,7 @@ public class Player {
 	
 	public int[] getRolls()
 	{
+		
 		int [] rolls = {roll1,roll2};
 		return rolls;
 	}

@@ -32,8 +32,9 @@ public class View {
 	public Command getUserInput (Player player) {
 		boolean commandEntered = false;
 		do {
-			System.out.print("Enter command: ");
+			System.out.println(player + "Enter command: ");	//issue with printing player name
 			String input = in.nextLine();
+			commandEntered = true;
 			/*if (Command.isValid(input)) {
 				command = new Command(input);
 				commandEntered = true;
