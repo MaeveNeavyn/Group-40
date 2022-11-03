@@ -64,9 +64,28 @@ public class View {
 	{
 		displayPlayer(player1);
 		displayPlayer(player2);
-		System.out.println(" | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | ");  
-		for (int i=0; i<24;i++)
-		System.out.println("Printing point " + i + " : "+ board.getPoint(i).toString());
+		
+		System.out.println("--------------------------------------------------------------------------------------------");
+		System.out.println("|  13  |  14  |  15  |  16  |  17  |  18  |       | 19  |  20  |  21  |  22  |  23  |  24  | ");
+		System.out.println("---------------------------------------------------------------------------------------------");
+		
+		for (int i=0;i<6;i++)
+		{
+			//System.out.println("Test");
+			for (int j = 12; j<24;j++)
+			{
+				if (board.getPoint(j).size()<=i)
+					System.out.print("|      ");
+				else
+					System.out.print("|  " + board.getPoint(j).get(i).toString() +"   ");
+				//System.out.print("j = "+j);
+				if (j == 17)
+					System.out.print("|       ");
+			}
+			System.out.println("|");
+		}
+		System.out.println("\\     /\\     /\\     /\\     /\\     /\\     /|       |\\     /\\     /\\     /\\     /\\     /\\     /");
+		System.out.println(" \\   /  \\   /  \\   /  \\   /  \\   /  \\   / |       | \\   /  \\   /  \\   /  \\   /  \\   /  \\   / ");
 	}
 	
 	
