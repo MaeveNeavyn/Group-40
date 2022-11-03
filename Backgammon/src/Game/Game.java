@@ -10,33 +10,34 @@ public class Game {
 		players[0] = new Player(view.getName());
 		players[1] = new Player(view.getName());
 		view.displayWelcome();
-		Command command;
+		Command command = null;  //WHY DO I NEED NULL
 		
-		//do {
-			
+		do {
+			//Command command;
 			view.displayBoard(board, players[0], players[1]);
 			boolean commandDone = false;
-			
-			//for(int i=0; i<=1; i++){
+			for(int i=0; i<=1; i++){
 			
 			do {
-				command = view.getUserInput(players[0]); //issue with printing player name
+				command = view.getUserInput(players[i]); //issue with printing player name
 				if (command.isRoll()) {
-					view.displayMove(players[0]);
+					int roll1 = Dice.getRoll();
+					int roll2 = Dice.getRoll();
+					view.displayMove(players[i], roll1, roll2);
 					commandDone = true;
 				} else if (command.isQuit()) {
 					view.displayQuit();
-					commandDone = true;
-					
+					commandDone = true;	
 				}
 				
 			}
 			while (!commandDone);
+			if (command.isQuit()) 
+				break;
+			}
 			
-		//}while (!commandDone);
 			
-
-	
-
-}
+		}while (!command.isQuit() );
+			
+	}
 }

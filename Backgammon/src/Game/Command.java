@@ -10,9 +10,9 @@ public class Command {
 	//User inputs commands for quit and roll
 	Command (String input) {
 		String inputFormatted = input.trim().toUpperCase();
-		if (inputFormatted.equals("quit")) {
+		if (inputFormatted.equals("QUIT")) {
 			commandType = CommandType.QUIT;
-		} else if (inputFormatted.equals("roll")) {
+		} else if (inputFormatted.equals("ROLL")) {
 			commandType = CommandType.ROLL;
 		}	
 }

@@ -34,6 +34,7 @@ public class View {
 		do {
 			System.out.println(player.toString() + " enter command: ");	//issue with printing player name
 			String input = in.nextLine();
+			command = new Command(input);
 			commandEntered = true;
 			/*if (Command.isValid(input)) {
 				command = new Command(input);
@@ -69,8 +70,8 @@ public class View {
 	}
 	
 	
-	public void displayMove (Player player) {
-		System.out.println(player + "rolls " + player.getRolls() + ". ");
+	public void displayMove (Player player, int roll1, int roll2) {
+		System.out.println(player.toString() + " rolls dice:\n" + "Roll 1: " + roll1 + "\nRoll 2: " + roll2 );
 		
 	}
 	
