@@ -7,3 +7,5 @@ public class DisplayColour {
     public static final String RED = "\033[0;31m";     // RED
 
 }
+
+//Interface
