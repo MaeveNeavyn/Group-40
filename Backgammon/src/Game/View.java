@@ -89,8 +89,8 @@ public class View {
 	}
 	
 	
-	public void displayMove (Player player, int roll1, int roll2) {
-		System.out.println(player.toString() + " rolls dice:\n" + "Roll 1: " + roll1 + "\nRoll 2: " + roll2 );
+	public void displayMove (Player player, int[] rolls) {
+		System.out.println(player.toString() + " rolls dice:\n" + "Roll 1: " + rolls[0] + "\nRoll 2: " + rolls[1] );
 		
 	}
 	

@@ -21,9 +21,10 @@ public class Game {
 			do {
 				command = view.getUserInput(players[i]); //issue with printing player name
 				if (command.isRoll()) {
-					int roll1 = Dice.getRoll();
-					int roll2 = Dice.getRoll();
-					view.displayMove(players[i], roll1, roll2);
+					players[i].move(Dice.getRoll(),Dice.getRoll(),board);
+					//int roll1 = Dice.getRoll();
+					//int roll2 = Dice.getRoll();
+					view.displayMove(players[i], players[i].getRolls());
 					commandDone = true;
 				} else if (command.isQuit()) {
 					view.displayQuit();
