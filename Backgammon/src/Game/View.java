@@ -84,8 +84,35 @@ public class View {
 			}
 			System.out.println("|");
 		}
-		System.out.println("\\     /\\     /\\     /\\     /\\     /\\     /|       |\\     /\\     /\\     /\\     /\\     /\\     /");
-		System.out.println(" \\   /  \\   /  \\   /  \\   /  \\   /  \\   / |       | \\   /  \\   /  \\   /  \\   /  \\   /  \\   / ");
+		
+		System.out.println("------------------------------------------|       |------------------------------------------");
+		System.out.println("|                                         |       |                                         |");
+		System.out.println("|                                         |       |                                         |");
+		System.out.println("|                                         |       |                                         |");
+		System.out.println("|                                         |       |                                         |");
+		System.out.println("------------------------------------------|       |------------------------------------------");
+		
+		
+		for (int i=5;i>-1;i--) 
+		{
+			for (int j = 11; j>-1;j--)
+			{
+				if (board.getPoint(j).size()<=i)
+					System.out.print("|      ");
+				else
+					System.out.print("|  " + board.getPoint(j).get(i).toString() +"   ");
+				//System.out.print("j = "+j);
+				if (j == 6)
+					System.out.print("|       ");
+				if (j == 17)
+					System.out.print("|       ");
+			}
+			System.out.println("|");
+		}
+		
+		System.out.println("--------------------------------------------------------------------------------------------");
+		System.out.println("|  12  |  11  |  10  |   9  |   8  |   7  |       |   6  |   5  |   4  |   3  |   2  |   1  | ");
+		System.out.println("--------------------------------------------------------------------------------------------");
 	}
 	
 	
