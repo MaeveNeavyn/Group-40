@@ -14,7 +14,7 @@ public class View {
 
 	public void displayWelcome()
 	{
-		System.out.println("Welcome to Backgammon");
+		System.out.println("Welcome to Backgammon\n");
 	}
 	
 	public String getName () {
@@ -51,7 +51,7 @@ public class View {
 	
 	public void displayPlayer( Player player)
 	{
-		System.out.println("Player: " + player.getName());
+		System.out.println("\nPlayer: " + player.getName());
 		System.out.println("Pips: " + player.getPips());
 		System.out.println("Score: " + player.getScore());
 		
@@ -66,7 +66,7 @@ public class View {
 		displayPlayer(player2);
 		
 		System.out.println("--------------------------------------------------------------------------------------------");
-		System.out.println("|  13  |  14  |  15  |  16  |  17  |  18  |       |  19  |  20  |  21  |  22  |  23  |  24  | ");
+		System.out.println("|  13  |  14  |  15  |  16  |  17  |  18  |       |   19  |  20  |  21  |  22  |  23  |  24  | ");
 		System.out.println("---------------------------------------------------------------------------------------------");
 		
 		for (int i=0;i<6;i++)
@@ -112,7 +112,7 @@ public class View {
 		
 		System.out.println("--------------------------------------------------------------------------------------------");
 		System.out.println("|  12  |  11  |  10  |   9  |   8  |   7  |       |   6  |   5  |   4  |   3  |   2  |   1  | ");
-		System.out.println("--------------------------------------------------------------------------------------------");
+		System.out.println("--------------------------------------------------------------------------------------------\n");
 	}
 	
 	
@@ -126,6 +126,10 @@ public class View {
 		System.out.println("Quit");
 	}
 	
+	public int displayFirstRoll (Player player, int roll) {
+		System.out.println(player.toString() + " first rolls: " + roll);
+		return roll;
+	}
 	
 	
 	
