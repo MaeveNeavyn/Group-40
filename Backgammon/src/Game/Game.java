@@ -13,31 +13,35 @@ public class Game {
 		
 		Command command = null;  //WHY DO I NEED NULL
 		
+		// Gets players first roll
+		int player1roll = view.displayFirstRoll(players[0], Dice.getRoll());
+		int player2roll = view.displayFirstRoll(players[1], Dice.getRoll());
+					
+		if (player1roll > player2roll) {
+			players[0].move(player1roll, 0, board);
+			System.out.println(players[0] + " starts the game!");
+			
+			// Get player 2s command, then for loop can continue as normal
+		}
+		else if (player1roll < player2roll) {
+			players[1].move(player2roll,  0, board);
+			System.out.println(players[1] + " starts the game!");
+		}
+		else System.out.println("Players rolled the same number. Roll again!\n");
+				
+					// Need to add in whoever starts moves their checker (move function)
+					// Player who lost first roll is going to be asked their command first
+					// Need to edit for loop
+					
+		
+		
+		
 		do {
 			//Command command;
 			view.displayBoard(board, players[0], players[1]);
 			boolean commandDone = false;
 			
 			
-			
-			
-			// Gets players first roll
-			int player1roll = view.displayFirstRoll(players[0], Dice.getRoll());
-			int player2roll = view.displayFirstRoll(players[1], Dice.getRoll());
-			
-			if (player1roll > player2roll) {
-				players[0].move(player1roll, 0, board);
-				System.out.println(players[0] + " starts the game!");
-			}
-			else if (player1roll < player2roll) {
-				players[1].move(player2roll,  0, board);
-				System.out.println(players[1] + " starts the game!");
-			}
-			else System.out.println("Players rolled the same number. Roll again!\n");
-		
-			// Need to add in whoever starts moves their checker (move function)
-			// Player who lost first roll is going to be asked their command first
-			// Need to edit for loop
 			
 			
 			for(int i=0; i<=1; i++){
@@ -49,6 +53,7 @@ public class Game {
 						//int roll1 = Dice.getRoll();
 						//int roll2 = Dice.getRoll();
 						view.displayMove(players[i], players[i].getRolls());
+						
 						commandDone = true;
 					} else if (command.isQuit()) {
 						view.displayQuit();
@@ -62,7 +67,7 @@ public class Game {
 			}
 			
 			
-		}while (!command.isQuit() );
+		}while (!command.isQuit() && !players[0].isGameOver() && !players[1].isGameOver());
 			
 	}
 }

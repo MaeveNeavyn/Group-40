@@ -13,6 +13,7 @@ public class Player {
 		score = 0;
 		roll1 = 1;
 		roll2 = 1;
+		pips = 167;
 	}
 	
 	public void move (int roll1, int roll2, Board board )
@@ -52,6 +53,11 @@ public class Player {
 	public String toString()
 	{
 		return name;
+	}
+	
+	
+	public boolean isGameOver() {
+		return pips == 0;
 	}
 	
 
