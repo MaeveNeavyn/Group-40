@@ -39,12 +39,17 @@ public class Game {
 		do {
 			//Command command;
 			view.displayBoard(board, players[0], players[1]);
+			
 			boolean commandDone = false;
 			
 			
 			
 			
 			for(int i=0; i<=1; i++){
+				
+			//prints players pips for whoevers turn it is onto display after board print out
+			System.out.println(players[1] + "pip count: "+ players[i].getPips());
+			
 			
 				do {
 					command = view.getUserInput(players[i]); //issue with printing player name
@@ -55,10 +60,22 @@ public class Game {
 						view.displayMove(players[i], players[i].getRolls());
 						
 						commandDone = true;
-					} else if (command.isQuit()) {
+					} 
+					else if (command.isQuit()) {
 						view.displayQuit();
 						commandDone = true;	
 					}
+					else if(command.isPip()) {
+						view.displayPipCounts(players[0], players[1]);
+						// command not done, want player to do something, either roll or quit
+					}
+					else if (command.isHint() ) {
+						// Method needs to be completed
+						view.displayHints(players[i]);
+						// command not done, want player to do something, either roll or quit
+
+					}
+					
 					
 				}
 				while (!commandDone);
@@ -68,6 +85,12 @@ public class Game {
 			
 			
 		}while (!command.isQuit() && !players[0].isGameOver() && !players[1].isGameOver());
+		
+		if (players[0].isGameOver()) {
+			System.out.println("Congratulations " + players[0] + "!!!\nYou have won backgammon!");
+		} else if (players[1].isGameOver()) {
+			System.out.println("Congratulations " + players[1] + "!!!\nYou have won backgammon!");
+		}
 			
 	}
 }

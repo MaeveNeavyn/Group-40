@@ -2,7 +2,7 @@ package Game;
 
 public class Command {
 
-	private enum CommandType {ROLL, QUIT};
+	private enum CommandType {ROLL, QUIT, PIP, HINT};
 	
 	private CommandType commandType;
 	
@@ -14,8 +14,12 @@ public class Command {
 			commandType = CommandType.QUIT;
 		} else if (inputFormatted.equals("ROLL")) {
 			commandType = CommandType.ROLL;
-		}	
-}
+		} else if (inputFormatted.equals("PIP")) {
+			commandType = CommandType.PIP;	
+		} else if (inputFormatted.equals("HINT")) {
+			commandType = CommandType.HINT;
+		}
+	}
 	
 	
 	public boolean isQuit() {
@@ -26,5 +30,12 @@ public class Command {
 		return commandType == CommandType.ROLL;
 	}
 
+	public boolean isPip() {
+		return commandType == CommandType.PIP;
+	}
+	
+	public boolean isHint() {
+		return commandType == CommandType.HINT;
+	}
 	
 }

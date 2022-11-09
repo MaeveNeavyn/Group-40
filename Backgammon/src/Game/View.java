@@ -132,7 +132,13 @@ public class View {
 	}
 	
 	
+	public void displayPipCounts (Player player1, Player player2) {
+		System.out.println(player1.toString() + " pips: " + player1.getPips());
+		System.out.println(player2.toString() + " pips: " + player2.getPips());
+	}
 	
-	
+	public void displayHints(Player player) {
+		//lists all possible moves for player
+	}
 
 }
