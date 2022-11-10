@@ -17,17 +17,23 @@ public class Game {
 		int player1roll = view.displayFirstRoll(players[0], Dice.getRoll());
 		int player2roll = view.displayFirstRoll(players[1], Dice.getRoll());
 					
-		if (player1roll > player2roll) {
-			players[0].move(player1roll, 0, board);
-			System.out.println(players[0] + " starts the game!");
+		do
+		{
+			if (player1roll > player2roll) {
+				players[0].move(player1roll, 0, board);
+				System.out.println(players[0] + " starts the game!");
+				
+				// Get player 2s command, then for loop can continue as normal
+			}
+			else if (player1roll < player2roll) {
+				players[1].move(player2roll,  0, board);
+				System.out.println(players[1] + " starts the game!");
+			}
+			else System.out.println("Players rolled the same number. Roll again!\n");
+		}
+		while (player1roll==player2roll);
 			
-			// Get player 2s command, then for loop can continue as normal
-		}
-		else if (player1roll < player2roll) {
-			players[1].move(player2roll,  0, board);
-			System.out.println(players[1] + " starts the game!");
-		}
-		else System.out.println("Players rolled the same number. Roll again!\n");
+		
 				
 					// Need to add in whoever starts moves their checker (move function)
 					// Player who lost first roll is going to be asked their command first
