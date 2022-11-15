@@ -18,10 +18,11 @@ public class Board {
 		for (int i = 0; i<NUM_POINTS; i++)
 		{
 			points.add(new Stack<>());
+			// initialising red checkers
 			if (isRedStartPoint(i))
 			{
 				
-				for (int j = 0; j<noRedCheckers(i); j++)
+				for (int j = 0; j<noRedCheckers(i); j++)	// adds number of red checkers based on index value i
 				points.get(i).push(red_pile.pop());
 				
 			}
@@ -103,7 +104,7 @@ public class Board {
 	
 	
 	
-	public Stack<Checkers> getPoint(int index)
+	public Stack<Checkers> getPoint(int index)	//gets lane (point) number
 	{
 		return points.get(index);
 	}

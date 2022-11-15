@@ -74,6 +74,7 @@ public class View {
 			//System.out.println("Test");
 			for (int j = 12; j<24;j++)
 			{
+				// if theres nothing in the point eg 11, it prints empty
 				if (board.getPoint(j).size()<=i)
 					System.out.print("|      ");
 				else
@@ -138,6 +139,9 @@ public class View {
 	}
 	
 	public void displayHints(Player player) {
+		System.out.println("Type ROLL to roll the dice");
+		System.out.println("Type QUIT to quit the game");
+		System.out.println("Type PIP to display the pip count for both players");
 		//lists all possible moves for player
 	}
 

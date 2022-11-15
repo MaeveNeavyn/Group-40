@@ -54,7 +54,7 @@ public class Game {
 			for(int i=0; i<=1; i++){
 				
 			//prints players pips for whoevers turn it is onto display after board print out
-			System.out.println(players[1] + "pip count: "+ players[i].getPips());
+			System.out.println(players[i] + "pip count: "+ players[i].getPips());
 			
 			
 				do {
