@@ -4,6 +4,7 @@ import java.util.*;
 public class Board {
 	
 	public final static int NUM_POINTS = 24;
+	private Stack<Checkers> point;
 	private List<Stack<Checkers>> points; 
 	private List<Stack<Checkers>> middle_lane;
 	private BlueCheckers blue_pile;
@@ -36,66 +37,50 @@ public class Board {
 		
 	}
 	
-	private boolean isRedStartPoint(int index)
-	{
-		if (index == 0 || index == 11 || index == 16 || index == 18)
-		{
+	private boolean isRedStartPoint(int index) {
+		if (index == 0 || index == 11 || index == 16 || index == 18) {
 			return true;
 		}
 		else
-			return false;
-		
+			return false;	
 	}
 	
-	public int noRedCheckers(int index)
-	{
-		if (index==0)
-		{
+	public int noRedCheckers(int index) {
+		if (index==0) {
 			return 2;
 		}
-		else if (index == 11)
-		{
+		else if (index == 11) {
 			return 5;
 		}
-		else if (index == 16)
-		{
+		else if (index == 16) {
 			return 3;
 		}
-		else if (index == 18)
-		{
+		else if (index == 18) {
 			return 5;	
 		}
 		else
 			return 0;
 	}
 	
-	private boolean isBlueStartPoint(int index)
-	{
-		if (index == 5 || index == 7 || index == 12 || index == 23)
-		{
+	private boolean isBlueStartPoint(int index) {
+		if (index == 5 || index == 7 || index == 12 || index == 23) {
 			return true;
 		}
 		else
-			return false;
-		
+			return false;	
 	}
 	
-	public int noBlueCheckers(int index)
-	{
-		if (index==23)
-		{
+	public int noBlueCheckers(int index) {
+		if (index==23) {
 			return 2;
 		}
-		else if (index == 12)
-		{
+		else if (index == 12) {
 			return 5;
 		}
-		else if (index == 7)
-		{
+		else if (index == 7) {
 			return 3;
 		}
-		else if (index == 5)
-		{
+		else if (index == 5) {
 			return 5;	
 		}
 		else
@@ -104,10 +89,21 @@ public class Board {
 	
 	
 	
-	public Stack<Checkers> getPoint(int index)	//gets lane (point) number
-	{
+	public Stack<Checkers> getPoint(int index) {	//gets lane (point) number
 		return points.get(index);
 	}
+	
+	
+	public void move(Command command) {
+		if (command.isMoveFromPoint() && command.isMoveToPoint()) {
+			Checkers checker = point.pop();
+			points.get(command.getToIndex()).push(checker);
+					
+		}
+	}
+	
+	
+	
 	
 	
 	

@@ -2,8 +2,9 @@ package Game;
 
 public class Command {
 
-	private enum CommandType {ROLL, QUIT, PIP, HINT};
+	private enum CommandType {ROLL, QUIT, PIP, HINT, MOVE};
 	
+	private char moveFrom, moveTo;
 	private CommandType commandType;
 	
 	
@@ -18,6 +19,8 @@ public class Command {
 			commandType = CommandType.PIP;	
 		} else if (inputFormatted.equals("HINT")) {
 			commandType = CommandType.HINT;
+		} else if (inputFormatted.equals("MOVE")) {
+			commandType = CommandType.MOVE;
 		}
 	}
 	
@@ -36,6 +39,30 @@ public class Command {
 	
 	public boolean isHint() {
 		return commandType == CommandType.HINT;
+	}
+	
+	
+	
+	
+	// added in move command for testing to move checker
+	public boolean isMove() {
+		return commandType == CommandType.MOVE;
+	}
+	
+	
+	public boolean isMoveFromPoint() {
+		return Character.toString(moveFrom).matches("[1-24]");
+	}
+	
+	public boolean isMoveToPoint() {
+		return Character.toString(moveTo).matches("[1-24]");
+	}
+	
+	public int getToIndex() {
+		if (isMoveToPoint()) { 
+			return  Character.getNumericValue(moveTo) -1; 		//saying this isn't integer value on its own so added in else return 1
+		}
+		else return 1;
 	}
 	
 }

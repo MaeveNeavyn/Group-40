@@ -29,7 +29,7 @@ public class Game {
 				players[1].move(player2roll,  0, board);
 				System.out.println(players[1] + " starts the game!");
 			}
-			else System.out.println("Players rolled the same number. Roll again!\n");
+			else System.out.println("Players rolled the same number. Roll again!\n"); 		//when values the same, game breaks and repeats
 		}
 		while (player1roll==player2roll);
 			
@@ -67,6 +67,10 @@ public class Game {
 						
 						commandDone = true;
 					} 
+					else if (command.isMove()) {
+						board.move(command);
+						commandDone = true;
+					}
 					else if (command.isQuit()) {
 						view.displayQuit();
 						commandDone = true;	
