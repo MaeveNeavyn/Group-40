@@ -3,13 +3,15 @@ package Game;
 public class Player {
 	
 	private String name;
+	private int player_number;
 	private int score;
 	private int roll1, roll2;
 	private int pips;
 	
-	Player (String name) 
+	Player (String name, int player_number) 
 	{
 		this.name = name;
+		this.player_number = player_number;
 		score = 0;
 		roll1 = 1;
 		roll2 = 1;
@@ -26,6 +28,11 @@ public class Player {
 	public String getName()
 	{
 		return name;
+	}
+	
+	public int getPlayerNumber()
+	{
+		return player_number;
 	}
 	
 	public int getPips()

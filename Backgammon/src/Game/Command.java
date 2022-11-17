@@ -82,7 +82,7 @@ public class Command {
 		return moveTo-1;
 	}
 	
-	public int getFromIndex () {
+	public int getFromIndex() {
 		if (isMoveFromPoint()) {
 			return Character.getNumericValue(moveFrom) - 1;
 		} 

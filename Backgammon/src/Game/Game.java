@@ -8,17 +8,18 @@ public class Game {
 		Player[] players = new Player[2];
 		View view = new View();
 		view.displayWelcome();
-		players[0] = new Player(view.getName());
-		players[1] = new Player(view.getName());
+		players[0] = new Player(view.getName(), 1);
+		players[1] = new Player(view.getName(), 2);
 		
 		Command command = null;  //WHY DO I NEED NULL
 		
-		// Gets players first roll
-		int player1roll = view.displayFirstRoll(players[0], Dice.getRoll());
-		int player2roll = view.displayFirstRoll(players[1], Dice.getRoll());
+		int player1roll, player2roll;
 					
 		do
 		{
+			// Gets players first roll
+			player1roll = view.displayFirstRoll(players[0], Dice.getRoll());
+			player2roll = view.displayFirstRoll(players[1], Dice.getRoll());
 			if (player1roll > player2roll) {
 				players[0].move(player1roll, 0, board);
 				System.out.println(players[0] + " starts the game!");
@@ -31,7 +32,7 @@ public class Game {
 			}
 			else System.out.println("Players rolled the same number. Roll again!\n"); 		//when values the same, game breaks and repeats
 		}
-		while (player1roll==player2roll);
+		while (player1roll == player2roll);
 			
 		
 				
@@ -47,9 +48,7 @@ public class Game {
 			view.displayBoard(board, players[0], players[1]);
 			
 			boolean commandDone = false;
-			
-			
-			
+	
 			
 			for(int i=0; i<=1; i++){
 				

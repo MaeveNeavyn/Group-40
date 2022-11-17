@@ -144,5 +144,11 @@ public class View {
 		System.out.println("Type PIP to display the pip count for both players");
 		//lists all possible moves for player
 	}
+	
+	public int[][] allLegalMoves(Player player, Board board)
+	{
+		player.getRolls();
+		player.getPlayerNumber()
+	}
 
 }
