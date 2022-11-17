@@ -1,10 +1,12 @@
 package Game;
 
+
 public class Command {
 
 	private enum CommandType {ROLL, QUIT, PIP, HINT, MOVE};
 	
-	private char moveFrom, moveTo;
+	private char moveFrom;
+	private char moveTo;
 	private CommandType commandType;
 	
 	
@@ -21,6 +23,8 @@ public class Command {
 			commandType = CommandType.HINT;
 		} else if (inputFormatted.equals("MOVE")) {
 			commandType = CommandType.MOVE;
+			moveFrom = inputFormatted.charAt(0);
+			moveTo = inputFormatted.charAt(1);
 		}
 	}
 	
@@ -50,6 +54,18 @@ public class Command {
 	}
 	
 	
+	public static boolean isValid (String input) {
+		String inputFormatted = input.trim().toUpperCase();
+		return  inputFormatted.equals("ROLL") || 
+				inputFormatted.equals("PIP") ||
+				inputFormatted.equals("HINT") ||
+				inputFormatted.equals("MOVE") ||
+				inputFormatted.equals("[1-24][1-24]*");
+				//inputFormatted.matches("[P1-7DHCS][1-7DHCS][0-9]*");
+		
+	}
+	
+	
 	public boolean isMoveFromPoint() {
 		return Character.toString(moveFrom).matches("[1-24]");
 	}
@@ -60,9 +76,21 @@ public class Command {
 	
 	public int getToIndex() {
 		if (isMoveToPoint()) { 
-			return  Character.getNumericValue(moveTo) -1; 		//saying this isn't integer value on its own so added in else return 1
-		}
-		else return 1;
+			int a = Character.getNumericValue(moveTo) - 1;
+			 		//saying this isn't integer value on its own so added in else return 1
+		} 
+		return moveTo-1;
 	}
 	
-}
+	public int getFromIndex () {
+		if (isMoveFromPoint()) {
+			return Character.getNumericValue(moveFrom) - 1;
+		} 
+	}
+		
+		
+		
+}	
+	
+	
+	

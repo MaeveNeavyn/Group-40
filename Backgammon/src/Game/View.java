@@ -34,14 +34,14 @@ public class View {
 		do {
 			System.out.println(player.toString() + " enter command: ");	//issue with printing player name
 			String input = in.nextLine();
-			command = new Command(input);
-			commandEntered = true;
-			/*if (Command.isValid(input)) {
+			//command = new Command(input);
+			//commandEntered = true;
+			if (Command.isValid(input)) {
 				command = new Command(input);
 				commandEntered = true;
 			} else {
 				System.out.println("The command is invalid. Try again.");
-			}*/
+			}
 		}
 		while (!commandEntered);
 		return command;

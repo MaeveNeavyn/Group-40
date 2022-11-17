@@ -69,6 +69,7 @@ public class Game {
 					} 
 					else if (command.isMove()) {
 						board.move(command);
+						
 						commandDone = true;
 					}
 					else if (command.isQuit()) {
