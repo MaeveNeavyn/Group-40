@@ -148,7 +148,8 @@ public class View {
 	public int[][] allLegalMoves(Player player, Board board)
 	{
 		player.getRolls();
-		player.getPlayerNumber()
+		player.getPlayerNumber();
+		
 	}
 
 }
