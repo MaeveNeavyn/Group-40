@@ -5,8 +5,8 @@ public class Command {
 
 	private enum CommandType {ROLL, QUIT, PIP, HINT, MOVE};
 	
-	private char moveFrom;
-	private char moveTo;
+	//private char moveFrom;
+	//private char moveTo;
 	private CommandType commandType;
 	
 	
@@ -23,8 +23,8 @@ public class Command {
 			commandType = CommandType.HINT;
 		} else if (inputFormatted.equals("MOVE")) {
 			commandType = CommandType.MOVE;
-			moveFrom = inputFormatted.charAt(0);
-			moveTo = inputFormatted.charAt(1);
+			//moveFrom = inputFormatted.charAt(0);
+			//moveTo = inputFormatted.charAt(1);
 		}
 	}
 	
@@ -65,7 +65,7 @@ public class Command {
 		
 	}
 	
-	
+	/*
 	public boolean isMoveFromPoint() {
 		return Character.toString(moveFrom).matches("[1-24]");
 	}
@@ -86,7 +86,7 @@ public class Command {
 		if (isMoveFromPoint()) {
 			return Character.getNumericValue(moveFrom) - 1;
 		} 
-	}
+	}*/
 		
 		
 		

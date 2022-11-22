@@ -93,13 +93,30 @@ public class Board {
 		return points.get(index);
 	}
 	
-	
+	/*
 	public void move(Command command) {
 		if (command.isMoveFromPoint() && command.isMoveToPoint()) {
 			Checkers checker = point.pop();
 			points.get(command.getToIndex()).push(checker);
 					
 		}
+	}*/
+	
+	public void move(int roll1, int roll2, int moveFrom1, int moveFrom2) {
+		
+		int moveTo1 = moveFrom1 + roll1;
+		int moveTo2 = moveFrom2 + roll2;
+		
+		System.out.println("player moves from point " + (moveFrom1+1) + " to " + (moveTo1+1));
+		System.out.println("player moves from point " + (moveFrom2+1) + " to " + (moveTo2+1));
+		
+		Checkers checker1 =getPoint(moveFrom1).pop();
+		getPoint(moveTo1).push(checker1);
+		
+		Checkers checker2 =getPoint(moveFrom2).pop();
+		getPoint(moveTo2).push(checker2);
+		
+		
 	}
 	
 	

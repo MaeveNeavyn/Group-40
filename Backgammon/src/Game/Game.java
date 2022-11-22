@@ -53,7 +53,7 @@ public class Game {
 			for(int i=0; i<=1; i++){
 				
 			//prints players pips for whoevers turn it is onto display after board print out
-			System.out.println(players[i] + "pip count: "+ players[i].getPips());
+			System.out.println(players[i] + " pip count: "+ players[i].getPips());
 			
 			
 				do {
@@ -67,7 +67,11 @@ public class Game {
 						commandDone = true;
 					} 
 					else if (command.isMove()) {
-						board.move(command);
+						int r1 = 3;
+						int r2 = 5;
+						int p1 = 18;
+						int p2 = 0;
+						board.move(r1, r2, p1, p2);
 						
 						commandDone = true;
 					}
@@ -85,8 +89,6 @@ public class Game {
 						// command not done, want player to do something, either roll or quit
 
 					}
-					
-					
 				}
 				while (!commandDone);
 				if (command.isQuit()) 

@@ -145,11 +145,14 @@ public class View {
 		//lists all possible moves for player
 	}
 	
+	
+	//Unused right now
+	/*
 	public int[][] allLegalMoves(Player player, Board board)
 	{
 		player.getRolls();
 		player.getPlayerNumber();
 		
-	}
+	}*/
 
 }
