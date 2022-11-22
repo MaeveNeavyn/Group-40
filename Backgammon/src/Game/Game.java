@@ -46,7 +46,6 @@ public class Game {
 		do {
 			//Command command;
 			view.displayBoard(board, players[0], players[1]);
-			
 			boolean commandDone = false;
 	
 			
@@ -64,7 +63,8 @@ public class Game {
 						//int roll2 = Dice.getRoll();
 						view.displayMove(players[i], players[i].getRolls());
 						
-						commandDone = true;
+						//commandDone = true;
+						// don't want command to be finished as want to have the option to move checker
 					} 
 					else if (command.isMove()) {
 						int r1 = 3;
