@@ -8,14 +8,15 @@ public class Player {
 	private int roll1, roll2;
 	private int pips;
 	
-	Player (String name, int player_number) 
+	Player (String name, int player_number, int pips) 
 	{
 		this.name = name;
 		this.player_number = player_number;
+		this.pips = pips;
 		score = 0;
 		roll1 = 1;
 		roll2 = 1;
-		pips = 167;
+		
 	}
 	
 	public void move (int roll1, int roll2, Board board )

@@ -8,8 +8,14 @@ public class Game {
 		Player[] players = new Player[2];
 		View view = new View();
 		view.displayWelcome();
-		players[0] = new Player(view.getName(), 1);
-		players[1] = new Player(view.getName(), 2);
+		players[0] = new Player(view.getName(), 1, view.pipCountX(board));
+		players[1] = new Player(view.getName(), 2, view.pipCountO(board));
+		System.out.println("\n"+ players[0] + " is moving the X Checker");
+		System.out.println(players[1] + " is moving the O Checker");
+		
+		// Put this here so players can see board before first move based off first roll
+		view.displayBoard(board, players[0], players[1]);
+
 		
 		Command command = null;  //WHY DO I NEED NULL
 		
@@ -20,13 +26,17 @@ public class Game {
 			// Gets players first roll
 			player1roll = view.displayFirstRoll(players[0], Dice.getRoll());
 			player2roll = view.displayFirstRoll(players[1], Dice.getRoll());
+			System.out.println();
+
 			if (player1roll > player2roll) {
+				// Move function to move based off first roll
 				players[0].move(player1roll, 0, board);
 				System.out.println(players[0] + " starts the game!");
 				
 				// Get player 2s command, then for loop can continue as normal
 			}
 			else if (player1roll < player2roll) {
+				// Add in move function here to move based off first roll
 				players[1].move(player2roll,  0, board);
 				System.out.println(players[1] + " starts the game!");
 			}
@@ -36,6 +46,7 @@ public class Game {
 			
 		
 				
+		
 					// Need to add in whoever starts moves their checker (move function)
 					// Player who lost first roll is going to be asked their command first
 					// Need to edit for loop
@@ -74,11 +85,11 @@ public class Game {
 						int p1 = 18;
 						int p2 = 0;
 						board.move(r1, r2, p1, p2);
-						
+						view.displayBoard(board, players[0], players[1]);
 						commandDone = true;
 					}
 					else if (command.isQuit()) {
-						view.displayQuit();
+						view.displayQuit(players[i]);
 						commandDone = true;	
 					}
 					else if(command.isPip()) {

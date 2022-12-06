@@ -60,7 +60,7 @@ public class Command {
 				inputFormatted.equals("PIP") ||
 				inputFormatted.equals("HINT") ||
 				inputFormatted.equals("MOVE") ||
-				inputFormatted.equals("[1-24][1-24]*");
+				inputFormatted.equals("QUIT");
 				//inputFormatted.matches("[P1-7DHCS][1-7DHCS][0-9]*");
 		
 	}

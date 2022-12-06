@@ -123,8 +123,8 @@ public class View {
 	}
 	
 	
-	public void displayQuit () {
-		System.out.println("Quit");
+	public void displayQuit (Player player) {
+		System.out.println(player.toString() + " has quit the game.");
 	}
 	
 	public int displayFirstRoll (Player player, int roll) {
@@ -155,10 +155,12 @@ public class View {
 		
 	}*/
 	
+	
+	// Going from 24 to 1 
 	// Goes through each point checks the top element of the stack (element in point)
 	// If element is an O, it gets the size of the point (number of O's)
 	// Multiplies by the point value to get pip count
-	public void pipCountO(Board board) {
+	public int pipCountO(Board board) {
 		int i;
 		int pipCount = 0;		// Initializes Pip count
 
@@ -179,12 +181,12 @@ public class View {
 			pips = pointValue*numCheckerO;
 			pipCount += pips;
 		}
-		System.out.println("O Pip Count is: "+ pipCount);
+		return pipCount;
 	}
 	
 	
-	
-	public void pipCountX(Board board) {
+	//Going from 1 to 24
+	public int pipCountX(Board board) {
 		int i;
 		int j = 24;
 		int pipCount = 0;		// Initializes Pip count
@@ -204,7 +206,7 @@ public class View {
 			j--;
 			pipCount += pips;
 		}
-		System.out.println("X Pip Count is: "+ pipCount);
+		return pipCount;
 	}
 	
 	
