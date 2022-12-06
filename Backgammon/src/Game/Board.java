@@ -16,6 +16,8 @@ public class Board {
 		blue_pile = new BlueCheckers();
 		red_pile = new RedCheckers();
 		points = new ArrayList<>(NUM_POINTS);
+		
+		//point = new Stack<>();
 		for (int i = 0; i<NUM_POINTS; i++)
 		{
 			points.add(new Stack<>());
@@ -119,28 +121,33 @@ public class Board {
 		
 	}
 	
-	
+	/*
 	//Get Pip count value for all 0's
 	public int pipValueO() {
 		int pipCount = 0;
 		int i;
 		points = new ArrayList<>(NUM_POINTS);
-		
-		for (i=0; i<24; i++) {	//point value in terms of array number
+		point = new Stack<Checkers>(); 
+		for (i=0; i< NUM_POINTS; i++) {	//point value in terms of array number
 			//Initialize values back to 0 for each point check
 			int numCheckers = 0;
 			int pointValue = 0;
 			int pips = 0;
-			
-			if (points.get(i).contains("O")) {
-				numCheckers = points.size();
-				pointValue = i+1;
+			/*
+			//if (points.get(i).contains("O")) {
+				//numCheckers = points.size();
+				numCheckers = Collections.frequency(points, "O");
+				
 				pips = pointValue*numCheckers;
 				pipCount += pips;
-			}
+			//}
+			
+			pointValue = i+1;
+			System.out.println("Point value is: " + pointValue);
+			System.out.println("Number of checkers in point is: " + board.getPoint().point.size());
 		}
 		return pipCount;
-	}
+	}*/
 	
 	
 

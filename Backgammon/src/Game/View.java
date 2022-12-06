@@ -154,5 +154,62 @@ public class View {
 		player.getPlayerNumber();
 		
 	}*/
+	
+	// Goes through each point checks the top element of the stack (element in point)
+	// If element is an O, it gets the size of the point (number of O's)
+	// Multiplies by the point value to get pip count
+	public void pipCountO(Board board) {
+		int i;
+		int pipCount = 0;		// Initializes Pip count
 
+		for (i=0; i<24; i++) {
+		
+			Stack<Checkers> point = board.getPoint(i);
+			int pips = 0;
+			int pointValue = i+1;
+			int numCheckers = board.getPoint(i).size();
+			int numCheckerO = 0;
+			
+			// determines if any checkers in point i
+			if (numCheckers != 0) {
+				if (point.peek().toString().contains("O")) {		// Checks if O checkers are in point
+					numCheckerO = point.size();						// Gets amount of O Checkers in point
+				} 
+			}
+			pips = pointValue*numCheckerO;
+			pipCount += pips;
+		}
+		System.out.println("O Pip Count is: "+ pipCount);
+	}
+	
+	
+	
+	public void pipCountX(Board board) {
+		int i;
+		int j = 24;
+		int pipCount = 0;		// Initializes Pip count
+		for (i=0; i<24; i++) {
+		
+			Stack<Checkers> point = board.getPoint(i);
+			int numCheckers = board.getPoint(i).size();
+			int pips = 0;
+			int numCheckerX = 0;
+			
+			if (numCheckers != 0) {
+				if (point.peek().toString().contains("X")) {		// Checks if X checkers are in point
+					numCheckerX = point.size();						// Gets amount of X Checkers in point
+				}
+			}
+			pips = j*numCheckerX;
+			j--;
+			pipCount += pips;
+		}
+		System.out.println("X Pip Count is: "+ pipCount);
+	}
+	
+	
+	
+	
+	
+	
 }
