@@ -60,11 +60,23 @@ public class View {
 	
 	
 	
-	public void displayBoard (Board board, Player player1, Player player2)
+	public void displayBoard (Board board, Player player1, Player player2, int turn)
 	{
+		
 		displayPlayer(player1);
 		displayPlayer(player2);
 		
+		//player 1 pips
+		if (turn == 0) {
+			System.out.println("\n" + player1 + " it's your turn!");
+			System.out.println("-  12  -  11  -  10  -   9  -   8  -   7  -       -   6  -   5  -   4  -   3  -   2  -   1  - ");
+		} 
+		// Player 2 Pips
+		else if (turn == 1) {
+			System.out.println("\n" + player2 + " it's your turn!");
+			System.out.println("-  13  -  14  -  15  -  16  -  17  -  18  -       -   19  -  20  -  21  -  22  -  23  -  24  - ");
+			
+		}
 		System.out.println("--------------------------------------------------------------------------------------------");
 		System.out.println("|  13  |  14  |  15  |  16  |  17  |  18  |       |   19  |  20  |  21  |  22  |  23  |  24  | ");
 		System.out.println("---------------------------------------------------------------------------------------------");
@@ -113,7 +125,15 @@ public class View {
 		
 		System.out.println("--------------------------------------------------------------------------------------------");
 		System.out.println("|  12  |  11  |  10  |   9  |   8  |   7  |       |   6  |   5  |   4  |   3  |   2  |   1  | ");
-		System.out.println("--------------------------------------------------------------------------------------------\n");
+		System.out.println("--------------------------------------------------------------------------------------------");
+		
+		if (turn == 0 ) {
+			System.out.println("-  13  -  14  -  15  -  16  -  17  -  18  -       -   19  -  20  -  21  -  22  -  23  -  24  - ");
+		}
+		else if (turn == 1) {
+			System.out.println("-  12  -  11  -  10  -   9  -   8  -   7  -       -   6  -   5  -   4  -   3  -   2  -   1  - ");
+		}
+		System.out.println();
 	}
 	
 	
