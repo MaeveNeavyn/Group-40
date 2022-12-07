@@ -26,6 +26,11 @@ public class Player {
 		
 	}
 	
+	public void setPips (int pips)
+	{
+		this.pips = pips;
+	}
+	
 	public String getName()
 	{
 		return name;
