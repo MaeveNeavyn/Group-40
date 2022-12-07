@@ -18,6 +18,8 @@ public class Game {
 
 		// Put this here so players can see board before first move based off first roll
 		view.displayBoard(board, players[0], players[1], 2);
+		
+		//LegalMoves legal_moves = new LegalMoves(board,players[0],2);
 
 
 		Command command = null;  //WHY DO I NEED NULL

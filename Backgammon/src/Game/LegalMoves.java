@@ -2,25 +2,16 @@ package Game;
 import java.util.*;
 
 public class LegalMoves {
-	
-	int moveFrom;
-	int moveTo;
-	int moveFromOption;
-	int moveToOption;
-	int playerNumber;
-	int moves_counter = 0;
-	private List<Integer> rolls = new ArrayList<>();
+
 	private List<String> options = new ArrayList<>();
 	
-	LegalMoves (Board board, Player player, List<Integer> rolls)
+	LegalMoves (Board board, Player player, int roll)
 	{
-		this.rolls = rolls;
-		this.playerNumber = player.getPlayerNumber();
-		int no_rolls = rolls.size();
+		int moveFromOption;
+		int moveToOption;
+		int playerNumber = player.getPlayerNumber();
+		int no_options = 0;
 		
-		
-		for (int i=0;i<no_rolls;i++)
-		{
 			if (playerNumber == 1)
 			{
 				for (int j=0;j<24;j++)
@@ -28,10 +19,13 @@ public class LegalMoves {
 					if(board.isOneRedChecker(j) || board.isMultipleRedChecker(j))
 					{
 						moveFromOption = j;
-						moveToOption = j + rolls.get(i);
+						moveToOption = j + roll;
 						if (board.isOneBlueChecker(moveToOption) || board.isOneRedChecker(moveToOption) || board.isMultipleRedChecker(moveToOption)|| board.isPointEmpty(moveToOption))
 						{
 							options.add(Integer.toString(moveFromOption) + " -> " + Integer.toString(moveToOption));
+							System.out.println("Option "+ no_options + " is moving: " + options.get(no_options));
+							no_options = no_options+1;
+							
 						}
 					}
 				}
@@ -43,32 +37,17 @@ public class LegalMoves {
 					if(board.isOneBlueChecker(j) || board.isMultipleBlueChecker(j))
 					{
 						moveFromOption = j;
-						moveToOption = j - rolls.get(i);
+						moveToOption = j - roll;
 						if (board.isOneRedChecker(moveToOption) || board.isOneBlueChecker(moveToOption) || board.isPointEmpty(moveToOption))
 						{
 							options.add(Integer.toString(moveFromOption) + " -> " + Integer.toString(moveToOption));
+							System.out.println("Option "+ no_options + " is moving: " + options.get(no_options));
+							no_options = no_options+1;
 						}
 					}
 				}
 			}
-		}
-		//System.out.println(" Number of rolls to make: " + no_rolls);
-					
-	}
-	
-	public int getMoveFrom()
-	{
-		return moveFrom;
-	}
-	
-	public int getMoveTo()
-	{
-		return moveTo;
-	}
-	
-	public int getPlayerNumber()
-	{
-		return playerNumber;
+		//System.out.println(" Number of rolls to make: " + no_rolls);				
 	}
 	
 	
