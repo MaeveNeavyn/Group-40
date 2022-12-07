@@ -86,8 +86,8 @@ public class Game {
 			//prints players pips for whoevers turn it is onto display after board print out
 			System.out.println(players[playerTurn] + " pip count: "+ players[playerTurn].getPips());
 			//System.out.println("The total pip count for O Checkers is: "  );
-			view.pipCountO(board);
-			view.pipCountX(board);
+			//view.pipCountO(board);
+			//view.pipCountX(board);
 
 				do {
 					command = view.getUserInput(players[playerTurn]); //issue with printing player name
