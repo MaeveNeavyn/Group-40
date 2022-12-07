@@ -32,7 +32,7 @@ public class LegalMoves {
 			}
 			else if (playerNumber ==2) 
 			{
-				for (int j=23;j>=0;j--)
+				for (int j=23;j<=0;j--)
 				{
 					if(board.isOneBlueChecker(j) || board.isMultipleBlueChecker(j))
 					{
