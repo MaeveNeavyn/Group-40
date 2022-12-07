@@ -22,8 +22,11 @@ public class LegalMoves {
 						moveToOption = j + roll;
 						if (board.isOneBlueChecker(moveToOption) || board.isOneRedChecker(moveToOption) || board.isMultipleRedChecker(moveToOption)|| board.isPointEmpty(moveToOption))
 						{
-							options.add(Integer.toString(moveFromOption) + " -> " + Integer.toString(moveToOption));
-							System.out.println("Option "+ no_options + " is moving: " + options.get(no_options));
+							int moveFromIndex = moveFromOption+1;
+							int moveToIndex = moveToOption +1;
+							options.add(Integer.toString(moveFromIndex) + " -> " + Integer.toString(moveToIndex));
+							int index = no_options +1;
+							System.out.println("Option "+ index + " is moving: " + options.get(no_options));
 							no_options = no_options+1;
 							
 						}
@@ -32,7 +35,7 @@ public class LegalMoves {
 			}
 			else if (playerNumber ==2) 
 			{
-				for (int j=23;j>=0;j--)
+				for (int j=23;j<=0;j--)
 				{
 					if(board.isOneBlueChecker(j) || board.isMultipleBlueChecker(j))
 					{
@@ -40,8 +43,11 @@ public class LegalMoves {
 						moveToOption = j - roll;
 						if (board.isOneRedChecker(moveToOption) || board.isOneBlueChecker(moveToOption) || board.isPointEmpty(moveToOption))
 						{
-							options.add(Integer.toString(moveFromOption) + " -> " + Integer.toString(moveToOption));
-							System.out.println("Option "+ no_options + " is moving: " + options.get(no_options));
+							int moveFromIndex = moveFromOption+1;
+							int moveToIndex = moveToOption +1;
+							options.add(Integer.toString(moveFromIndex) + " -> " + Integer.toString(moveToIndex));
+							int index = no_options +1;
+							System.out.println("Option "+ index + " is moving: " + options.get(no_options));
 							no_options = no_options+1;
 						}
 					}

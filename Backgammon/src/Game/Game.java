@@ -19,7 +19,7 @@ public class Game {
 		// Put this here so players can see board before first move based off first roll
 		view.displayBoard(board, players[0], players[1], 2);
 		
-		//LegalMoves legal_moves = new LegalMoves(board,players[0],2);
+		LegalMoves legal_moves = new LegalMoves(board,players[0],2);
 
 
 		Command command = null;  //WHY DO I NEED NULL
@@ -45,6 +45,7 @@ public class Game {
 				players[0].move(player1roll, 0, board);
 				count = 2;
 				System.out.println(players[0] + " starts the game!");
+				legal_moves = new LegalMoves(board,players[0],player1roll);
 				board.move(r1, r2, p1, p2);
 				players[0].setPips(view.pipCountX(board));
 				players[1].setPips(view.pipCountO(board));
@@ -57,6 +58,7 @@ public class Game {
 				players[1].move(player2roll,  0, board);
 				count = 3;
 				System.out.println(players[1] + " starts the game!");
+				legal_moves = new LegalMoves(board,players[1],player2roll);
 				board.move(r1, r2, p1, p2);
 				players[0].setPips(view.pipCountX(board));
 				players[1].setPips(view.pipCountO(board));
