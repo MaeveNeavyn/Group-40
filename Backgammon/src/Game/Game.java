@@ -44,6 +44,8 @@ public class Game {
 				count = 2;
 				System.out.println(players[0] + " starts the game!");
 				board.move(r1, r2, p1, p2);
+				players[0].setPips(view.pipCountX(board));
+				players[1].setPips(view.pipCountO(board));
 
 
 				// Get player 2s command, then for loop can continue as normal
@@ -54,6 +56,8 @@ public class Game {
 				count = 3;
 				System.out.println(players[1] + " starts the game!");
 				board.move(r1, r2, p1, p2);
+				players[0].setPips(view.pipCountX(board));
+				players[1].setPips(view.pipCountO(board));
 
 			}
 			else System.out.println("Players rolled the same number. Roll again!\n"); 		//when values the same, game breaks and repeats
@@ -113,6 +117,8 @@ public class Game {
 						else if (i==1) {
 							turn = 0;
 						}*/
+						players[0].setPips(view.pipCountX(board));
+						players[1].setPips(view.pipCountO(board));
 						view.displayBoard(board, players[0], players[1], playerTurn);
 						commandDone = true;
 					}

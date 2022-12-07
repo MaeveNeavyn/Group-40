@@ -25,28 +25,28 @@ public class LegalMoves {
 			{
 				for (int j=0;j<24;j++)
 				{
-					if(board.isOneRedChecker(j))
+					if(board.isOneRedChecker(j) || board.isMultipleRedChecker(j))
 					{
 						moveFromOption = j;
 						moveToOption = j + rolls.get(i);
-						if (board.isOneBlueChecker(moveToOption) || board.isOneRedChecker(moveToOption) || board.isPointEmpty(moveToOption))
+						if (board.isOneBlueChecker(moveToOption) || board.isOneRedChecker(moveToOption) || board.isMultipleRedChecker(moveToOption)|| board.isPointEmpty(moveToOption))
 						{
-							options.add(Integer.toString(moveFromOption) + Integer.toString(moveToOption));
+							options.add(Integer.toString(moveFromOption) + " -> " + Integer.toString(moveToOption));
 						}
 					}
 				}
 			}
-			else if (playerNumber ==2)
+			else if (playerNumber ==2) 
 			{
-				for (int j=0;j<24;j++)
+				for (int j=23;j>=0;j--)
 				{
-					if(board.isOneBlueChecker(j))
+					if(board.isOneBlueChecker(j) || board.isMultipleBlueChecker(j))
 					{
 						moveFromOption = j;
 						moveToOption = j - rolls.get(i);
 						if (board.isOneRedChecker(moveToOption) || board.isOneBlueChecker(moveToOption) || board.isPointEmpty(moveToOption))
 						{
-							options.add(Integer.toString(moveFromOption) + Integer.toString(moveToOption));
+							options.add(Integer.toString(moveFromOption) + " -> " + Integer.toString(moveToOption));
 						}
 					}
 				}
