@@ -1,5 +1,8 @@
 package Game;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Game {
 
 	public static void main(String[] args) {
@@ -43,8 +46,6 @@ public class Game {
 			else System.out.println("Players rolled the same number. Roll again!\n"); 		//when values the same, game breaks and repeats
 		}
 		while (player1roll == player2roll);
-			
-		
 				
 		
 					// Need to add in whoever starts moves their checker (move function)

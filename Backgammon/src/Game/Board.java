@@ -121,6 +121,74 @@ public class Board {
 		
 	}
 	
+	public boolean isOneRedChecker(int pointNumber) 
+	{
+		if (points.get(pointNumber).size()==1)
+		{
+			if(points.get(pointNumber).peek().toString().contains("X"))
+				return true;
+			else 
+				return false;
+		}
+		
+		else
+		return false;
+	
+	}
+		
+	public boolean isOneBlueChecker(int pointNumber) 
+	{
+		if (points.get(pointNumber).size()==1)
+		{
+			if(points.get(pointNumber).peek().toString().contains("O"))
+				return true;
+			else 
+				return false;
+		}
+		
+		else
+		return false;
+	
+	}
+	
+	public boolean isMultipleRedChecker( int pointNumber)
+	{
+		if (points.get(pointNumber).size()>1)
+		{
+			if(points.get(pointNumber).peek().toString().contains("X"))
+				return true;
+			else 
+				return false;
+		}
+		
+		else
+		return false;
+	}
+	
+	public boolean isMultipleBlueChecker( int pointNumber)
+	{
+		if (points.get(pointNumber).size()>1)
+		{
+			if(points.get(pointNumber).peek().toString().contains(")"))
+				return true;
+			else 
+				return false;
+		}
+		
+		else
+		return false;
+	}
+	
+	public boolean isPointEmpty (int pointNumber)
+	{
+		if (points.get(pointNumber).size()==0)
+			return true;
+		else 
+			return false;
+	}
+
+	
+	
 	/*
 	//Get Pip count value for all 0's
 	public int pipValueO() {
