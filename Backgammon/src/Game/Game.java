@@ -1,10 +1,13 @@
 package Game;
 
 import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+
 
 public class Game {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		// TODO Auto-generated method stub				
 		Board board = new Board();
 		Player[] players = new Player[2];
@@ -128,6 +131,19 @@ public class Game {
 
 				do {
 					command = view.getUserInput(players[playerTurn]); //issue with printing player name
+					
+					if (command.isTestFile()) {
+						String fileName = command.getFileName();
+						File file = new File(fileName);
+						Scanner sc = new Scanner(file);
+						String fileCommand = sc.nextLine();
+						sc.close();
+						
+						command = new Command(fileCommand);		// Overwrites command to be command from test file
+					}
+					
+		
+					
 					if (command.isRoll()) {
 						rolls.add(Dice.getRoll());
 						rolls.add(Dice.getRoll());
@@ -182,6 +198,17 @@ public class Game {
 						rolls.add(command.getDice1());
 						rolls.add(command.getDice2());
 					}
+					else if (command.isTestFile()) {
+						String fileName = command.getFileName();
+						File file = new File(fileName);
+						Scanner sc = new Scanner(file);
+						String fileCommand = sc.nextLine();
+						sc.close();
+						
+					}
+					
+					
+					
 				}
 				while (!commandDone);
 				if (command.isQuit())

@@ -3,12 +3,13 @@ package Game;
 
 public class Command {
 
-	private enum CommandType {ROLL, QUIT, PIP, HINT, MOVE, DICE};
+	private enum CommandType {ROLL, QUIT, PIP, HINT, MOVE, DICE, TEST};
 	
 	//private char moveFrom;
 	//private char moveTo;
 	private CommandType commandType;
 	private char roll1, roll2;
+	private String fileName;
 	
 	
 	//User inputs commands for quit and roll
@@ -25,11 +26,20 @@ public class Command {
 		} else if (inputFormatted.equals("MOVE")) {
 			commandType = CommandType.MOVE;
 			
-		}else {
+		}else if (inputFormatted.matches("DICE\s[1-6][1-6]")) {
 			commandType = CommandType.DICE;
 			roll1 = inputFormatted.charAt(5);
 			roll2 = inputFormatted.charAt(6);
+		}else {
+			commandType = CommandType.TEST;
+			
+			String[] str = inputFormatted.split("\s");
+			fileName = str[1];
+			
+			
 		}
+			
+		
 	}
 	
 	
@@ -58,6 +68,10 @@ public class Command {
 		return commandType == CommandType.MOVE;
 	}
 	
+	public boolean isTestFile() {
+		return commandType == CommandType.TEST;
+	}
+	
 	// Used in view
 	public static boolean isValid (String input) {
 		String inputFormatted = input.trim().toUpperCase();
@@ -80,6 +94,12 @@ public class Command {
 		int dice2 = roll2 -'0';
 		return dice2;
 	}
+	
+	public String getFileName() {
+		return fileName;
+	}
+
+
 	
 	/*
 	public boolean isMoveFromPoint() {
