@@ -1,7 +1,6 @@
 package Game;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Game {
 
@@ -26,9 +25,10 @@ public class Game {
 		
 		List<Integer> rolls = new ArrayList<>();
 		LegalMoves legal_moves = new LegalMoves(board, players[0], rolls);
-		//Need to ask the user what option they want to choose
-		Option option_chosen = legal_moves.pickOption(0);
-		board.move(option_chosen);
+		//Need to ask user what they want to choose
+		Option option_chosen = new Option();
+		int selection = 0;
+		Scanner in = new Scanner(System.in);
 		/*rolls.add(Dice.getRoll());
 		System.out.println("Roll 1 is: " + rolls.get(0));
 		rolls.add(Dice.getRoll());
@@ -52,10 +52,6 @@ public class Game {
 			rolls.add(player1roll);
 			rolls.add(player2roll);
 
-			/*int r1 = 3;
-			int r2 = 5;
-			int p1 = 18;
-			int p2 = 0;*/
 
 			if (player1roll > player2roll) {
 				// Move function to move based off first roll
@@ -63,6 +59,13 @@ public class Game {
 				count = 2;
 				System.out.println(players[0] + " starts the game!");
 				legal_moves = new LegalMoves(board,players[0], rolls);
+				System.out.println("Please enter option you would like to choose");
+				selection = in.nextInt();
+				System.out.println("Option chosen was: " + (selection-1));
+				option_chosen = legal_moves.pickOption(selection-1);
+				System.out.println(legal_moves.pickOption(selection-1).toString());
+				legal_moves.clearOptions();
+				board.move(option_chosen);
 				//Now need to select a legal move and then execute that move. 
 				
 				//board.move(r1, r2, p1, p2);
@@ -78,7 +81,13 @@ public class Game {
 				count = 3;
 				System.out.println(players[1] + " starts the game!");
 				legal_moves = new LegalMoves(board,players[1], rolls);
-				//Now need to select a legal move and then execute that move. 
+				System.out.println("Please enter option you would like to choose");
+				selection = in.nextInt();
+				System.out.println("Option chosen was: " + (selection-1));
+				option_chosen = legal_moves.pickOption(selection-1);
+				System.out.println(legal_moves.pickOption(selection-1).toString());
+				legal_moves.clearOptions();
+				board.move(option_chosen);
 
 				//board.move(r1, r2, p1, p2);
 				players[0].setPips(view.pipCountX(board));
@@ -87,7 +96,12 @@ public class Game {
 				rolls.remove(0);
 
 			}
-			else System.out.println("Players rolled the same number. Roll again!\n"); 		//when values the same, game breaks and repeats
+			else 
+				{
+					System.out.println("Players rolled the same number. Roll again!\n"); 		//when values the same, game breaks and repeats
+					rolls.remove(1);
+					rolls.remove(0);
+				}
 		}
 		while (player1roll == player2roll);
 
@@ -134,19 +148,6 @@ public class Game {
 						// don't want command to be finished as want to have the option to move checker
 					}
 					else if (command.isMove()) {
-						/*int r1 = 3;
-						int r2 = 5;
-						int p1 = 18;
-						int p2 = 0;
-						board.move(r1, r2, p1, p2);*/
-						
-
-						/*if(i==0) {
-							turn =1;
-						}
-						else if (i==1) {
-							turn = 0;
-						}*/
 						legal_moves = new LegalMoves(board, players[playerTurn],rolls);
 						//Add in all extra stuff here
 						players[0].setPips(view.pipCountX(board));

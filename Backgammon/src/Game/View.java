@@ -166,16 +166,6 @@ public class View {
 	}
 	
 	
-	//Unused right now
-	/*
-	public int[][] allLegalMoves(Player player, Board board)
-	{
-		player.getRolls();
-		player.getPlayerNumber();
-		
-	}*/
-	
-	
 	// Going from 24 to 1 
 	// Goes through each point checks the top element of the stack (element in point)
 	// If element is an O, it gets the size of the point (number of O's)
