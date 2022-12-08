@@ -8,7 +8,6 @@ public class LegalMoves {
 	
 	LegalMoves (Board board, Player player, List<Integer> rolls)
 	{
-		Option current_option = new Option();
 		int moveToOption;
 		no_options = 0;
 		int playerNumber = player.getPlayerNumber();
@@ -25,6 +24,7 @@ public class LegalMoves {
 							moveToOption = j + rolls.get(i);
 							if (board.isOneBlueChecker(moveToOption))
 							{
+								Option current_option = new Option();
 								no_options = no_options +1;
 								current_option.setKnockOpponent(true);
 								current_option.setMoveFrom(j);
@@ -32,13 +32,11 @@ public class LegalMoves {
 								current_option.setOptionNumber(no_options);
 								current_option.setNoDice(i+1);
 								System.out.println(current_option.toString());
-								options.push(current_option); //This is not working right 
-								System.out.println("Size options: " + options.size());
-								System.out.println(options.get(0).toString());
-								System.out.println(options.get(no_options-1).toString());
+								options.push(current_option); 
 							}
 							else if (board.isOneRedChecker(moveToOption) || board.isMultipleRedChecker(moveToOption)|| board.isPointEmpty(moveToOption))
 							{
+								Option current_option = new Option();
 								no_options = no_options +1;
 								current_option.setKnockOpponent(false);
 								current_option.setMoveFrom(j);
@@ -47,10 +45,6 @@ public class LegalMoves {
 								current_option.setNoDice(i+1);
 								System.out.println(current_option.toString());
 								options.push(current_option);
-								System.out.println("Size options: " + options.size());
-								System.out.println(options.get(0).toString());
-								System.out.println(options.get(no_options-1).toString());
-								
 							}
 							
 						}
@@ -65,6 +59,7 @@ public class LegalMoves {
 							moveToOption = j - rolls.get(i);
 							if (board.isOneRedChecker(moveToOption))
 							{
+								Option current_option = new Option();
 								no_options = no_options +1;
 								current_option.setKnockOpponent(true);
 								current_option.setMoveFrom(j);
@@ -73,12 +68,10 @@ public class LegalMoves {
 								current_option.setNoDice(i+1);
 								System.out.println(current_option.toString());
 								options.push(current_option);
-								System.out.println("Size options: " + options.size());
-								System.out.println(options.get(0).toString());
-								System.out.println(options.get(no_options-1).toString());
 							}
 							else if (board.isOneBlueChecker(moveToOption) || board.isMultipleBlueChecker(moveToOption)|| board.isPointEmpty(moveToOption))
 							{
+								Option current_option = new Option();
 								no_options = no_options +1;
 								current_option.setKnockOpponent(false);
 								current_option.setMoveFrom(j);
@@ -87,9 +80,6 @@ public class LegalMoves {
 								current_option.setNoDice(i+1);
 								System.out.println(current_option.toString());
 								options.push(current_option);
-								System.out.println("Size options: " + options.size());
-								System.out.println(options.get(0).toString());
-								System.out.println(options.get(no_options-1).toString());
 								
 							}
 						}

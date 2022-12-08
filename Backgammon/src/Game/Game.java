@@ -5,13 +5,7 @@ import java.util.*;
 public class Game {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub		
-		//When processing the string of options this can be used to find the units in it
-		/*String s = "ksl13 m4n";
-		String clean = s.replaceAll("\\D+",""); //remove non-digits
-		int i = Integer.parseInt(clean);
-		System.out.println(i);*/ 
-		
+		// TODO Auto-generated method stub				
 		Board board = new Board();
 		Player[] players = new Player[2];
 		View view = new View();
@@ -29,13 +23,6 @@ public class Game {
 		Option option_chosen = new Option();
 		int selection = 0;
 		Scanner in = new Scanner(System.in);
-		/*rolls.add(Dice.getRoll());
-		System.out.println("Roll 1 is: " + rolls.get(0));
-		rolls.add(Dice.getRoll());
-		System.out.println("Roll 2 is: " + rolls.get(1));
-		LegalMoves legal_moves = new LegalMoves(board,players[0],rolls);*/
-
-
 		Command command = null;  //WHY DO I NEED NULL
 		int count = 0;
 		int playerTurn;
@@ -54,8 +41,6 @@ public class Game {
 
 
 			if (player1roll > player2roll) {
-				// Move function to move based off first roll
-				//players[0].move(player1roll, 0, board);
 				count = 2;
 				System.out.println(players[0] + " starts the game!");
 				legal_moves = new LegalMoves(board,players[0], rolls);
@@ -66,9 +51,7 @@ public class Game {
 				System.out.println(legal_moves.pickOption(selection-1).toString());
 				legal_moves.clearOptions();
 				board.move(option_chosen);
-				//Now need to select a legal move and then execute that move. 
-				
-				//board.move(r1, r2, p1, p2);
+
 				players[0].setPips(view.pipCountX(board));
 				players[1].setPips(view.pipCountO(board));
 				rolls.remove(1);
@@ -77,7 +60,6 @@ public class Game {
 			}
 			else if (player1roll < player2roll) {
 				// Add in move function here to move based off first roll
-				//players[1].move(player2roll,  0, board);
 				count = 3;
 				System.out.println(players[1] + " starts the game!");
 				legal_moves = new LegalMoves(board,players[1], rolls);
@@ -89,7 +71,6 @@ public class Game {
 				legal_moves.clearOptions();
 				board.move(option_chosen);
 
-				//board.move(r1, r2, p1, p2);
 				players[0].setPips(view.pipCountX(board));
 				players[1].setPips(view.pipCountO(board));
 				rolls.remove(1);
@@ -114,8 +95,6 @@ public class Game {
 					// Player who lost first roll is going to be asked their command first
 					// Need to edit for loop
 
-
-
 		// do while game is not quit or over
 		do {
 			//Command command;
@@ -125,25 +104,14 @@ public class Game {
 			view.displayBoard(board, players[0], players[1], playerTurn);
 			boolean commandDone = false;
 
-
-			//for(int i=0; i<=1; i++){
-			//int i = playerTurn -1;
 			//prints players pips for whoevers turn it is onto display after board print out
 			System.out.println(players[playerTurn] + " pip count: "+ players[playerTurn].getPips());
-			//System.out.println("The total pip count for O Checkers is: "  );
-			//view.pipCountO(board);
-			//view.pipCountX(board);
 
 				do {
 					command = view.getUserInput(players[playerTurn]); //issue with printing player name
 					if (command.isRoll()) {
-						//players[playerTurn].move(Dice.getRoll(),Dice.getRoll(),board);
-						//int roll1 = Dice.getRoll();
-						//int roll2 = Dice.getRoll();
 						rolls.add(Dice.getRoll());
 						rolls.add(Dice.getRoll());
-						//view.displayMove(players[playerTurn], players[playerTurn].getRolls());
-
 						//commandDone = true;
 						// don't want command to be finished as want to have the option to move checker
 					}
@@ -173,10 +141,7 @@ public class Game {
 				while (!commandDone);
 				if (command.isQuit())
 					break;
-
-
-
-		}while (!command.isQuit() && !players[0].isGameOver() && !players[1].isGameOver());
+		} while (!command.isQuit() && !players[0].isGameOver() && !players[1].isGameOver());
 
 		if (players[0].isGameOver()) {
 			System.out.println("Congratulations " + players[0] + "!!!\nYou have won backgammon!");
