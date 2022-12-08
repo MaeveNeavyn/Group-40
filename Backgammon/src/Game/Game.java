@@ -21,12 +21,14 @@ public class Game {
 		players[1] = new Player(view.getName(), 2, view.pipCountO(board));
 		System.out.println("\n"+ players[0] + " is moving the X Checker");
 		System.out.println(players[1] + " is moving the O Checker");
-
 		// Put this here so players can see board before first move based off first roll
 		view.displayBoard(board, players[0], players[1], 2);
 		
 		List<Integer> rolls = new ArrayList<>();
-		LegalMoves legal_moves = new LegalMoves(board, players[0],rolls);
+		LegalMoves legal_moves = new LegalMoves(board, players[0], rolls);
+		//Need to ask the user what option they want to choose
+		Option option_chosen = legal_moves.pickOption(0);
+		board.move(option_chosen);
 		/*rolls.add(Dice.getRoll());
 		System.out.println("Roll 1 is: " + rolls.get(0));
 		rolls.add(Dice.getRoll());
@@ -146,6 +148,7 @@ public class Game {
 							turn = 0;
 						}*/
 						legal_moves = new LegalMoves(board, players[playerTurn],rolls);
+						//Add in all extra stuff here
 						players[0].setPips(view.pipCountX(board));
 						players[1].setPips(view.pipCountO(board));
 						view.displayBoard(board, players[0], players[1], playerTurn);

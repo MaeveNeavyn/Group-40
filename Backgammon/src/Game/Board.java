@@ -127,11 +127,8 @@ public class Board {
 			}
 		}
 		else
-			points.get(move.getMoveTo()).push(points.get(move.getMoveFrom()).pop());
-		
-		
-		System.out.println("Player moves from point " + (move.getMoveFrom()+1) + " to " + (move.getMoveTo()+1) + " using dice number: " + (move.getNoDice()+1));	
-		
+			points.get(move.getMoveTo()).push(points.get(move.getMoveFrom()).pop());		
+		System.out.println("Player moves from point " + (move.getMoveFrom()+1) + " to " + (move.getMoveTo()+1) + " using dice number: " + (move.getNoDice()+1));		
 	}
 	
 	public boolean isOneRedChecker(int pointNumber) 
