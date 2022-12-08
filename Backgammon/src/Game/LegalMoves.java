@@ -17,37 +17,93 @@ public class LegalMoves {
 		{
 			if (playerNumber == 1)
 				{
-					for (int j=0;j<24;j++)
+					if (board.isRedMiddlePointEmpty())
 					{
-						if(board.isOneRedChecker(j) || board.isMultipleRedChecker(j))
+						for (int j=0;j<24;j++)
 						{
-							moveToOption = j + rolls.get(i);
-							if (board.isOneBlueChecker(moveToOption))
+							if(board.isOneRedChecker(j) || board.isMultipleRedChecker(j))
 							{
-								Option current_option = new Option();
-								no_options = no_options +1;
-								current_option.setKnockOpponent(true);
-								current_option.setMoveFrom(j);
-								current_option.setMoveTo(moveToOption);
-								current_option.setOptionNumber(no_options);
-								current_option.setNoDice(i+1);
-								System.out.println(current_option.toString());
-								options.push(current_option); 
+								moveToOption = j + rolls.get(i);
+								if (moveToOption<25)
+								{
+									if (moveToOption == 25)
+									{
+										for (int k=0; k<18;k++)
+										{
+											if(board.isOneRedChecker(k) || board.isMultipleRedChecker(k))
+													break;
+										}
+										Option current_option = new Option();
+										no_options = no_options+1;
+										current_option.setPlayerNumber(playerNumber);
+										current_option.setKnockOpponent(false);
+										current_option.setMoveFrom(j);
+										current_option.setMoveTo(0);
+										current_option.setOptionNumber(no_options);
+										current_option.setNoDice(i+1);
+										System.out.println(current_option.toString());
+										options.push(current_option);
+									}
+									else if (board.isOneBlueChecker(moveToOption))
+									{
+										Option current_option = new Option();
+										no_options = no_options +1;
+										current_option.setPlayerNumber(playerNumber);
+										current_option.setKnockOpponent(true);
+										current_option.setMoveFrom(j);
+										current_option.setMoveTo(moveToOption);
+										current_option.setOptionNumber(no_options);
+										current_option.setNoDice(i+1);
+										System.out.println(current_option.toString());
+										options.push(current_option); 
+									}
+									else if (board.isOneRedChecker(moveToOption) || board.isMultipleRedChecker(moveToOption)|| board.isPointEmpty(moveToOption))
+									{
+										Option current_option = new Option();
+										no_options = no_options +1;
+										current_option.setPlayerNumber(playerNumber);
+										current_option.setKnockOpponent(false);
+										current_option.setMoveFrom(j);
+										current_option.setMoveTo(moveToOption);
+										current_option.setOptionNumber(no_options);
+										current_option.setNoDice(i+1);
+										System.out.println(current_option.toString());
+										options.push(current_option);
+									}
+								}	
 							}
-							else if (board.isOneRedChecker(moveToOption) || board.isMultipleRedChecker(moveToOption)|| board.isPointEmpty(moveToOption))
-							{
-								Option current_option = new Option();
-								no_options = no_options +1;
-								current_option.setKnockOpponent(false);
-								current_option.setMoveFrom(j);
-								current_option.setMoveTo(moveToOption);
-								current_option.setOptionNumber(no_options);
-								current_option.setNoDice(i+1);
-								System.out.println(current_option.toString());
-								options.push(current_option);
-							}
-							
 						}
+					}
+					else
+					{
+						moveToOption = 0 + rolls.get(i);
+						if (board.isOneBlueChecker(moveToOption))
+						{
+							Option current_option = new Option();
+							no_options = no_options +1;
+							current_option.setPlayerNumber(playerNumber);
+							current_option.setKnockOpponent(true);
+							current_option.setMoveFrom(-1);
+							current_option.setMoveTo(moveToOption);
+							current_option.setOptionNumber(no_options);
+							current_option.setNoDice(i+1);
+							System.out.println(current_option.toString());
+							options.push(current_option); 
+						}
+						else if (board.isOneRedChecker(moveToOption) || board.isMultipleRedChecker(moveToOption)|| board.isPointEmpty(moveToOption))
+						{
+							Option current_option = new Option();
+							no_options = no_options +1;
+							current_option.setPlayerNumber(playerNumber);
+							current_option.setKnockOpponent(false);
+							current_option.setMoveFrom(-1);
+							current_option.setMoveTo(moveToOption);
+							current_option.setOptionNumber(no_options);
+							current_option.setNoDice(i+1);
+							System.out.println(current_option.toString());
+							options.push(current_option);
+						}
+						
 					}
 				}
 				else 
@@ -57,30 +113,53 @@ public class LegalMoves {
 						if(board.isOneBlueChecker(j) || board.isMultipleBlueChecker(j))
 						{
 							moveToOption = j - rolls.get(i);
-							if (board.isOneRedChecker(moveToOption))
+							if (moveToOption>-2)
 							{
-								Option current_option = new Option();
-								no_options = no_options +1;
-								current_option.setKnockOpponent(true);
-								current_option.setMoveFrom(j);
-								current_option.setMoveTo(moveToOption);
-								current_option.setOptionNumber(no_options);
-								current_option.setNoDice(i+1);
-								System.out.println(current_option.toString());
-								options.push(current_option);
-							}
-							else if (board.isOneBlueChecker(moveToOption) || board.isMultipleBlueChecker(moveToOption)|| board.isPointEmpty(moveToOption))
-							{
-								Option current_option = new Option();
-								no_options = no_options +1;
-								current_option.setKnockOpponent(false);
-								current_option.setMoveFrom(j);
-								current_option.setMoveTo(moveToOption);
-								current_option.setOptionNumber(no_options);
-								current_option.setNoDice(i+1);
-								System.out.println(current_option.toString());
-								options.push(current_option);
-								
+								if (moveToOption == -1)
+								{
+									for (int k=23; k>7;k--)
+									{
+										if(board.isOneBlueChecker(k) || board.isMultipleBlueChecker(k))
+												break;
+									}
+									Option current_option = new Option();
+									no_options = no_options+1;
+									current_option.setPlayerNumber(playerNumber);
+									current_option.setKnockOpponent(false);
+									current_option.setMoveFrom(j);
+									current_option.setMoveTo(0);
+									current_option.setOptionNumber(no_options);
+									current_option.setNoDice(i+1);
+									System.out.println(current_option.toString());
+									options.push(current_option);
+								}
+								else if (board.isOneRedChecker(moveToOption))
+								{
+									Option current_option = new Option();
+									no_options = no_options +1;
+									current_option.setPlayerNumber(playerNumber);
+									current_option.setKnockOpponent(true);
+									current_option.setMoveFrom(j);
+									current_option.setMoveTo(moveToOption);
+									current_option.setOptionNumber(no_options);
+									current_option.setNoDice(i+1);
+									System.out.println(current_option.toString());
+									options.push(current_option);
+								}
+								else if (board.isOneBlueChecker(moveToOption) || board.isMultipleBlueChecker(moveToOption)|| board.isPointEmpty(moveToOption))
+								{
+									Option current_option = new Option();
+									no_options = no_options +1;
+									current_option.setPlayerNumber(playerNumber);
+									current_option.setKnockOpponent(false);
+									current_option.setMoveFrom(j);
+									current_option.setMoveTo(moveToOption);
+									current_option.setOptionNumber(no_options);
+									current_option.setNoDice(i+1);
+									System.out.println(current_option.toString());
+									options.push(current_option);
+									
+								}
 							}
 						}
 					}
@@ -97,6 +176,7 @@ public class LegalMoves {
 	{
 		options.clear();
 	}
+	
 	
 	
 }

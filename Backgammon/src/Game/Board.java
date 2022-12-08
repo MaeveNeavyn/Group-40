@@ -6,8 +6,8 @@ public class Board {
 	public final static int NUM_POINTS = 24;
 	//private Stack<Checkers> point;
 	private List<Stack<Checkers>> points; 
-	private Stack<Checkers> blue_middle_point;
-	private Stack<Checkers> red_middle_point;
+	private Stack<Checkers> blue_middle_point = new Stack<Checkers>();
+	private Stack<Checkers> red_middle_point = new Stack<Checkers>();;
 	private BlueCheckers blue_pile;
 	private RedCheckers red_pile;
 	
@@ -123,11 +123,33 @@ public class Board {
 				}
 				else
 					blue_middle_point.push(moving_checker);
-				points.get(move.getMoveTo()).push(points.get(move.getMoveFrom()).pop());
+				
+				if (move.getMoveFrom() == -1)
+				{
+					if (move.getPlayerNumber() == 1)
+						points.get(move.getMoveTo()).push(red_middle_point.pop());
+					else
+						points.get(move.getMoveTo()).push(blue_middle_point.pop());
+				}
+				else
+					points.get(move.getMoveTo()).push(points.get(move.getMoveFrom()).pop());
 			}
 		}
+		else if (move.getMoveTo() == 0)
+			{
+				blue_pile.push(points.get(move.getMoveFrom()).pop());
+			}
 		else
-			points.get(move.getMoveTo()).push(points.get(move.getMoveFrom()).pop());		
+			if (move.getMoveFrom() == -1)
+			{
+				if (move.getPlayerNumber() == 1)
+					points.get(move.getMoveTo()).push(red_middle_point.pop());
+				else
+					points.get(move.getMoveTo()).push(blue_middle_point.pop());
+			}
+			else
+				points.get(move.getMoveTo()).push(points.get(move.getMoveFrom()).pop());
+		
 		System.out.println("Player moves from point " + (move.getMoveFrom()+1) + " to " + (move.getMoveTo()+1) + " using dice number: " + (move.getNoDice()+1));		
 	}
 	
@@ -194,6 +216,22 @@ public class Board {
 		if (points.get(pointNumber).size()==0)
 			return true;
 		else 
+			return false;
+	}
+	
+	public boolean isBlueMiddlePointEmpty()
+	{
+		if (blue_middle_point.size() == 0)
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean isRedMiddlePointEmpty()
+	{
+		if (red_middle_point.size() == 0)
+			return true;
+		else
 			return false;
 	}
 

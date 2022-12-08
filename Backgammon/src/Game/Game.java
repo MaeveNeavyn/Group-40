@@ -46,7 +46,7 @@ public class Game {
 				legal_moves = new LegalMoves(board,players[0], rolls);
 				System.out.println("Please enter option you would like to choose");
 				selection = in.nextInt();
-				System.out.println("Option chosen was: " + (selection-1));
+				//System.out.println("Option chosen was: " + (selection-1));
 				option_chosen = legal_moves.pickOption(selection-1);
 				System.out.println(legal_moves.pickOption(selection-1).toString());
 				legal_moves.clearOptions();
@@ -65,7 +65,7 @@ public class Game {
 				legal_moves = new LegalMoves(board,players[1], rolls);
 				System.out.println("Please enter option you would like to choose");
 				selection = in.nextInt();
-				System.out.println("Option chosen was: " + (selection-1));
+				//System.out.println("Option chosen was: " + (selection-1));
 				option_chosen = legal_moves.pickOption(selection-1);
 				System.out.println(legal_moves.pickOption(selection-1).toString());
 				legal_moves.clearOptions();
@@ -112,12 +112,19 @@ public class Game {
 					if (command.isRoll()) {
 						rolls.add(Dice.getRoll());
 						rolls.add(Dice.getRoll());
+						
 						//commandDone = true;
 						// don't want command to be finished as want to have the option to move checker
 					}
 					else if (command.isMove()) {
 						legal_moves = new LegalMoves(board, players[playerTurn],rolls);
-						//Add in all extra stuff here
+						System.out.println("Please enter option you would like to choose");
+						selection = in.nextInt();
+						//System.out.println("Option chosen was: " + (selection-1));
+						option_chosen = legal_moves.pickOption(selection-1);
+						System.out.println(legal_moves.pickOption(selection-1).toString());
+						legal_moves.clearOptions();
+						board.move(option_chosen);
 						players[0].setPips(view.pipCountX(board));
 						players[1].setPips(view.pipCountO(board));
 						view.displayBoard(board, players[0], players[1], playerTurn);
@@ -135,7 +142,6 @@ public class Game {
 						// Method needs to be completed
 						view.displayHints(players[playerTurn]);
 						// command not done, want player to do something, either roll or quit
-
 					}
 				}
 				while (!commandDone);

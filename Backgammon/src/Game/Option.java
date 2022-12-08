@@ -6,6 +6,7 @@ public class Option {
 	private int moveTo;
 	private int no_dice;
 	private boolean knockOpponent;
+	private int playerNumber;
 	
 	/*Option()
 	{
@@ -66,6 +67,16 @@ public class Option {
 	{
 		String str = "Option: "+ (option_number) + " is move from point " + (moveFrom+1) + " to point " + (moveTo+1) + " using dice number: " + no_dice;
 		return str;
+	}
+	
+	public void setPlayerNumber(int n)
+	{
+		playerNumber = n;
+	}
+	
+	public int getPlayerNumber()
+	{
+		return playerNumber;
 	}
 		
 
