@@ -3,57 +3,85 @@ import java.util.*;
 
 public class LegalMoves {
 
-	private List<String> options = new ArrayList<>();
+	private Stack<Option> options;
 	
-	LegalMoves (Board board, Player player, int roll)
+	LegalMoves (Board board, Player player, List<Integer> rolls)
 	{
-		int moveFromOption;
+		Option current_option = new Option();
 		int moveToOption;
 		int playerNumber = player.getPlayerNumber();
 		int no_options = 0;
+		int no_dice = rolls.size();
 		
+		for (int i=0; i<no_dice; i++)
+		{
 			if (playerNumber == 1)
-			{
-				for (int j=0;j<24;j++)
 				{
-					if(board.isOneRedChecker(j) || board.isMultipleRedChecker(j))
+					for (int j=0;j<24;j++)
 					{
-						moveFromOption = j;
-						moveToOption = j + roll;
-						if (board.isOneBlueChecker(moveToOption) || board.isOneRedChecker(moveToOption) || board.isMultipleRedChecker(moveToOption)|| board.isPointEmpty(moveToOption))
+						if(board.isOneRedChecker(j) || board.isMultipleRedChecker(j))
 						{
-							int moveFromIndex = moveFromOption+1;
-							int moveToIndex = moveToOption +1;
-							options.add(Integer.toString(moveFromIndex) + " -> " + Integer.toString(moveToIndex));
-							int index = no_options +1;
-							System.out.println("Option "+ index + " is moving: " + options.get(no_options));
-							no_options = no_options+1;
+							moveToOption = j + rolls.get(i);
+							if (board.isOneBlueChecker(moveToOption))
+							{
+								current_option.setKnockOpponent(true);
+								current_option.setMoveFrom(j);
+								current_option.setMoveTo(moveToOption);
+								current_option.setOptionNumber(no_options+1);
+								current_option.setNoDice(i+1);
+								System.out.println(current_option.toString());
+								options.add(current_option);
+							}
+							else if (board.isOneRedChecker(moveToOption) || board.isMultipleRedChecker(moveToOption)|| board.isPointEmpty(moveToOption))
+							{
+								current_option.setKnockOpponent(false);
+								current_option.setMoveFrom(j);
+								current_option.setMoveTo(moveToOption);
+								current_option.setOptionNumber(no_options+1);
+								current_option.setNoDice(i+1);
+								System.out.println(current_option.toString());
+								options.add(current_option);
+								
+							}
 							
 						}
 					}
 				}
-			}
-			else if (playerNumber ==2) 
-			{
-				for (int j=23;j<=0;j--)
+				else if (playerNumber == 2) 
 				{
-					if(board.isOneBlueChecker(j) || board.isMultipleBlueChecker(j))
+					for (int j=23;j>=0;j--)
 					{
-						moveFromOption = j;
-						moveToOption = j - roll;
-						if (board.isOneRedChecker(moveToOption) || board.isOneBlueChecker(moveToOption) || board.isPointEmpty(moveToOption))
+						if(board.isOneBlueChecker(j) || board.isMultipleBlueChecker(j))
 						{
-							int moveFromIndex = moveFromOption+1;
-							int moveToIndex = moveToOption +1;
-							options.add(Integer.toString(moveFromIndex) + " -> " + Integer.toString(moveToIndex));
-							int index = no_options +1;
-							System.out.println("Option "+ index + " is moving: " + options.get(no_options));
-							no_options = no_options+1;
+							moveToOption = j - rolls.get(i);
+							if (board.isOneRedChecker(moveToOption))
+							{
+								current_option.setKnockOpponent(true);
+								current_option.setMoveFrom(j);
+								current_option.setMoveTo(moveToOption);
+								current_option.setOptionNumber(no_options+1);
+								current_option.setNoDice(i+1);
+								options.add(current_option);
+							}
+							else if (board.isOneBlueChecker(moveToOption) || board.isMultipleBlueChecker(moveToOption)|| board.isPointEmpty(moveToOption))
+							{
+								current_option.setKnockOpponent(false);
+								current_option.setMoveFrom(j);
+								current_option.setMoveTo(moveToOption);
+								current_option.setOptionNumber(no_options+1);
+								current_option.setNoDice(i+1);
+								options.add(current_option);
+								
+							}
 						}
 					}
 				}
-			}
-		//System.out.println(" Number of rolls to make: " + no_rolls);				
+		}			
+	}
+	
+	public Option pickOption(int i)
+	{
+		return options.get(i);
 	}
 	
 	

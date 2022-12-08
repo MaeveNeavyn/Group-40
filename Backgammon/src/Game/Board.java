@@ -4,9 +4,10 @@ import java.util.*;
 public class Board {
 	
 	public final static int NUM_POINTS = 24;
-	private Stack<Checkers> point;
+	//private Stack<Checkers> point;
 	private List<Stack<Checkers>> points; 
-	private List<Stack<Checkers>> middle_lane;
+	private Stack<Checkers> blue_middle_point;
+	private Stack<Checkers> red_middle_point;
 	private BlueCheckers blue_pile;
 	private RedCheckers red_pile;
 	
@@ -104,20 +105,32 @@ public class Board {
 		}
 	}*/
 	
-	public void move(int roll1, int roll2, int moveFrom1, int moveFrom2) {
+	public void move(Option move) {
 		
-		int moveTo1 = moveFrom1 + roll1;
-		int moveTo2 = moveFrom2 + roll2;
+		/*First need to check if there's a checker being removed from the destination point
+		 * If there is then I need to remove that checker first into a Checker variable
+		 * Then I need to check if that checker is red or blue and move it into the appropriate middle lane
+		 * I can then move my original checker from the moveFrom lane to the moveTo lane
+		 */
 		
-		System.out.println("player moves from point " + (moveFrom1+1) + " to " + (moveTo1+1));
-		System.out.println("player moves from point " + (moveFrom2+1) + " to " + (moveTo2+1));
+		if (move.getKnockOpponent())
+		{
+			Checkers moving_checker = points.get(move.getMoveTo()).pop();
+			{
+				if (moving_checker.getcolour().toString() == "X")
+				{
+					red_middle_point.push(moving_checker);
+				}
+				else
+					blue_middle_point.push(moving_checker);
+				points.get(move.getMoveTo()).push(points.get(move.getMoveFrom()).pop());
+			}
+		}
+		else
+			points.get(move.getMoveTo()).push(points.get(move.getMoveFrom()).pop());
 		
-		Checkers checker1 =getPoint(moveFrom1).pop();
-		getPoint(moveTo1).push(checker1);
 		
-		Checkers checker2 =getPoint(moveFrom2).pop();
-		getPoint(moveTo2).push(checker2);
-		
+		System.out.println("Player moves from point " + (move.getMoveFrom()+1) + " to " + (move.getMoveTo()+1) + " using dice number: " + (move.getNoDice()+1));	
 		
 	}
 	

@@ -6,7 +6,13 @@ import java.util.List;
 public class Game {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub		
+		//When processing the string of options this can be used to find the units in it
+		/*String s = "ksl13 m4n";
+		String clean = s.replaceAll("\\D+",""); //remove non-digits
+		int i = Integer.parseInt(clean);
+		System.out.println(i);*/ 
+		
 		Board board = new Board();
 		Player[] players = new Player[2];
 		View view = new View();
@@ -19,7 +25,13 @@ public class Game {
 		// Put this here so players can see board before first move based off first roll
 		view.displayBoard(board, players[0], players[1], 2);
 		
-		LegalMoves legal_moves = new LegalMoves(board,players[0],2);
+		List<Integer> rolls = new ArrayList<>();
+		LegalMoves legal_moves = new LegalMoves(board, players[0],rolls);
+		/*rolls.add(Dice.getRoll());
+		System.out.println("Roll 1 is: " + rolls.get(0));
+		rolls.add(Dice.getRoll());
+		System.out.println("Roll 2 is: " + rolls.get(1));
+		LegalMoves legal_moves = new LegalMoves(board,players[0],rolls);*/
 
 
 		Command command = null;  //WHY DO I NEED NULL
@@ -28,30 +40,34 @@ public class Game {
 
 		int player1roll, player2roll;
 
+		//First rolls determines who goes first
 		do
 		{
 			// Gets players first roll
 			player1roll = view.displayFirstRoll(players[0], Dice.getRoll());
 			player2roll = view.displayFirstRoll(players[1], Dice.getRoll());
 			System.out.println();
+			rolls.add(player1roll);
+			rolls.add(player2roll);
 
-			int r1 = 3;
+			/*int r1 = 3;
 			int r2 = 5;
 			int p1 = 18;
-			int p2 = 0;
+			int p2 = 0;*/
 
 			if (player1roll > player2roll) {
 				// Move function to move based off first roll
 				//players[0].move(player1roll, 0, board);
 				count = 2;
 				System.out.println(players[0] + " starts the game!");
-				legal_moves = new LegalMoves(board,players[0], player1roll);
+				legal_moves = new LegalMoves(board,players[0], rolls);
+				//Now need to select a legal move and then execute that move. 
 				
-				board.move(r1, r2, p1, p2);
+				//board.move(r1, r2, p1, p2);
 				players[0].setPips(view.pipCountX(board));
 				players[1].setPips(view.pipCountO(board));
-
-
+				rolls.remove(1);
+				rolls.remove(0);
 				// Get player 2s command, then for loop can continue as normal
 			}
 			else if (player1roll < player2roll) {
@@ -59,11 +75,14 @@ public class Game {
 				//players[1].move(player2roll,  0, board);
 				count = 3;
 				System.out.println(players[1] + " starts the game!");
-				legal_moves = new LegalMoves(board,players[1], player2roll);
+				legal_moves = new LegalMoves(board,players[1], rolls);
+				//Now need to select a legal move and then execute that move. 
 
-				board.move(r1, r2, p1, p2);
+				//board.move(r1, r2, p1, p2);
 				players[0].setPips(view.pipCountX(board));
 				players[1].setPips(view.pipCountO(board));
+				rolls.remove(1);
+				rolls.remove(0);
 
 			}
 			else System.out.println("Players rolled the same number. Roll again!\n"); 		//when values the same, game breaks and repeats
@@ -102,20 +121,23 @@ public class Game {
 				do {
 					command = view.getUserInput(players[playerTurn]); //issue with printing player name
 					if (command.isRoll()) {
-						players[playerTurn].move(Dice.getRoll(),Dice.getRoll(),board);
+						//players[playerTurn].move(Dice.getRoll(),Dice.getRoll(),board);
 						//int roll1 = Dice.getRoll();
 						//int roll2 = Dice.getRoll();
-						view.displayMove(players[playerTurn], players[playerTurn].getRolls());
+						rolls.add(Dice.getRoll());
+						rolls.add(Dice.getRoll());
+						//view.displayMove(players[playerTurn], players[playerTurn].getRolls());
 
 						//commandDone = true;
 						// don't want command to be finished as want to have the option to move checker
 					}
 					else if (command.isMove()) {
-						int r1 = 3;
+						/*int r1 = 3;
 						int r2 = 5;
 						int p1 = 18;
 						int p2 = 0;
-						board.move(r1, r2, p1, p2);
+						board.move(r1, r2, p1, p2);*/
+						
 
 						/*if(i==0) {
 							turn =1;
@@ -123,6 +145,7 @@ public class Game {
 						else if (i==1) {
 							turn = 0;
 						}*/
+						legal_moves = new LegalMoves(board, players[playerTurn],rolls);
 						players[0].setPips(view.pipCountX(board));
 						players[1].setPips(view.pipCountO(board));
 						view.displayBoard(board, players[0], players[1], playerTurn);

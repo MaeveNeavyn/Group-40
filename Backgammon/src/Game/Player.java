@@ -19,12 +19,12 @@ public class Player {
 		
 	}
 	
-	public void move (int roll1, int roll2, Board board )
+	/*public void move (int roll1, int roll2, Board board )
 	{
 		this.roll1 = roll1;
 		this.roll2 = roll2;
 		
-	}
+	}*/
 	
 	public void setPips (int pips)
 	{
@@ -52,12 +52,12 @@ public class Player {
 		return score;
 	}
 	
-	public int[] getRolls()
+	/*public int[] getRolls()
 	{
 		
 		int [] rolls = {roll1,roll2};
 		return rolls;
-	}
+	}*/
 	public void movePlayed (Command command, Board board)
 	{
 		
