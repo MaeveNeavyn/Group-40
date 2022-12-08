@@ -143,6 +143,10 @@ public class Game {
 						view.displayHints(players[playerTurn]);
 						// command not done, want player to do something, either roll or quit
 					}
+					else if (command.isDice() ) {
+						rolls.add(command.getDice1());
+						rolls.add(command.getDice2());
+					}
 				}
 				while (!commandDone);
 				if (command.isQuit())
