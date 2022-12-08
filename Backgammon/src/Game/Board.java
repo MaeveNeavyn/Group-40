@@ -182,7 +182,7 @@ public class Board {
 	{
 		if (points.get(pointNumber).size()>1)
 		{
-			if(points.get(pointNumber).peek().toString().contains(")"))
+			if(points.get(pointNumber).peek().toString().contains("O"))
 				return true;
 			else 
 				return false;

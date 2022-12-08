@@ -3,7 +3,7 @@ import java.util.*;
 
 public class LegalMoves {
 
-	private Stack<Option> options;
+	private Stack<Option> options = new Stack<Option>();
 	
 	LegalMoves (Board board, Player player, List<Integer> rolls)
 	{
@@ -24,20 +24,22 @@ public class LegalMoves {
 							moveToOption = j + rolls.get(i);
 							if (board.isOneBlueChecker(moveToOption))
 							{
+								no_options = no_options +1;
 								current_option.setKnockOpponent(true);
 								current_option.setMoveFrom(j);
 								current_option.setMoveTo(moveToOption);
-								current_option.setOptionNumber(no_options+1);
+								current_option.setOptionNumber(no_options);
 								current_option.setNoDice(i+1);
 								System.out.println(current_option.toString());
 								options.add(current_option);
 							}
 							else if (board.isOneRedChecker(moveToOption) || board.isMultipleRedChecker(moveToOption)|| board.isPointEmpty(moveToOption))
 							{
+								no_options = no_options +1;
 								current_option.setKnockOpponent(false);
 								current_option.setMoveFrom(j);
 								current_option.setMoveTo(moveToOption);
-								current_option.setOptionNumber(no_options+1);
+								current_option.setOptionNumber(no_options);
 								current_option.setNoDice(i+1);
 								System.out.println(current_option.toString());
 								options.add(current_option);
@@ -47,7 +49,7 @@ public class LegalMoves {
 						}
 					}
 				}
-				else if (playerNumber == 2) 
+				else 
 				{
 					for (int j=23;j>=0;j--)
 					{
@@ -56,20 +58,24 @@ public class LegalMoves {
 							moveToOption = j - rolls.get(i);
 							if (board.isOneRedChecker(moveToOption))
 							{
+								no_options = no_options +1;
 								current_option.setKnockOpponent(true);
 								current_option.setMoveFrom(j);
 								current_option.setMoveTo(moveToOption);
-								current_option.setOptionNumber(no_options+1);
+								current_option.setOptionNumber(no_options);
 								current_option.setNoDice(i+1);
+								System.out.println(current_option.toString());
 								options.add(current_option);
 							}
 							else if (board.isOneBlueChecker(moveToOption) || board.isMultipleBlueChecker(moveToOption)|| board.isPointEmpty(moveToOption))
 							{
+								no_options = no_options +1;
 								current_option.setKnockOpponent(false);
 								current_option.setMoveFrom(j);
 								current_option.setMoveTo(moveToOption);
-								current_option.setOptionNumber(no_options+1);
+								current_option.setOptionNumber(no_options);
 								current_option.setNoDice(i+1);
+								System.out.println(current_option.toString());
 								options.add(current_option);
 								
 							}

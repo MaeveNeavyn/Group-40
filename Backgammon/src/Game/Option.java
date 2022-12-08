@@ -29,9 +29,9 @@ public class Option {
 	{
 		moveTo = n;
 	}
-	public void setNoDice (int num)
+	public void setNoDice (int n)
 	{
-		option_number = num;
+		no_dice = n;
 	}
 	public void setKnockOpponent (boolean n)
 	{
