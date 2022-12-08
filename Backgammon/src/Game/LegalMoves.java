@@ -12,6 +12,7 @@ public class LegalMoves {
 		no_options = 0;
 		int playerNumber = player.getPlayerNumber();
 		int no_dice = rolls.size();
+		boolean not_option = false;
 		
 		for (int i=0; i<no_dice; i++)
 		{
@@ -24,25 +25,31 @@ public class LegalMoves {
 							if(board.isOneRedChecker(j) || board.isMultipleRedChecker(j))
 							{
 								moveToOption = j + rolls.get(i);
-								if (moveToOption<25)
+								if (moveToOption>=24)
 								{
-									if (moveToOption == 25)
-									{
+									//Brain is gone we changed things here and now I'm confused
+									
 										for (int k=0; k<18;k++)
 										{
 											if(board.isOneRedChecker(k) || board.isMultipleRedChecker(k))
-													break;
+													{
+														not_option = true;
+														break;
+													}
 										}
-										Option current_option = new Option();
-										no_options = no_options+1;
-										current_option.setPlayerNumber(playerNumber);
-										current_option.setKnockOpponent(false);
-										current_option.setMoveFrom(j);
-										current_option.setMoveTo(0);
-										current_option.setOptionNumber(no_options);
-										current_option.setNoDice(i+1);
-										System.out.println(current_option.toString());
-										options.push(current_option);
+										if (not_option == false)
+										{
+											Option current_option = new Option();
+											no_options = no_options+1;
+											current_option.setPlayerNumber(playerNumber);
+											current_option.setKnockOpponent(false);
+											current_option.setMoveFrom(j);
+											current_option.setMoveTo(0);
+											current_option.setOptionNumber(no_options);
+											current_option.setNoDice(i+1);
+											System.out.println(current_option.toString());
+											options.push(current_option);
+										}
 									}
 									else if (board.isOneBlueChecker(moveToOption))
 									{
@@ -73,7 +80,7 @@ public class LegalMoves {
 								}	
 							}
 						}
-					}
+					
 					else
 					{
 						moveToOption = 0 + rolls.get(i);
@@ -113,9 +120,9 @@ public class LegalMoves {
 						if(board.isOneBlueChecker(j) || board.isMultipleBlueChecker(j))
 						{
 							moveToOption = j - rolls.get(i);
-							if (moveToOption>-2)
+							if (moveToOption<-2)
 							{
-								if (moveToOption == -1)
+								if (moveToOption <= -1)
 								{
 									for (int k=23; k>7;k--)
 									{

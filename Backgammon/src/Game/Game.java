@@ -51,11 +51,21 @@ public class Game {
 				System.out.println(legal_moves.pickOption(selection-1).toString());
 				legal_moves.clearOptions();
 				board.move(option_chosen);
+				rolls.remove(option_chosen.getNoDice()-1);
+				
+				legal_moves = new LegalMoves(board,players[1], rolls);
+				System.out.println("Please enter option you would like to choose");
+				selection = in.nextInt();
+				//System.out.println("Option chosen was: " + (selection-1));
+				option_chosen = legal_moves.pickOption(selection-1);
+				System.out.println(legal_moves.pickOption(selection-1).toString());
+				legal_moves.clearOptions();
+				board.move(option_chosen);
+				rolls.remove(option_chosen.getNoDice()-1);
 
+				
 				players[0].setPips(view.pipCountX(board));
 				players[1].setPips(view.pipCountO(board));
-				rolls.remove(1);
-				rolls.remove(0);
 				// Get player 2s command, then for loop can continue as normal
 			}
 			else if (player1roll < player2roll) {
@@ -70,11 +80,20 @@ public class Game {
 				System.out.println(legal_moves.pickOption(selection-1).toString());
 				legal_moves.clearOptions();
 				board.move(option_chosen);
+				rolls.remove(option_chosen.getNoDice()-1);
+				
+				legal_moves = new LegalMoves(board,players[1], rolls);
+				System.out.println("Please enter option you would like to choose");
+				selection = in.nextInt();
+				//System.out.println("Option chosen was: " + (selection-1));
+				option_chosen = legal_moves.pickOption(selection-1);
+				System.out.println(legal_moves.pickOption(selection-1).toString());
+				legal_moves.clearOptions();
+				board.move(option_chosen);
+				rolls.remove(option_chosen.getNoDice()-1);
 
 				players[0].setPips(view.pipCountX(board));
 				players[1].setPips(view.pipCountO(board));
-				rolls.remove(1);
-				rolls.remove(0);
 
 			}
 			else 
@@ -116,8 +135,20 @@ public class Game {
 						//commandDone = true;
 						// don't want command to be finished as want to have the option to move checker
 					}
-					else if (command.isMove()) {
+			
+					else if (command.isMove())
+					{
+						
 						legal_moves = new LegalMoves(board, players[playerTurn],rolls);
+						System.out.println("Please enter option you would like to choose");
+						selection = in.nextInt();
+						option_chosen = legal_moves.pickOption(selection-1);
+						System.out.println(legal_moves.pickOption(selection-1).toString());
+						legal_moves.clearOptions();
+						board.move(option_chosen);
+						rolls.remove(option_chosen.getNoDice()-1);
+						
+						legal_moves = new LegalMoves(board,players[1], rolls);
 						System.out.println("Please enter option you would like to choose");
 						selection = in.nextInt();
 						//System.out.println("Option chosen was: " + (selection-1));
@@ -125,11 +156,15 @@ public class Game {
 						System.out.println(legal_moves.pickOption(selection-1).toString());
 						legal_moves.clearOptions();
 						board.move(option_chosen);
+						rolls.remove(option_chosen.getNoDice()-1);
+						
+						
 						players[0].setPips(view.pipCountX(board));
 						players[1].setPips(view.pipCountO(board));
 						view.displayBoard(board, players[0], players[1], playerTurn);
 						commandDone = true;
-					}
+					
+				}
 					else if (command.isQuit()) {
 						view.displayQuit(players[playerTurn]);
 						commandDone = true;
