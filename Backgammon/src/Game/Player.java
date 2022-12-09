@@ -8,12 +8,12 @@ public class Player {
 	private int roll1, roll2;
 	private int pips;
 	
-	Player (String name, int player_number, int pips) 
+	Player (String name, int player_number, int pips, int score) 
 	{
 		this.name = name;
 		this.player_number = player_number;
 		this.pips = pips;
-		score = 0;
+		this.score = score;
 		roll1 = 1;
 		roll2 = 1;
 		
