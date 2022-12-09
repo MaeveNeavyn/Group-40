@@ -14,8 +14,8 @@ public class Board {
 	
 	Board()
 	{
-		blue_pile = new BlueCheckers();
-		red_pile = new RedCheckers();
+		blue_pile = new BlueCheckers();		//player 1
+		red_pile = new RedCheckers(); 		//player 2
 		points = new ArrayList<>(NUM_POINTS);
 		
 		//point = new Stack<>();

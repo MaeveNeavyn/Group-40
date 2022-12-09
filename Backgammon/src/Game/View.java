@@ -25,16 +25,16 @@ public class View {
 	
 	public int getMatchLength() {
 		
-		//int matchLength = 0;
+		int matchLength = 0;
 		boolean validLength = false;
 		do {
 			//int matchLength =0;
-			System.out.println("Enter the length of the match: ");
+			System.out.print("Enter the length of the match: ");
 			String str = in.nextLine();
 			
 			//Ensures input contains only digits
 			if (str.matches("\\d+")) {
-				int matchLength = Integer.parseInt(str);
+				matchLength = Integer.parseInt(str);
 				//if (matchLength > 0) {
 				validLength = true;	
 				//} 
@@ -45,7 +45,7 @@ public class View {
 			}
 			//return matchLength;
 		}
-		while (validLength = false);
+		while (validLength == false);
 		return matchLength;
 	}
 	
@@ -86,11 +86,15 @@ public class View {
 	
 	
 	
-	public void displayBoard (Board board, Player player1, Player player2, int turn)
+	public void displayBoard (Board board, Player player1, Player player2, int turn, Match match)
 	{
 		
 		displayPlayer(player1);
 		displayPlayer(player2);
+		
+		System.out.println("\nMatch Score: \t Match Length: "+ match.getMatchLength());
+		System.out.println(player1.toString() + ": " + player1.getScore());
+		System.out.println(player2.toString() + ": " + player2.getScore());
 		
 		//player 1 pips
 		if (turn == 0) {
@@ -104,7 +108,7 @@ public class View {
 			
 		}
 		System.out.println("--------------------------------------------------------------------------------------------");
-		System.out.println("|  13  |  14  |  15  |  16  |  17  |  18  |       |   19  |  20  |  21  |  22  |  23  |  24  | ");
+		System.out.println("|  13  |  14  |  15  |  16  |  17  |  18  |       |  19  |  20  |  21  |  22  |  23  |  24  | ");
 		System.out.println("---------------------------------------------------------------------------------------------");
 		
 		for (int i=0;i<6;i++)
@@ -166,6 +170,10 @@ public class View {
 	public void displayMove (Player player, int[] rolls) {
 		System.out.println(player.toString() + " rolls dice:\n" + "Roll 1: " + rolls[0] + "\nRoll 2: " + rolls[1] );
 		
+	}
+	
+	public void displayScore (Player player) {
+		System.out.println(player.toString() + ": " + player.getScore());
 	}
 	
 	
