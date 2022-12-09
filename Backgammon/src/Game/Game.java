@@ -19,8 +19,11 @@ public class Game {
 		Player[] players = new Player[2];
 		View view = new View();
 		view.displayWelcome();
-		players[0] = new Player(view.getName(), 1, view.pipCountX(board));
-		players[1] = new Player(view.getName(), 2, view.pipCountO(board));
+		
+		int player1Score = 0;
+		int player2Score = 0;
+		players[0] = new Player(view.getName(), 1, view.pipCountX(board), player1Score);
+		players[1] = new Player(view.getName(), 2, view.pipCountO(board), player2Score);
 		System.out.println("\n"+ players[0] + " is moving the X Checker");
 		System.out.println(players[1] + " is moving the O Checker");
 		// Put this here so players can see board before first move based off first roll

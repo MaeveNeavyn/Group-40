@@ -23,6 +23,32 @@ public class View {
 		return name;
 	}
 	
+	public int getMatchLength() {
+		
+		//int matchLength = 0;
+		boolean validLength = false;
+		do {
+			//int matchLength =0;
+			System.out.println("Enter the length of the match: ");
+			String str = in.nextLine();
+			
+			//Ensures input contains only digits
+			if (str.matches("\\d+")) {
+				int matchLength = Integer.parseInt(str);
+				//if (matchLength > 0) {
+				validLength = true;	
+				//} 
+				//validLength = true;
+			} 
+			else {
+				System.out.println("The match length is invalid. Please try again and enter an integer value.");
+			}
+			//return matchLength;
+		}
+		while (validLength = false);
+		return matchLength;
+	}
+	
 	
 	
 	public Command getCommand () {
