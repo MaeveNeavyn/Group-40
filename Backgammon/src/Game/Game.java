@@ -5,10 +5,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 
+
 public class Game {
 
+	
+	// had to include throw file exception for test file to scan in
 	public static void main(String[] args) throws FileNotFoundException {
-		// TODO Auto-generated method stub				
+		// TODO Auto-generated method stub	
+		
 		Board board = new Board();
 		Player[] players = new Player[2];
 		View view = new View();
@@ -113,11 +117,9 @@ public class Game {
 
 
 
-					// Need to add in whoever starts moves their checker (move function)
-					// Player who lost first roll is going to be asked their command first
-					// Need to edit for loop
+					
 
-		// do while game is not quit or over
+		// do while: game is not quit or over
 		do {
 			//Command command;
 			//int turn = 0;
@@ -132,6 +134,8 @@ public class Game {
 				do {
 					command = view.getUserInput(players[playerTurn]); //issue with printing player name
 					
+					
+					// If user uses test command, it reads command from file then goes through command loop
 					if (command.isTestFile()) {
 						String fileName = command.getFileName();
 						File file = new File(fileName);
@@ -143,17 +147,19 @@ public class Game {
 					}
 					
 		
-					
-					if (command.isRoll()) {
-						rolls.add(Dice.getRoll());
-						rolls.add(Dice.getRoll());
-						
-						//commandDone = true;
-						// don't want command to be finished as want to have the option to move checker
-					}
-			
-					else if (command.isMove())
-					{
+					//Legal moves is done based on certain dice roll
+					if (command.isRoll() || command.isDice()) {
+						if (command.isRoll()) {
+							rolls.add(Dice.getRoll());
+							rolls.add(Dice.getRoll());
+							
+							//commandDone = true;
+							// don't want command to be finished as want to have the option to move checker
+						}
+						else if (command.isDice() ) {
+							rolls.add(command.getDice1());
+							rolls.add(command.getDice2());
+						}
 						
 						legal_moves = new LegalMoves(board, players[playerTurn],rolls);
 						System.out.println("Please enter option you would like to choose");
@@ -178,9 +184,18 @@ public class Game {
 						players[0].setPips(view.pipCountX(board));
 						players[1].setPips(view.pipCountO(board));
 						view.displayBoard(board, players[0], players[1], playerTurn);
+						
+						//breaks out of loop, next players turn
 						commandDone = true;
+						
+						
+					}
 					
-				}
+			
+					/*else if (command.isMove())
+					{
+
+					}*/
 					else if (command.isQuit()) {
 						view.displayQuit(players[playerTurn]);
 						commandDone = true;
@@ -194,25 +209,14 @@ public class Game {
 						view.displayHints(players[playerTurn]);
 						// command not done, want player to do something, either roll or quit
 					}
-					else if (command.isDice() ) {
-						rolls.add(command.getDice1());
-						rolls.add(command.getDice2());
-					}
-					else if (command.isTestFile()) {
-						String fileName = command.getFileName();
-						File file = new File(fileName);
-						Scanner sc = new Scanner(file);
-						String fileCommand = sc.nextLine();
-						sc.close();
-						
-					}
 					
-					
+
 					
 				}
 				while (!commandDone);
 				if (command.isQuit())
 					break;
+				
 		} while (!command.isQuit() && !players[0].isGameOver() && !players[1].isGameOver());
 
 		if (players[0].isGameOver()) {
