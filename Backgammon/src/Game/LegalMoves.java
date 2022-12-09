@@ -223,6 +223,11 @@ public class LegalMoves {
 		options.clear();
 	}
 	
+	public int size()
+	{
+		return options.size();
+	}
+	
 	
 	
 }

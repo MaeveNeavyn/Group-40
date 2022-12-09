@@ -227,6 +227,12 @@ public class Game {
 						do 
 						{
 							legal_moves = new LegalMoves(board, players[playerTurn],rolls);
+							if (legal_moves.size() == 0)
+							{
+								System.out.println("No legal moves available");
+								rolls.clear();
+								break;
+							}
 							System.out.println("Please enter option you would like to choose");
 							selection = in.nextInt();
 							option_chosen = legal_moves.pickOption(selection-1);

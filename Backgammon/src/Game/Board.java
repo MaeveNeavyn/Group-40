@@ -117,7 +117,7 @@ public class Board {
 		{
 			Checkers moving_checker = points.get(move.getMoveTo()).pop();
 			{
-				if (moving_checker.getcolour().toString() == "X")
+				if (moving_checker.getcolour() == CheckerColour.RED)
 				{
 					red_middle_point.push(moving_checker);
 				}
