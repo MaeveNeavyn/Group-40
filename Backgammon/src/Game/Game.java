@@ -63,7 +63,7 @@ public class Game {
 				
 				System.out.println(players[playerTurn] + " starts the game!");
 				
-				// Dice 1
+				// Shows options for both dice and lets user choose option
 				legal_moves = new LegalMoves(board,players[playerTurn], rolls);
 				System.out.println("Please enter option you would like to choose");
 				selection = in.nextInt();
@@ -72,9 +72,10 @@ public class Game {
 				System.out.println(legal_moves.pickOption(selection-1).toString());
 				legal_moves.clearOptions();
 				board.move(option_chosen);
+				view.displayBoard(board, players[0], players[1], playerTurn);
 				rolls.remove(option_chosen.getNoDice()-1);
 				
-				// Dice 2
+				// Shows move options for the dice that wasn't picked for first move 
 				legal_moves = new LegalMoves(board,players[playerTurn], rolls);
 				System.out.println("Please enter option you would like to choose");
 				selection = in.nextInt();
@@ -83,7 +84,7 @@ public class Game {
 				System.out.println(legal_moves.pickOption(selection-1).toString());
 				legal_moves.clearOptions();
 				board.move(option_chosen);
-				rolls.remove(option_chosen.getNoDice()-1);
+				rolls.remove(0);
 
 				
 				players[0].setPips(view.pipCountX(board));
@@ -169,16 +170,17 @@ public class Game {
 			//int turn = 0;
 			count++;
 			playerTurn = count%2;
+//Printing line checking code
+			//System.out.println("Player's turn: "+playerTurn);
 			view.displayBoard(board, players[0], players[1], playerTurn);
 			boolean commandDone = false;
-
+			
 			//prints players pips for whoevers turn it is onto display after board print out
 			System.out.println(players[playerTurn] + " pip count: "+ players[playerTurn].getPips());
 
 				do {
 					command = view.getUserInput(players[playerTurn]); //issue with printing player name
-					
-					
+		
 					// If user uses test command, it reads command from file then goes through command loop
 					if (command.isTestFile()) {
 						String fileName = command.getFileName();
@@ -196,7 +198,23 @@ public class Game {
 						if (command.isRoll()) {
 							rolls.add(Dice.getRoll());
 							rolls.add(Dice.getRoll());
-							
+							if (rolls.get(0) == rolls.get(1))
+							{
+								System.out.println("Double's rolled!");
+								int rolledDouble = rolls.get(0);
+								rolls.add(rolledDouble);
+								rolls.add(rolledDouble);
+								System.out.println("Roll 1: " + rolls.get(0));
+								System.out.println("Roll 2: " +rolls.get(1));
+								System.out.println("Roll 3: " + rolls.get(2));
+								System.out.println("Roll 4: " + rolls.get(3));
+							}
+							else 
+							{
+								System.out.println("Roll 1: " + rolls.get(0));
+								System.out.println("Roll 2: " +rolls.get(1));
+							}
+
 							//commandDone = true;
 							// don't want command to be finished as want to have the option to move checker
 						}
@@ -205,16 +223,22 @@ public class Game {
 							rolls.add(command.getDice2());
 						}
 						
-						legal_moves = new LegalMoves(board, players[playerTurn],rolls);
-						System.out.println("Please enter option you would like to choose");
-						selection = in.nextInt();
-						option_chosen = legal_moves.pickOption(selection-1);
-						System.out.println(legal_moves.pickOption(selection-1).toString());
-						legal_moves.clearOptions();
-						board.move(option_chosen);
-						rolls.remove(option_chosen.getNoDice()-1);
+						//This will need to be a loop to accommodate double rolls 
+						do 
+						{
+							legal_moves = new LegalMoves(board, players[playerTurn],rolls);
+							System.out.println("Please enter option you would like to choose");
+							selection = in.nextInt();
+							option_chosen = legal_moves.pickOption(selection-1);
+							System.out.println(legal_moves.pickOption(selection-1).toString());
+							legal_moves.clearOptions();
+							board.move(option_chosen);
+							view.displayBoard(board, players[0], players[1], playerTurn);
+							rolls.remove(option_chosen.getNoDice()-1);
+						}
+						while (rolls.size()>0);
 						
-						legal_moves = new LegalMoves(board,players[1], rolls);
+						/*legal_moves = new LegalMoves(board,players[1], rolls);
 						System.out.println("Please enter option you would like to choose");
 						selection = in.nextInt();
 						//System.out.println("Option chosen was: " + (selection-1));
@@ -222,7 +246,7 @@ public class Game {
 						System.out.println(legal_moves.pickOption(selection-1).toString());
 						legal_moves.clearOptions();
 						board.move(option_chosen);
-						rolls.remove(option_chosen.getNoDice()-1);
+						rolls.remove(0);*/
 						
 						
 						players[0].setPips(view.pipCountX(board));
