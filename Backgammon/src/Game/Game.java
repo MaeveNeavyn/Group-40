@@ -13,6 +13,8 @@ public class Game {
 	public static void main(String[] args) throws FileNotFoundException {
 		// TODO Auto-generated method stub	
 		
+		
+		// GAME INTRO & GETTING PLAYER DETAILS
 		Board board = new Board();
 		Player[] players = new Player[2];
 		View view = new View();
@@ -24,6 +26,9 @@ public class Game {
 		// Put this here so players can see board before first move based off first roll
 		view.displayBoard(board, players[0], players[1], 2);
 		
+		
+		
+		// SETTING UP VARIABLES/ARRAYS/LISTS TO BE USED IN GAME
 		List<Integer> rolls = new ArrayList<>();
 		LegalMoves legal_moves = new LegalMoves(board, players[0], rolls);
 		//Need to ask user what they want to choose
@@ -33,10 +38,10 @@ public class Game {
 		Command command = null;  //WHY DO I NEED NULL
 		int count = 0;
 		int playerTurn;
-
 		int player1roll, player2roll;
 
-		//First rolls determines who goes first
+		
+		// GAME STARTS - First rolls determines who goes first
 		do
 		{
 			// Gets players first roll
@@ -47,7 +52,46 @@ public class Game {
 			rolls.add(player2roll);
 
 
-			if (player1roll > player2roll) {
+			if (player1roll != player2roll) {
+				if (player1roll > player2roll) {
+					count = 2;
+				}
+				else if (player1roll < player2roll) {
+					count = 3;
+				}
+				playerTurn = count%2;
+				
+				System.out.println(players[playerTurn] + " starts the game!");
+				
+				// Dice 1
+				legal_moves = new LegalMoves(board,players[playerTurn], rolls);
+				System.out.println("Please enter option you would like to choose");
+				selection = in.nextInt();
+				//System.out.println("Option chosen was: " + (selection-1));
+				option_chosen = legal_moves.pickOption(selection-1);
+				System.out.println(legal_moves.pickOption(selection-1).toString());
+				legal_moves.clearOptions();
+				board.move(option_chosen);
+				rolls.remove(option_chosen.getNoDice()-1);
+				
+				// Dice 2
+				legal_moves = new LegalMoves(board,players[playerTurn], rolls);
+				System.out.println("Please enter option you would like to choose");
+				selection = in.nextInt();
+				//System.out.println("Option chosen was: " + (selection-1));
+				option_chosen = legal_moves.pickOption(selection-1);
+				System.out.println(legal_moves.pickOption(selection-1).toString());
+				legal_moves.clearOptions();
+				board.move(option_chosen);
+				rolls.remove(option_chosen.getNoDice()-1);
+
+				
+				players[0].setPips(view.pipCountX(board));
+				players[1].setPips(view.pipCountO(board));
+				
+			}
+			
+			/*if (player1roll > player2roll) {
 				count = 2;
 				System.out.println(players[0] + " starts the game!");
 				legal_moves = new LegalMoves(board,players[0], rolls);
@@ -102,7 +146,7 @@ public class Game {
 				players[0].setPips(view.pipCountX(board));
 				players[1].setPips(view.pipCountO(board));
 
-			}
+			}*/
 			else 
 				{
 					System.out.println("Players rolled the same number. Roll again!\n"); 		//when values the same, game breaks and repeats
