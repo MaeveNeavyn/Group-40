@@ -23,6 +23,19 @@ public class View {
 		return name;
 	}
 	
+	public boolean getDoubleAnswer (Player playerQ, Player playerAns) {
+		System.out.println(playerAns.toString() + ", " + playerQ.toString() + " wants to double the stakes of the game!");
+		System.out.println("If you refuse and do not answer Y, you forfeit the game and pay the number of points at stake prior to this double.");
+		System.out.println("Do you accept this Double? (accept/refuse): ");
+		String answer = in.nextLine();
+		
+		if (answer.equalsIgnoreCase("accept")) {
+			return true;		//other player accepts double
+		}else return false;		// other player refuses double and will forfeit game
+	}
+	
+	
+	
 	public int getMatchLength() {
 		
 		int matchLength = 0;
@@ -92,9 +105,19 @@ public class View {
 		displayPlayer(player1);
 		displayPlayer(player2);
 		
-		System.out.println("\nMatch Score: \t Match Length: "+ match.getMatchLength());
-		System.out.println(player1.toString() + ": " + player1.getScore());
-		System.out.println(player2.toString() + ": " + player2.getScore());
+		System.out.println("\nMatch Score: \t Double Cube: \t Match Length: "+ match.getMatchLength());
+		
+		if (player1.getDoubleOwnership() == true) {
+			System.out.println(player1.toString() + ": " + player1.getScore() + "\t\t   " + match.getGameStake());	
+		}else System.out.println(player1.toString() + ": " + player1.getScore());
+			
+			
+		
+		if (player2.getDoubleOwnership() == true) {
+			System.out.println(player2.toString() + ": " + player2.getScore() + "\t\t   " + match.getGameStake());
+		} else System.out.println(player2.toString() + ": " + player2.getScore());
+		
+		
 		
 		//player 1 pips
 		if (turn == 0) {

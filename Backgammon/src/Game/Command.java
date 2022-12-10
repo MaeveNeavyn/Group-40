@@ -3,7 +3,7 @@ package Game;
 
 public class Command {
 
-	private enum CommandType {ROLL, QUIT, PIP, HINT, MOVE, DICE, TEST};
+	private enum CommandType {ROLL, QUIT, PIP, HINT, MOVE, DICE, TEST, DOUBLE};
 	
 	//private char moveFrom;
 	//private char moveTo;
@@ -17,20 +17,28 @@ public class Command {
 		String inputFormatted = input.trim().toUpperCase();
 		if (inputFormatted.equals("QUIT")) {
 			commandType = CommandType.QUIT;
-		} else if (inputFormatted.equals("ROLL")) {
+		} 
+		else if (inputFormatted.equals("ROLL")) {
 			commandType = CommandType.ROLL;
-		} else if (inputFormatted.equals("PIP")) {
+		} 
+		else if (inputFormatted.equals("PIP")) {
 			commandType = CommandType.PIP;	
-		} else if (inputFormatted.equals("HINT")) {
+		} 
+		else if (inputFormatted.equals("HINT")) {
 			commandType = CommandType.HINT;
-		} else if (inputFormatted.equals("MOVE")) {
+		} 
+		else if (inputFormatted.equals("MOVE")) {
 			commandType = CommandType.MOVE;
-			
-		}else if (inputFormatted.matches("DICE\s[1-6][1-6]")) {
+		}
+		else if (inputFormatted.matches("DICE\s[1-6][1-6]")) {
 			commandType = CommandType.DICE;
 			roll1 = inputFormatted.charAt(5);
 			roll2 = inputFormatted.charAt(6);
-		}else {
+		}
+		else if (inputFormatted.matches("DOUBLE")) {
+			commandType = CommandType.DOUBLE;
+		}
+		else {
 			commandType = CommandType.TEST;
 			
 			String[] str = inputFormatted.split("\s");
@@ -47,6 +55,9 @@ public class Command {
 		return commandType == CommandType.QUIT;
 	}
 	
+	public boolean isDouble() {
+		return commandType == CommandType.DOUBLE;
+	}
 	public boolean isRoll () {
 		return commandType == CommandType.ROLL;
 	}
@@ -82,6 +93,7 @@ public class Command {
 				inputFormatted.equals("HINT") ||
 				inputFormatted.equals("MOVE") ||
 				inputFormatted.equals("QUIT") ||
+				inputFormatted.equals("DOUBLE") ||
 				inputFormatted.matches("DICE\s[1-6][1-6]");
 				//inputFormatted.matches("[P1-7DHCS][1-7DHCS][0-9]*");
 		

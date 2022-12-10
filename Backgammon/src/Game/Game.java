@@ -21,14 +21,19 @@ public class Game {
 		Player[] players = new Player[2];
 		View view = new View();
 		
+		// Initializes that no player has the double cube at start of new game
+		boolean doubleOwnership1 = false;
+		boolean doubleOwnership2 = false;
+		int gameStake = 1;
+		
 		view.displayWelcome();
 		
 		int player1Score = 0;
 		int player2Score = 0;
-		players[0] = new Player(view.getName(), 1, view.pipCountX(board), player1Score);
-		players[1] = new Player(view.getName(), 2, view.pipCountO(board), player2Score);
+		players[0] = new Player(view.getName(), 1, view.pipCountX(board), player1Score, doubleOwnership1);
+		players[1] = new Player(view.getName(), 2, view.pipCountO(board), player2Score, doubleOwnership2);
 		
-		Match match = new Match(view.getMatchLength());
+		Match match = new Match(view.getMatchLength(), gameStake);
 		//view.getMatchLength();
 		System.out.println("\n"+ players[0] + " is moving the X Checker");
 		System.out.println(players[1] + " is moving the O Checker");
@@ -48,6 +53,9 @@ public class Game {
 		int count = 0;
 		int playerTurn;
 		int player1roll, player2roll;
+		
+		boolean quit = false;
+		//boolean startTurn = true;
 		//int matchLength = view.
 		
 		do { // do while loop for entire match, continues until player wins
@@ -181,17 +189,48 @@ public class Game {
 				//int turn = 0;
 				count++;
 				playerTurn = count%2;
+				int otherPlayer = (count +1)%2;		//gets other player value, will change according to count value, will always be opposite of playerTurn
 	//Printing line checking code
 				//System.out.println("Player's turn: "+playerTurn);
 				view.displayBoard(board, players[0], players[1], playerTurn, match);
 				boolean commandDone = false;
-				
+				boolean startTurn = true;
 				//prints players pips for whoevers turn it is onto display after board print out
 				System.out.println(players[playerTurn] + " pip count: "+ players[playerTurn].getPips());
-	
+				
+
 					do {
 						command = view.getUserInput(players[playerTurn]); //issue with printing player name
-			
+						
+						// DOUBLE COMMAND
+						// Need to include print statement if they try to use double again when they have already made move or already have the double
+						if ((startTurn == true) && (players[playerTurn].getDoubleOwnership() == false)) {
+							if (command.isDouble()) {
+								boolean doubleAnswer = view.getDoubleAnswer(players[playerTurn], players[otherPlayer]);
+								startTurn = false;
+								if (doubleAnswer == true) {		// other Player has accepted double
+									gameStake *= 2;
+									match.setGameStake(gameStake);
+									System.out.println("game stake value after double is now: " + gameStake);		//print test
+									
+									// Assigns who has the double cube
+									players[playerTurn].setDoubleOwnership();
+									players[otherPlayer].removeDoubleOwnership();
+									
+									System.out.println(players[playerTurn] + " has the doubling cube: " + players[playerTurn].getDoubleOwnership());
+									
+								}else {
+									view.displayQuit(players[otherPlayer]);
+									quit = true;
+									commandDone = true;
+								}
+							}
+						}
+						
+						
+						startTurn = false;
+						
+						
 						// If user uses test command, it reads command from file then goes through command loop
 						if (command.isTestFile()) {
 							String fileName = command.getFileName();
@@ -201,6 +240,7 @@ public class Game {
 							sc.close();
 							
 							command = new Command(fileCommand);		// Overwrites command to be command from test file
+							
 						}
 						
 			
@@ -284,6 +324,7 @@ public class Game {
 						else if (command.isQuit()) {
 							view.displayQuit(players[playerTurn]);
 							commandDone = true;
+							quit = true;
 						}
 						else if(command.isPip()) {
 							view.displayPipCounts(players[0], players[1]);
@@ -299,10 +340,10 @@ public class Game {
 						
 					}
 					while (!commandDone);
-					if (command.isQuit())
+					if (quit == true)
 						break;
 					
-			} while (!command.isQuit() && !players[0].isGameOver() && !players[1].isGameOver());
+			} while ((quit == false) && !players[0].isGameOver() && !players[1].isGameOver());
 	
 			// GAME OVER
 			// need to do score adjustments based on sing;e, gammon or backgammon
