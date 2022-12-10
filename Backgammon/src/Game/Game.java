@@ -204,12 +204,18 @@ public class Game {
 						
 						// DOUBLE COMMAND
 						// Need to include print statement if they try to use double again when they have already made move or already have the double
-						if ((startTurn == true) && (players[playerTurn].getDoubleOwnership() == false)) {
+						// can only enter double command if 1: player is at start of turn AND does not have double cube
+						// 2: if gameStake is less than 64 (max size of doubling cube)
+						if (((startTurn == true) && (players[playerTurn].getDoubleOwnership() == false)) || gameStake != 64) {
 							if (command.isDouble()) {
 								boolean doubleAnswer = view.getDoubleAnswer(players[playerTurn], players[otherPlayer]);
 								startTurn = false;
 								if (doubleAnswer == true) {		// other Player has accepted double
-									gameStake *= 2;
+									
+									// is this necessary with the if statement at start?
+									if (gameStake < 64) {
+										gameStake *= 2;
+									}
 									match.setGameStake(gameStake);
 									System.out.println("game stake value after double is now: " + gameStake);		//print test
 									
