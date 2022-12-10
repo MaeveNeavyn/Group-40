@@ -7,15 +7,25 @@ public class Player {
 	private int score;
 	private int pips;
 	private boolean doubleOwnership;
+	private boolean hasQuit;
 	
-	Player (String name, int player_number, int pips, int score, boolean doubleOwnership) 
+	Player (String name, int player_number, int pips, int score, boolean doubleOwnership, boolean hasQuit) 
 	{
 		this.name = name;
 		this.player_number = player_number;
 		this.pips = pips;
 		this.score = score;
 		this.doubleOwnership = doubleOwnership;
+		this.hasQuit = hasQuit;
 		
+	}
+	
+	public boolean hasQuit() {
+		return hasQuit;
+	}
+	
+	public void userQuitting() {
+		this.hasQuit = true;
 	}
 	
 	public boolean getDoubleOwnership() {
@@ -55,6 +65,10 @@ public class Player {
 	public int getScore()
 	{
 		return score;
+	}
+	
+	public void updateScore(int gameScore) {
+		this.score = gameScore;
 	}
 	
 	public void movePlayed (Command command, Board board)
