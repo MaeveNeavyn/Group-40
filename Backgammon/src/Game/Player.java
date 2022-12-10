@@ -81,7 +81,7 @@ public class Player {
 		return name;
 	}
 	
-	
+	// True if pips value is 0
 	public boolean isGameOver() {
 		return pips == 0;
 	}

@@ -65,6 +65,8 @@ public class Game {
 				
 			// GAME STARTS - First rolls determines who goes first
 			do {
+				player1Quit = false;
+				player2Quit = false;
 			do // do while loop for dice roll
 			{
 				// Gets players first roll
@@ -302,7 +304,7 @@ public class Game {
 					
 			} while ((quit == false) && !players[0].isGameOver() && !players[1].isGameOver());
 			
-			
+			//scanner view close
 	
 			// GAME OVER
 			// PLAYER 1 WON GAME
@@ -355,11 +357,23 @@ public class Game {
 				System.out.println(players[1] + " has won this game!");
 			}
 			
+			
 			System.out.println("player 1 Score: " + player1Score);
 			System.out.println("player 2 Score: " + player2Score);
-			} while (!players[0].isGameOver() || !players[1].isGameOver() || !players[0].hasQuit() || !players[1].hasQuit()); 	//Game Loop
 			
-		} while (players[0].getScore() < match.getMatchLength() || players[1].getScore() < match.getMatchLength()); // End of for loops for match length
+			System.out.println("Player1 Gameover: " + players[0].isGameOver());
+			System.out.println("Player2 Gameover: " + players[1].isGameOver());
+			System.out.println("Player1 has Quit: " + players[0].hasQuit());
+			System.out.println("Player2 has Quit: " + players[1].hasQuit());
+
+			
+			// ****ISSUE WITH THIS LOOP*****
+			} while ((players[0].isGameOver()==false) && (players[1].isGameOver()==false) && (players[0].hasQuit()==false) && (players[1].hasQuit()==false)); 	//Game Loop
+			
+			System.out.println("match length value: " +match.getMatchLength());
+			
+		} while (players[0].getScore() < match.getMatchLength() && players[1].getScore() < match.getMatchLength()); // End of for loops for match length
+		// Loops through games until player 1 or 2 score is greater than match length
 		
 		// MATCH OVER
 		if (player1Score >= match.getMatchLength() && player1Score > player2Score) {
@@ -375,7 +389,7 @@ public class Game {
 		
 		newMatch = choice.equalsIgnoreCase("y"); 
 		userInput.close();	
-
+		in.close();
 			
 		
 		
