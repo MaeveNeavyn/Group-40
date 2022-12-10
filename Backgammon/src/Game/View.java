@@ -129,10 +129,10 @@ public class View {
 		}
 		
 		System.out.println("------------------------------------------|       |------------------------------------------");
+		System.out.println("|                                         |       |                                         | O middle point " + board.printBlueMPoint());
 		System.out.println("|                                         |       |                                         |");
 		System.out.println("|                                         |       |                                         |");
-		System.out.println("|                                         |       |                                         |");
-		System.out.println("|                                         |       |                                         |");
+		System.out.println("|                                         |       |                                         | X middle point " + board.printRedMPoint()) ;
 		System.out.println("------------------------------------------|       |------------------------------------------");
 		
 		

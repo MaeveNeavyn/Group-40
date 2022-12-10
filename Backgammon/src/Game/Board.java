@@ -266,8 +266,17 @@ public class Board {
 	}*/
 	
 	
-
+public String printBlueMPoint()
+{
+	String str = blue_middle_point.toString();
+	return str;
+}
 	
+public String printRedMPoint()
+{
+	String str = red_middle_point.toString();
+	return str;
+}
 	
 	
 
