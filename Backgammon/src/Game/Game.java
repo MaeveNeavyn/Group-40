@@ -24,6 +24,8 @@ public class Game {
 		// Initializes that no player has the double cube at start of new game
 		boolean doubleOwnership1 = true;
 		boolean doubleOwnership2 = true;
+		boolean player1Quit = false;
+		boolean player2Quit = false;
 		int gameStake = 1;
 		int gameValue = 1;
 		
@@ -31,8 +33,8 @@ public class Game {
 		
 		int player1Score = 0;
 		int player2Score = 0;
-		players[0] = new Player(view.getName(), 1, view.pipCountX(board), player1Score, doubleOwnership1);
-		players[1] = new Player(view.getName(), 2, view.pipCountO(board), player2Score, doubleOwnership2);
+		players[0] = new Player(view.getName(), 1, view.pipCountX(board), player1Score, doubleOwnership1, player1Quit);
+		players[1] = new Player(view.getName(), 2, view.pipCountO(board), player2Score, doubleOwnership2, player2Quit);
 		
 		Match match = new Match(view.getMatchLength(), gameStake);
 		//view.getMatchLength();
@@ -62,7 +64,10 @@ public class Game {
 		do { // do while loop for entire match, continues until player wins
 				
 			// GAME STARTS - First rolls determines who goes first
-			do
+			do {
+				player1Quit = false;
+				player2Quit = false;
+			do // do while loop for dice roll
 			{
 				// Gets players first roll
 				player1roll = view.displayFirstRoll(players[0], Dice.getRoll());
@@ -137,7 +142,7 @@ public class Game {
 				
 
 					do {
-						command = view.getUserInput(players[playerTurn]); //issue with printing player name
+				command = view.getUserInput(players[playerTurn]); //issue with printing player name
 						
 						// DOUBLE COMMAND
 						// Need to include print statement if they try to use double again when they have already made move or already have the double
@@ -172,6 +177,7 @@ public class Game {
 								}
 								else {
 									view.displayQuit(players[otherPlayer]);
+									players[otherPlayer].userQuitting();
 									quit = true;
 									commandDone = true;
 								}
@@ -275,6 +281,7 @@ public class Game {
 						}*/
 						else if (command.isQuit()) {
 							view.displayQuit(players[playerTurn]);
+							players[playerTurn].userQuitting();
 							commandDone = true;
 							quit = true;
 						}
@@ -297,11 +304,11 @@ public class Game {
 					
 			} while ((quit == false) && !players[0].isGameOver() && !players[1].isGameOver());
 			
-			
+			//scanner view close
 	
 			// GAME OVER
 			// PLAYER 1 WON GAME
-			if (players[0].isGameOver()) {
+			if (players[0].isGameOver() || players[1].hasQuit()) {
 				
 				// DETERMINE GAME VALUE
 				// BACK GAMMON
@@ -321,12 +328,13 @@ public class Game {
 				}
 				
 				player1Score += (gameValue*gameStake);
+				players[0].updateScore(player1Score);
 				System.out.println( players[0] + " has won this game!");
 				
 				
 				
 			// PLAYER 2 WON GAME	
-			} else if (players[1].isGameOver()) {
+			} else if (players[1].isGameOver() || players[0].hasQuit()) {
 				// DETERMINE GAME VALUE
 				// BACK GAMMON
 				if (!view.isXStartEmpty(board) && !board.isBlueMiddlePointEmpty() && board.isBlueHomeEmpty()) {
@@ -344,11 +352,28 @@ public class Game {
 					System.out.println("This game has ended in a Single.");
 				}
 				
-				player1Score += (gameValue*gameStake);
+				player2Score += (gameValue*gameStake);
+				players[1].updateScore(player2Score);
 				System.out.println(players[1] + " has won this game!");
 			}
 			
-		} while (player1Score < match.getMatchLength() || player2Score < match.getMatchLength()); // End of for loops for match length
+			
+			System.out.println("player 1 Score: " + player1Score);
+			System.out.println("player 2 Score: " + player2Score);
+			
+			System.out.println("Player1 Gameover: " + players[0].isGameOver());
+			System.out.println("Player2 Gameover: " + players[1].isGameOver());
+			System.out.println("Player1 has Quit: " + players[0].hasQuit());
+			System.out.println("Player2 has Quit: " + players[1].hasQuit());
+
+			
+			// ****ISSUE WITH THIS LOOP*****
+			} while ((players[0].isGameOver()==false) && (players[1].isGameOver()==false) && (players[0].hasQuit()==false) && (players[1].hasQuit()==false)); 	//Game Loop
+			
+			System.out.println("match length value: " +match.getMatchLength());
+			
+		} while (players[0].getScore() < match.getMatchLength() && players[1].getScore() < match.getMatchLength()); // End of for loops for match length
+		// Loops through games until player 1 or 2 score is greater than match length
 		
 		// MATCH OVER
 		if (player1Score >= match.getMatchLength() && player1Score > player2Score) {
@@ -364,7 +389,7 @@ public class Game {
 		
 		newMatch = choice.equalsIgnoreCase("y"); 
 		userInput.close();	
-
+		in.close();
 			
 		
 		
