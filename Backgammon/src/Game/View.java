@@ -131,10 +131,10 @@ public class View {
 			
 		}
 		System.out.println("--------------------------------------------------------------------------------------------");
-		System.out.println("|  13  |  14  |  15  |  16  |  17  |  18  |       |  19  |  20  |  21  |  22  |  23  |  24  | ");
+		System.out.println("|  13  |  14  |  15  |  16  |  17  |  18  |       |  19  |  20  |  21  |  22  |  23  |  24  |  X checkers home: " + board.printRedHome());
 		System.out.println("---------------------------------------------------------------------------------------------");
 		
-		for (int i=0;i<6;i++)
+		for (int i=0;i<8;i++)
 		{
 			//System.out.println("Test");
 			for (int j = 12; j<24;j++)
@@ -152,14 +152,14 @@ public class View {
 		}
 		
 		System.out.println("------------------------------------------|       |------------------------------------------");
-		System.out.println("|                                         |       |                                         | O middle point " + board.printBlueMPoint());
+		System.out.println("|                                         |       |                                         | O middle point " + board.printBlueMPoint()  );
 		System.out.println("|                                         |       |                                         |");
 		System.out.println("|                                         |       |                                         |");
 		System.out.println("|                                         |       |                                         | X middle point " + board.printRedMPoint()) ;
 		System.out.println("------------------------------------------|       |------------------------------------------");
 		
 		
-		for (int i=5;i>-1;i--) 
+		for (int i=7;i>-1;i--) 
 		{
 			for (int j = 11; j>-1;j--)
 			{
@@ -177,7 +177,7 @@ public class View {
 		}
 		
 		System.out.println("--------------------------------------------------------------------------------------------");
-		System.out.println("|  12  |  11  |  10  |   9  |   8  |   7  |       |   6  |   5  |   4  |   3  |   2  |   1  | ");
+		System.out.println("|  12  |  11  |  10  |   9  |   8  |   7  |       |   6  |   5  |   4  |   3  |   2  |   1  | O checkers home: " + board.printBlueHome());
 		System.out.println("--------------------------------------------------------------------------------------------");
 		
 		if (turn == 0 ) {
@@ -251,6 +251,8 @@ public class View {
 			pips = pointValue*numCheckerO;
 			pipCount += pips;
 		}
+		
+		pipCount = pipCount + (board.sizeMiddlePoint(2)*25);
 		return pipCount;
 	}
 	
@@ -276,6 +278,7 @@ public class View {
 			j--;
 			pipCount += pips;
 		}
+		pipCount = pipCount + (board.sizeMiddlePoint(1)*25);
 		return pipCount;
 	}
 	

@@ -115,17 +115,22 @@ public class Board {
 		
 		if (move.getKnockOpponent())
 		{
+			//For knocking opponent off move the knocked checker into a temporary checker hold
 			Checkers moving_checker = points.get(move.getMoveTo()).pop();
 			{
+				// If the knocked checker is red put it in the red middle point
 				if (moving_checker.getcolour() == CheckerColour.RED)
 				{
 					red_middle_point.push(moving_checker);
 				}
+				// Eld the knocked checker is blue so put it in the blue middle point
 				else
 					blue_middle_point.push(moving_checker);
 				
+				// If you are moving from -1 (This is the middle lane I think)
 				if (move.getMoveFrom() == -1)
 				{
+					// If Red is moving from the middle lane 
 					if (move.getPlayerNumber() == 1)
 						points.get(move.getMoveTo()).push(red_middle_point.pop());
 					else
@@ -135,9 +140,14 @@ public class Board {
 					points.get(move.getMoveTo()).push(points.get(move.getMoveFrom()).pop());
 			}
 		}
-		else if (move.getMoveTo() == 0)
+		// If we are moving a checker home
+		else if (move.getMoveTo() == 25)
 			{
-				blue_pile.push(points.get(move.getMoveFrom()).pop());
+				// Check what pile to move it to 
+				if (move.getPlayerNumber()==1)
+					red_pile.push(points.get(move.getMoveFrom()).pop());
+				else
+					blue_pile.push(points.get(move.getMoveFrom()).pop());
 			}
 		else
 			if (move.getMoveFrom() == -1)
@@ -234,6 +244,37 @@ public class Board {
 		else
 			return false;
 	}
+	
+	public int sizeMiddlePoint(int n)
+	{
+		int sz;
+		if (n==1)
+		{
+			sz = red_middle_point.size();
+			return sz;
+		}
+		else
+		{
+			sz = blue_middle_point.size();
+			return sz;
+		}
+	}
+	
+	public boolean isRedHomeEmpty()
+	{
+		if (red_pile.size() == 0)
+			return true;
+		else 
+			return false;
+	}
+	
+	public boolean isBlueHomeEmpty()
+	{
+		if (blue_pile.size() == 0)
+			return true;
+		else 
+			return false;
+	}
 
 	
 	
@@ -275,6 +316,18 @@ public String printBlueMPoint()
 public String printRedMPoint()
 {
 	String str = red_middle_point.toString();
+	return str;
+}
+
+public String printBlueHome()
+{
+	String str = blue_pile.toString();
+	return str;
+}
+
+public String printRedHome()
+{
+	String str = red_pile.toString();
 	return str;
 }
 	
