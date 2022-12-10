@@ -91,7 +91,7 @@ public class Command {
 		return  inputFormatted.equals("ROLL") || 
 				inputFormatted.equals("PIP") ||
 				inputFormatted.equals("HINT") ||
-				inputFormatted.equals("MOVE") ||
+				//inputFormatted.equals("MOVE") ||
 				inputFormatted.equals("QUIT") ||
 				inputFormatted.equals("DOUBLE") ||
 				inputFormatted.matches("DICE\s[1-6][1-6]");

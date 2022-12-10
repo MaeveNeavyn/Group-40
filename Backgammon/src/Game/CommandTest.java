@@ -86,12 +86,17 @@ class CommandTest {
 	@Test 
 	void testIsValid() {
 		inputTest = "roll";
-		commandTest = new Command(inputTest);
-		assertTrue(commandTest.isValid("roll"));
-		
+		assertTrue(commandTest.isValid(inputTest));
+		inputTest = "pip";
+		assertTrue(commandTest.isValid(inputTest));
+		inputTest = "hint";
+		assertTrue(commandTest.isValid(inputTest));
 		inputTest = "quit";
-		commandTest = new Command(inputTest);
-		assertFalse(commandTest.isTestFile());
+		assertTrue(commandTest.isValid(inputTest));
+		inputTest = "double";
+		assertTrue(commandTest.isValid(inputTest));
+		inputTest = "dice 56";
+		assertTrue(commandTest.isValid(inputTest));	
 	}
 
 	@Test
@@ -116,8 +121,8 @@ class CommandTest {
 	void testGetFileName() {
 		inputTest = "test roll";
 		commandTest = new Command(inputTest);
-		assertTrue(commandTest.getFileName() == "roll");
-		inputTest = "test false";
+		assertTrue(commandTest.getFileName() == "ROLL");
+		inputTest = "test roll";
 		commandTest = new Command(inputTest);
 		assertFalse(commandTest.getFileName() == "roll");
 	}
