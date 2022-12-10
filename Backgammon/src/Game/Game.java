@@ -22,8 +22,8 @@ public class Game {
 		View view = new View();
 		
 		// Initializes that no player has the double cube at start of new game
-		boolean doubleOwnership1 = false;
-		boolean doubleOwnership2 = false;
+		boolean doubleOwnership1 = true;
+		boolean doubleOwnership2 = true;
 		int gameStake = 1;
 		
 		view.displayWelcome();
@@ -110,63 +110,6 @@ public class Game {
 					players[1].setPips(view.pipCountO(board));
 					
 				}
-				
-				/*if (player1roll > player2roll) {
-					count = 2;
-					System.out.println(players[0] + " starts the game!");
-					legal_moves = new LegalMoves(board,players[0], rolls);
-					System.out.println("Please enter option you would like to choose");
-					selection = in.nextInt();
-					//System.out.println("Option chosen was: " + (selection-1));
-					option_chosen = legal_moves.pickOption(selection-1);
-					System.out.println(legal_moves.pickOption(selection-1).toString());
-					legal_moves.clearOptions();
-					board.move(option_chosen);
-					rolls.remove(option_chosen.getNoDice()-1);
-					
-					legal_moves = new LegalMoves(board,players[1], rolls);
-					System.out.println("Please enter option you would like to choose");
-					selection = in.nextInt();
-					//System.out.println("Option chosen was: " + (selection-1));
-					option_chosen = legal_moves.pickOption(selection-1);
-					System.out.println(legal_moves.pickOption(selection-1).toString());
-					legal_moves.clearOptions();
-					board.move(option_chosen);
-					rolls.remove(option_chosen.getNoDice()-1);
-	
-					
-					players[0].setPips(view.pipCountX(board));
-					players[1].setPips(view.pipCountO(board));
-					// Get player 2s command, then for loop can continue as normal
-				}
-				else if (player1roll < player2roll) {
-					// Add in move function here to move based off first roll
-					count = 3;
-					System.out.println(players[1] + " starts the game!");
-					legal_moves = new LegalMoves(board,players[1], rolls);
-					System.out.println("Please enter option you would like to choose");
-					selection = in.nextInt();
-					//System.out.println("Option chosen was: " + (selection-1));
-					option_chosen = legal_moves.pickOption(selection-1);
-					System.out.println(legal_moves.pickOption(selection-1).toString());
-					legal_moves.clearOptions();
-					board.move(option_chosen);
-					rolls.remove(option_chosen.getNoDice()-1);
-					
-					legal_moves = new LegalMoves(board,players[1], rolls);
-					System.out.println("Please enter option you would like to choose");
-					selection = in.nextInt();
-					//System.out.println("Option chosen was: " + (selection-1));
-					option_chosen = legal_moves.pickOption(selection-1);
-					System.out.println(legal_moves.pickOption(selection-1).toString());
-					legal_moves.clearOptions();
-					board.move(option_chosen);
-					rolls.remove(option_chosen.getNoDice()-1);
-	
-					players[0].setPips(view.pipCountX(board));
-					players[1].setPips(view.pipCountO(board));
-	
-				}*/
 				else 
 					{
 						System.out.println("Players rolled the same number. Roll again!\n"); 		//when values the same, game breaks and repeats
@@ -177,12 +120,7 @@ public class Game {
 			while (player1roll == player2roll);
 	
 			playerTurn = count%2;
-			// legal move for this player
-	
-	
-	
-						
-	
+			// legal move for this player	
 			// do while: game is not quit or over
 			do {
 				//Command command;
@@ -190,8 +128,6 @@ public class Game {
 				count++;
 				playerTurn = count%2;
 				int otherPlayer = (count +1)%2;		//gets other player value, will change according to count value, will always be opposite of playerTurn
-	//Printing line checking code
-				//System.out.println("Player's turn: "+playerTurn);
 				view.displayBoard(board, players[0], players[1], playerTurn, match);
 				boolean commandDone = false;
 				boolean startTurn = true;
@@ -206,7 +142,7 @@ public class Game {
 						// Need to include print statement if they try to use double again when they have already made move or already have the double
 						// can only enter double command if 1: player is at start of turn AND does not have double cube
 						// 2: if gameStake is less than 64 (max size of doubling cube)
-						if (((startTurn == true) && (players[playerTurn].getDoubleOwnership() == false)) || gameStake != 64) {
+						if (((startTurn == true) && (players[playerTurn].getDoubleOwnership() == true)) || gameStake != 64) {
 							if (command.isDouble()) {
 								boolean doubleAnswer = view.getDoubleAnswer(players[playerTurn], players[otherPlayer]);
 								startTurn = false;
