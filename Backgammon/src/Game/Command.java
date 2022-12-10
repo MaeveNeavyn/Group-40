@@ -12,7 +12,7 @@ public class Command {
 	private String fileName;
 	
 	
-	//User inputs commands for quit and roll
+	//User inputs commands for quit, roll, pips, hint, dice, test 
 	Command (String input) {
 		String inputFormatted = input.trim().toUpperCase();
 		if (inputFormatted.equals("QUIT")) {
@@ -27,9 +27,9 @@ public class Command {
 		else if (inputFormatted.equals("HINT")) {
 			commandType = CommandType.HINT;
 		} 
-		else if (inputFormatted.equals("MOVE")) {
-			commandType = CommandType.MOVE;
-		}
+		//else if (inputFormatted.equals("MOVE")) {
+		//	commandType = CommandType.MOVE;
+		//}
 		else if (inputFormatted.matches("DICE\s[1-6][1-6]")) {
 			commandType = CommandType.DICE;
 			roll1 = inputFormatted.charAt(5);
@@ -75,9 +75,9 @@ public class Command {
 	}
 	
 	// added in move command for testing to move checker
-	public boolean isMove() {
+	/*public boolean isMove() {
 		return commandType == CommandType.MOVE;
-	}
+	}*/
 	
 	public boolean isTestFile() {
 		
@@ -112,32 +112,6 @@ public class Command {
 	public String getFileName() {
 		return fileName;
 	}
-
-
-	
-	/*
-	public boolean isMoveFromPoint() {
-		return Character.toString(moveFrom).matches("[1-24]");
-	}
-	
-	public boolean isMoveToPoint() {
-		return Character.toString(moveTo).matches("[1-24]");
-	}
-	
-	public int getToIndex() {
-		if (isMoveToPoint()) { 
-			int a = Character.getNumericValue(moveTo) - 1;
-			 		//saying this isn't integer value on its own so added in else return 1
-		} 
-		return moveTo-1;
-	}
-	
-	public int getFromIndex() {
-		if (isMoveFromPoint()) {
-			return Character.getNumericValue(moveFrom) - 1;
-		} 
-	}*/
-		
 		
 		
 }	
