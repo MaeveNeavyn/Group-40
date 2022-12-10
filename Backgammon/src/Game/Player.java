@@ -7,13 +7,15 @@ public class Player {
 	private int score;
 //	private int roll1, roll2;
 	private int pips;
+	private boolean doubleOwnership;
 	
-	Player (String name, int player_number, int pips, int score) 
+	Player (String name, int player_number, int pips, int score, boolean doubleOwnership) 
 	{
 		this.name = name;
 		this.player_number = player_number;
 		this.pips = pips;
 		this.score = score;
+		this.doubleOwnership = doubleOwnership;
 		//roll1 = 1;
 	//	roll2 = 1;
 		
@@ -25,6 +27,18 @@ public class Player {
 		this.roll2 = roll2;
 		
 	}*/
+	public boolean getDoubleOwnership() {
+		return doubleOwnership; // if true, player owns double cube
+		
+	}
+	
+	public void setDoubleOwnership() {
+		this.doubleOwnership = true;
+	}
+	
+	public void removeDoubleOwnership() {
+		this.doubleOwnership = false;
+	}
 	
 	public void setPips (int pips)
 	{
