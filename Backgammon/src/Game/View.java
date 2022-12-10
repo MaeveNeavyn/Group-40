@@ -25,7 +25,7 @@ public class View {
 	
 	public boolean getDoubleAnswer (Player playerQ, Player playerAns) {
 		System.out.println(playerAns.toString() + ", " + playerQ.toString() + " wants to double the stakes of the game!");
-		System.out.println("If you refuse and do not answer Y, you forfeit the game and pay the number of points at stake prior to this double.");
+		System.out.println("If you refuse and do not answer accept, you forfeit the game and pay the number of points at stake prior to this double.");
 		System.out.println("Do you accept this Double? (accept/refuse): ");
 		String answer = in.nextLine();
 		
