@@ -15,7 +15,7 @@ public class Game {
 		
 		boolean newMatch = true;
 		
-		while (newMatch ) {
+		do  {
 		// GAME INTRO & GETTING PLAYER DETAILS
 		Board board = new Board();
 		Player[] players = new Player[2];
@@ -25,6 +25,7 @@ public class Game {
 		boolean doubleOwnership1 = true;
 		boolean doubleOwnership2 = true;
 		int gameStake = 1;
+		int gameValue = 1;
 		
 		view.displayWelcome();
 		
@@ -142,32 +143,41 @@ public class Game {
 						// Need to include print statement if they try to use double again when they have already made move or already have the double
 						// can only enter double command if 1: player is at start of turn AND does not have double cube
 						// 2: if gameStake is less than 64 (max size of doubling cube)
-						if (((startTurn == true) && (players[playerTurn].getDoubleOwnership() == true)) || gameStake != 64) {
-							if (command.isDouble()) {
+						//if (command == )
+						
+						if (command.isDouble()) {
+							
+							if (players[playerTurn].getDoubleOwnership() == false) {
+								System.out.println("You cannot use the Double command as you have just used it.");
+							} else if (startTurn == false) {
+								System.out.println("You cannot use the Double command as it is not the start of your turn.");
+							} else if (gameStake == 64) {
+								System.out.println("You cannot use the Double command as it is at its maximum value of 64!");
+							}
+							else {
 								boolean doubleAnswer = view.getDoubleAnswer(players[playerTurn], players[otherPlayer]);
 								startTurn = false;
 								if (doubleAnswer == true) {		// other Player has accepted double
+							
+									gameStake *= 2;
 									
-									// is this necessary with the if statement at start?
-									if (gameStake < 64) {
-										gameStake *= 2;
-									}
 									match.setGameStake(gameStake);
 									System.out.println("game stake value after double is now: " + gameStake);		//print test
 									
 									// Assigns who has the double cube
-									players[playerTurn].setDoubleOwnership();
-									players[otherPlayer].removeDoubleOwnership();
+									players[playerTurn].removeDoubleOwnership();
+									players[otherPlayer].setDoubleOwnership();
 									
-									System.out.println(players[playerTurn] + " has the doubling cube: " + players[playerTurn].getDoubleOwnership());
-									
-								}else {
+									System.out.println(players[playerTurn] + " has the doubling cube: " + players[playerTurn].getDoubleOwnership());	
+								}
+								else {
 									view.displayQuit(players[otherPlayer]);
 									quit = true;
 									commandDone = true;
 								}
 							}
 						}
+						
 						
 						
 						startTurn = false;
@@ -286,14 +296,55 @@ public class Game {
 						break;
 					
 			} while ((quit == false) && !players[0].isGameOver() && !players[1].isGameOver());
+			
+			
 	
 			// GAME OVER
-			// need to do score adjustments based on sing;e, gammon or backgammon
+			// PLAYER 1 WON GAME
 			if (players[0].isGameOver()) {
-				player1Score++;
+				
+				// DETERMINE GAME VALUE
+				// BACK GAMMON
+				if (!view.isOStartEmpty(board) && !board.isRedMiddlePointEmpty() && board.isRedHomeEmpty()) {
+					gameValue = 3;
+					System.out.println("This game has ended in a Backgammon.");
+				}
+				// GAMMONED
+				else if (board.isRedMiddlePointEmpty() && board.isRedHomeEmpty()) {
+					gameValue = 2;
+					System.out.println("This game has ended in a Gammon.");
+				}
+				// SINGLE
+				else if (!board.isRedHomeEmpty()) {
+					gameValue = 1;
+					System.out.println("This game has ended in a Single.");
+				}
+				
+				player1Score += (gameValue*gameStake);
 				System.out.println( players[0] + " has won this game!");
+				
+				
+				
+			// PLAYER 2 WON GAME	
 			} else if (players[1].isGameOver()) {
-				player2Score++;
+				// DETERMINE GAME VALUE
+				// BACK GAMMON
+				if (!view.isXStartEmpty(board) && !board.isBlueMiddlePointEmpty() && board.isBlueHomeEmpty()) {
+					gameValue = 3;
+					System.out.println("This game has ended in a Backgammon.");
+				}
+				// GAMMONED
+				else if (board.isBlueMiddlePointEmpty() && board.isBlueHomeEmpty()) {
+					gameValue = 2;
+					System.out.println("This game has ended in a Gammon.");
+				}
+				// SINGLE
+				else if (!board.isBlueHomeEmpty()) {
+					gameValue = 1;
+					System.out.println("This game has ended in a Single.");
+				}
+				
+				player1Score += (gameValue*gameStake);
 				System.out.println(players[1] + " has won this game!");
 			}
 			
@@ -307,16 +358,18 @@ public class Game {
 			System.out.println("Congratulations " + players[1].getName() + "! You have won the game of Backgammon!");
 		}
 		
-		// START NEW MATCH
 		Scanner userInput = new Scanner(System.in);
 		System.out.println("Would you like to play another match? (Y/N)");
 		String choice = userInput.nextLine();
 		
 		newMatch = choice.equalsIgnoreCase("y"); 
 		userInput.close();	
+
 			
 		
 		
-	}// end of while (newMatch)
-	}
+	} while (newMatch );// end of while (newMatch)
+		// START NEW MATCH
+			
+}
 }

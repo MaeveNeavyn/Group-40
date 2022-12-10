@@ -107,13 +107,13 @@ public class View {
 		
 		System.out.println("\nMatch Score: \t Double Cube: \t Match Length: "+ match.getMatchLength());
 		
-		if (player1.getDoubleOwnership() == true) {
+		if ((player1.getDoubleOwnership() == true) && (match.getGameStake() > 1)) {
 			System.out.println(player1.toString() + ": " + player1.getScore() + "\t\t   " + match.getGameStake());	
 		}else System.out.println(player1.toString() + ": " + player1.getScore());
 			
 			
 		
-		if (player2.getDoubleOwnership() == true) {
+		if ((player2.getDoubleOwnership() == true) && (match.getGameStake() > 1)) {
 			System.out.println(player2.toString() + ": " + player2.getScore() + "\t\t   " + match.getGameStake());
 		} else System.out.println(player2.toString() + ": " + player2.getScore());
 		
@@ -256,6 +256,22 @@ public class View {
 		return pipCount;
 	}
 	
+	public boolean isOStartEmpty(Board board) {
+		int i;
+		int count=0;
+
+		for (i=0; i < 6; i++) {
+			if (!board.isPointEmpty(i)) {		//if empty returns true
+				count++; 
+			}
+		}
+		
+		if (count != 0) {
+			return false;
+		} else return true;
+
+	}
+	
 	
 	//Going from 1 to 24
 	public int pipCountX(Board board) {
@@ -280,6 +296,22 @@ public class View {
 		}
 		pipCount = pipCount + (board.sizeMiddlePoint(1)*25);
 		return pipCount;
+	}
+	
+	public boolean isXStartEmpty(Board board) {
+		int i;
+		int count=0;
+
+		for (i=23; i > 17; i--) {
+			if (!board.isPointEmpty(i)) {		//if empty returns true
+				count++; 
+			}
+		}
+		
+		if (count != 0) {
+			return false;
+		} else return true;
+
 	}
 	
 	
