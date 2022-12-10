@@ -69,6 +69,8 @@ public class Command {
 	}
 	
 	public boolean isTestFile() {
+		
+		
 		return commandType == CommandType.TEST;
 	}
 	
