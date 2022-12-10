@@ -25,7 +25,7 @@ public class View {
 	
 	public int getMatchLength() {
 		
-		//int matchLength = 0;
+		int matchLength = 0;
 		boolean validLength = false;
 		do {
 			//int matchLength =0;
@@ -34,7 +34,7 @@ public class View {
 			
 			//Ensures input contains only digits
 			if (str.matches("\\d+")) {
-				int matchLength = Integer.parseInt(str);
+				matchLength = Integer.parseInt(str);
 				//if (matchLength > 0) {
 				validLength = true;	
 				//} 
@@ -45,7 +45,7 @@ public class View {
 			}
 			//return matchLength;
 		}
-		while (validLength = false);
+		while (validLength == false);
 		return matchLength;
 	}
 	
