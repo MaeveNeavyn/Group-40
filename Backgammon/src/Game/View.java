@@ -17,6 +17,7 @@ public class View {
 		System.out.println("Welcome to Backgammon\n");
 	}
 	
+	
 	public String getName () {
 		System.out.print("Enter the player name: ");
 		String name = in.nextLine();
@@ -170,8 +171,8 @@ public class View {
 				//System.out.print("j = "+j);
 				if (j == 6)
 					System.out.print("|       ");
-				if (j == 17)
-					System.out.print("|       ");
+				/*if (j == 17)
+					System.out.print("|       ");*/
 			}
 			System.out.println("|");
 		}
@@ -190,10 +191,6 @@ public class View {
 	}
 	
 	
-	public void displayMove (Player player, int[] rolls) {
-		System.out.println(player.toString() + " rolls dice:\n" + "Roll 1: " + rolls[0] + "\nRoll 2: " + rolls[1] );
-		
-	}
 	
 	public void displayScore (Player player) {
 		System.out.println(player.toString() + ": " + player.getScore());

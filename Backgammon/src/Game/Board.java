@@ -96,14 +96,6 @@ public class Board {
 		return points.get(index);
 	}
 	
-	/*
-	public void move(Command command) {
-		if (command.isMoveFromPoint() && command.isMoveToPoint()) {
-			Checkers checker = point.pop();
-			points.get(command.getToIndex()).push(checker);
-					
-		}
-	}*/
 	
 	public void move(Option move) {
 		
@@ -123,7 +115,7 @@ public class Board {
 				{
 					red_middle_point.push(moving_checker);
 				}
-				// Eld the knocked checker is blue so put it in the blue middle point
+				// Else the knocked checker is blue so put it in the blue middle point
 				else
 					blue_middle_point.push(moving_checker);
 				
