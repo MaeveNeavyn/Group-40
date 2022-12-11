@@ -229,6 +229,25 @@ public class LegalMoves {
 		}			
 	}
 	
+	public int getNumOptions () {
+		return no_options;
+	}
+	
+	public boolean validSelection(int optionChosen) {
+		boolean validOption = false;
+		for (int i = 1; i <= no_options; i++) {
+			if (optionChosen == i) {
+				validOption = true;
+				break;
+			}
+		}
+		if (validOption == false) {
+			System.out.println("Selection is invalid. Please enter a valid option");
+		}
+		return validOption;
+	}
+	
+	
 	public Option pickOption(int i)
 	{
 		return options.get(i);

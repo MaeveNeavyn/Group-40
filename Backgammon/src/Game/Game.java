@@ -16,6 +16,7 @@ public class Game {
 		
 		boolean newMatch = true;
 		
+		// DO WHILE - continues as long as player answers yes to a new match at the end
 		do  {
 		// GAME INTRO & GETTING PLAYER DETAILS
 		Board board = new Board();
@@ -28,8 +29,10 @@ public class Game {
 		boolean doubleOwnership2 = true;
 		boolean player1Quit = false;
 		boolean player2Quit = false;
+		boolean validSelection = false;
 		int gameStake = 1;
 		int gameValue = 1;
+		
 		
 		view.displayWelcome();
 		
@@ -76,17 +79,20 @@ public class Game {
 		int count = 0;
 		int playerTurn;
 		int player1roll, player2roll;
+		int gameNumber = 0;
 		
-		boolean quit = false;
 		
-		// MATCH DO WHILE LOOP - continues until player wins
+		// MATCH DO WHILE LOOP - continues until player wins, prints out winner after loop
 		do { 
 				
 			// GAME STARTS - First rolls determines who goes first
 			do {
+				boolean quit = false;
+				gameNumber++;
+				System.out.println("\nGame " + gameNumber + " has begun!\n");
 				player1Quit = false;
 				player2Quit = false;
-			
+				
 				// FIRST DICE ROLL - continues until a player rolls a higher number
 				do 
 				{
@@ -107,12 +113,20 @@ public class Game {
 						}
 						playerTurn = count%2;	// Determines whether it is player 1 or 2's turn
 						
-						System.out.println(players[playerTurn] + " starts the game!");
+						System.out.println(players[playerTurn] + " starts the game!\n");
 						
 						// Shows options for both dice and lets user choose option
 						legal_moves = new LegalMoves(board,players[playerTurn], rolls);
-						System.out.println("Please enter option you would like to choose");
-						selection = in.nextInt();
+						//System.out.println("Total number of options: " + legal_moves.getNumOptions());
+						
+						validSelection = false;
+						do {
+							System.out.println("\nPlease enter option you would like to choose");
+							selection = in.nextInt();
+							validSelection = legal_moves.validSelection(selection);
+							
+						} while(validSelection == false);
+						
 						//System.out.println("Option chosen was: " + (selection-1));
 						option_chosen = legal_moves.pickOption(selection-1);
 						System.out.println(legal_moves.pickOption(selection-1).toString());
@@ -123,8 +137,15 @@ public class Game {
 						
 						// Shows move options for the dice that wasn't picked for first move 
 						legal_moves = new LegalMoves(board,players[playerTurn], rolls);
-						System.out.println("Please enter option you would like to choose");
-						selection = in.nextInt();
+
+						validSelection = false;
+						do {
+							System.out.println("\nPlease enter option you would like to choose");
+							selection = in.nextInt();
+							validSelection = legal_moves.validSelection(selection);
+							
+						} while(validSelection == false);
+						
 						//System.out.println("Option chosen was: " + (selection-1));
 						option_chosen = legal_moves.pickOption(selection-1);
 						System.out.println(legal_moves.pickOption(selection-1).toString());
@@ -163,11 +184,10 @@ public class Game {
 				boolean startTurn = true;
 				//prints players pips for whoevers turn it is onto display after board print out
 				System.out.println(players[playerTurn] + " pip count: "+ players[playerTurn].getPips());
-				String commandInput = in.nextLine();
+				String commandInput = in.nextLine();		//moves onto next line after selection options from first roll
 			
 				do {
 					boolean validCommand = false;
-					//String commandInput;
 					
 					do {	
 						System.out.println(players[playerTurn].getName() + " enter command: ");	
@@ -289,8 +309,14 @@ public class Game {
 									rolls.clear();
 									break;
 								}
-								System.out.println("Please enter option you would like to choose");
-								selection = in.nextInt();
+								validSelection = false;
+								do {
+									System.out.println("\nPlease enter option you would like to choose");
+									selection = in.nextInt();
+									validSelection = legal_moves.validSelection(selection);
+									
+								} while(validSelection == false);
+								
 								option_chosen = legal_moves.pickOption(selection-1);
 								System.out.println(legal_moves.pickOption(selection-1).toString());
 								legal_moves.clearOptions();
@@ -351,7 +377,7 @@ public class Game {
 					System.out.println("This game has ended in a Backgammon.");
 				}
 				// GAMMONED
-				else if (board.isRedMiddlePointEmpty() && board.isRedHomeEmpty()) {
+				else if (!board.isRedMiddlePointEmpty() && board.isRedHomeEmpty()) {
 					gameValue = 2;
 					System.out.println("This game has ended in a Gammon.");
 				}
@@ -376,7 +402,7 @@ public class Game {
 					System.out.println("This game has ended in a Backgammon.");
 				}
 				// GAMMONED
-				else if (board.isBlueMiddlePointEmpty() && board.isBlueHomeEmpty()) {
+				else if (!board.isBlueMiddlePointEmpty() && board.isBlueHomeEmpty()) {
 					gameValue = 2;
 					System.out.println("This game has ended in a Gammon.");
 				}
@@ -388,23 +414,19 @@ public class Game {
 				
 				player2Score += (gameValue*gameStake);
 				players[1].updateScore(player2Score);
-				System.out.println(players[1] + " has won this game!");
+				System.out.println(players[1] + " has won this game!\n");
 			}
 			
 			
-			System.out.println("player 1 Score: " + player1Score);
-			System.out.println("player 2 Score: " + player2Score);
+			//System.out.println("player 1 Score: " + player1Score);
+			//System.out.println("player 2 Score: " + player2Score);
 			
-			System.out.println("Player1 Gameover: " + players[0].isGameOver());
-			System.out.println("Player2 Gameover: " + players[1].isGameOver());
-			System.out.println("Player1 has Quit: " + players[0].hasQuit());
-			System.out.println("Player2 has Quit: " + players[1].hasQuit());
-
+			
 			
 			
 			} while ((players[0].isGameOver()==false) && (players[1].isGameOver()==false) && (players[0].hasQuit()==false) && (players[1].hasQuit()==false)); 	//Game Loop
 			
-			System.out.println("match length value: " +match.getMatchLength());
+			//System.out.println("match length value: " +match.getMatchLength());
 			
 		} while (players[0].getScore() < match.getMatchLength() && players[1].getScore() < match.getMatchLength()); // End of for loops for match length
 		// Loops through games until player 1 or 2 score is greater than match length
