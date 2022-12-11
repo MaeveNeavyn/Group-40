@@ -13,14 +13,14 @@ public class Game {
 		// TODO Auto-generated method stub	
 		
 		boolean newMatch = true;
-		
+		Scanner in = new Scanner(System.in);
+	
 		// DO WHILE - continues as long as player answers yes to a new match at the end
 		do  {
 		// GAME INTRO & GETTING PLAYER DETAILS
 		Board board = new Board();
 		Player[] players = new Player[2];
 		View view = new View();
-		Scanner in = new Scanner(System.in);
 		
 		// Initializes that no player has the double cube at start of new game
 		boolean doubleOwnership1 = true;
@@ -55,16 +55,10 @@ public class Game {
 		String length = in.nextLine();
 		matchLength = view.getMatchLength(length);
 		} while (matchLength < 1);
-		Match match = new Match(matchLength, gameStake);
-		
-		
+		Match match = new Match(matchLength, gameStake);	
 		
 		System.out.println("\n"+ players[0] + " is moving the X Checker");
 		System.out.println(players[1] + " is moving the O Checker");
-		// Players able to see board before first move based off first roll
-		//view.displayBoard(board, players[0], players[1], 2, match);
-		
-		
 		
 		// SETTING UP VARIABLES/ARRAYS/LISTS TO BE USED IN GAME
 		List<Integer> rolls = new ArrayList<>();
@@ -84,6 +78,8 @@ public class Game {
 				
 			// GAME STARTS - First rolls determines who goes first
 			do {
+				match.setGameStake(1);
+				gameStake = 1;
 				board = new Board();
 				boolean quit = false;
 				gameNumber++;
@@ -275,7 +271,8 @@ public class Game {
 			
 						//Legal moves is done based on certain dice roll
 						// DICE & ROLL COMMAND
-						if (command.isRoll() || command.isDice()) {
+						if (command.isRoll() || command.isDice())
+						{
 							
 							// ROLL COMMAND
 							if (command.isRoll()) {
@@ -318,6 +315,7 @@ public class Game {
 								do {
 									System.out.println("\nPlease enter option you would like to choose");
 									selection = in.nextInt();
+									commandInput = in.nextLine();
 									validSelection = legal_moves.validSelection(selection);
 									
 								} while(validSelection == false);
@@ -328,6 +326,7 @@ public class Game {
 								board.move(option_chosen);
 								view.displayBoard(board, players[0], players[1], playerTurn, match);
 								rolls.remove(option_chosen.getNoDice()-1);
+					
 							}
 							while (rolls.size()>0);
 							
@@ -448,12 +447,10 @@ public class Game {
 		System.out.println("Would you like to play another match? (Y/N)");
 		String choice = in.nextLine();
 		newMatch = choice.equalsIgnoreCase("y"); 
-		
-		in.close(); 		// Closes Scanner
 
 		
 	} while (newMatch );// end of do while (newMatch)
 		// START NEW MATCH
-			
+		in.close(); // If no new match is started close the Scanner		
 }
 }
