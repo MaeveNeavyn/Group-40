@@ -62,7 +62,7 @@ public class Game {
 		System.out.println("\n"+ players[0] + " is moving the X Checker");
 		System.out.println(players[1] + " is moving the O Checker");
 		// Players able to see board before first move based off first roll
-		view.displayBoard(board, players[0], players[1], 2, match);
+		//view.displayBoard(board, players[0], players[1], 2, match);
 		
 		
 		
@@ -84,11 +84,15 @@ public class Game {
 				
 			// GAME STARTS - First rolls determines who goes first
 			do {
+				board = new Board();
 				boolean quit = false;
 				gameNumber++;
 				System.out.println("\nGame " + gameNumber + " has begun!\n");
 				player1Quit = false;
 				player2Quit = false;
+				players[0] = new Player(name1, 1, view.pipCountX(board), player1Score, doubleOwnership1, player1Quit);
+				players[1] = new Player(name2, 2, view.pipCountO(board), player2Score, doubleOwnership2, player2Quit);
+				view.displayBoard(board, players[0], players[1], 2, match);
 				
 				// FIRST DICE ROLL - continues until a player rolls a higher number
 				do 
