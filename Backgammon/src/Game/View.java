@@ -189,6 +189,7 @@ public class View {
 		System.out.println("PIP ->to display the pip count for both players");
 		System.out.println("DICE XY -> Causes the dice roll to equal numbers X and Y, where X and Y are dice values 1-6");
 		System.out.println("TEST X -> Performs the Commands in the given text file, where X is the text file name");
+		System.out.println("DOUBLE -> doubles the stakes of the game with doubling cube.\n");
 		//lists all possible moves for player
 	}
 
