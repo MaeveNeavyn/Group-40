@@ -4,8 +4,8 @@ import java.util.*;
 public class LegalMoves {
 
 	private Stack<Option> options = new Stack<Option>();
-	int no_options = 0; 
-	
+	int no_options = 0;
+
 	LegalMoves (Board board, Player player, List<Integer> rolls)
 	{
 		int moveToOption;
@@ -13,7 +13,7 @@ public class LegalMoves {
 		int playerNumber = player.getPlayerNumber();
 		int no_dice = rolls.size();
 		boolean not_option = false;
-		
+
 		// Cycling through the number of rolled dice
 		for (int i=0; i<no_dice; i++)
 		{
@@ -35,7 +35,7 @@ public class LegalMoves {
 								if (moveToOption>=24)
 								{
 									//Cycle through the first 0-17 lanes and check if there are any red checkers there
-									
+
 										for (int k=0; k<18;k++)
 										{
 											if(board.isOneRedChecker(k) || board.isMultipleRedChecker(k))
@@ -45,7 +45,7 @@ public class LegalMoves {
 														break;
 													}
 										}
-										
+
 										//If there are no red checkers outside of the end zone we create an option to move home
 										if (not_option == false)
 										{
@@ -62,7 +62,7 @@ public class LegalMoves {
 											options.push(current_option);
 										}
 									}
-									// If the move to Option is not home check if there is a blue checker at the move to option 
+									// If the move to Option is not home check if there is a blue checker at the move to option
 									else if (board.isOneBlueChecker(moveToOption))
 									{
 										// If there is a blue checker set Knock Opponent to be true
@@ -75,9 +75,9 @@ public class LegalMoves {
 										current_option.setOptionNumber(no_options);
 										current_option.setNoDice(i+1);
 										System.out.println(current_option.toString());
-										options.push(current_option); 
+										options.push(current_option);
 									}
-									// If there is no blue checker there we can still move onto that point 
+									// If there is no blue checker there we can still move onto that point
 									else if (board.isOneRedChecker(moveToOption) || board.isMultipleRedChecker(moveToOption)|| board.isPointEmpty(moveToOption))
 									{
 										Option current_option = new Option();
@@ -91,10 +91,10 @@ public class LegalMoves {
 										System.out.println(current_option.toString());
 										options.push(current_option);
 									}
-								}	
+								}
 							}
 						}
-					
+
 					else
 					{
 						// If there is a red checker in the middle lane must move that first
@@ -111,7 +111,7 @@ public class LegalMoves {
 							current_option.setOptionNumber(no_options);
 							current_option.setNoDice(i+1);
 							System.out.println(current_option.toString());
-							options.push(current_option); 
+							options.push(current_option);
 						}
 						// Move option for not knocking a blue checker off moving from middle lane
 						else if (board.isOneRedChecker(moveToOption) || board.isMultipleRedChecker(moveToOption)|| board.isPointEmpty(moveToOption))
@@ -127,10 +127,10 @@ public class LegalMoves {
 							System.out.println(current_option.toString());
 							options.push(current_option);
 						}
-						
+
 					}
 				}
-				else 
+				else
 				{
 					// If player number 2 is playing same cycle as above is used but swapped for player 2
 					if (board.isBlueMiddlePointEmpty())
@@ -150,13 +150,13 @@ public class LegalMoves {
 										for (int k=23; k>7;k--)
 										{
 											if(board.isOneBlueChecker(k) || board.isMultipleBlueChecker(k))
-											{	
+											{
 												//System.out.println("Not allowed to move checkers off board yet");
 												not_option = true;
 												break;
 											}
 										}
-										
+
 										if (not_option == false)
 										{
 											Option current_option = new Option();
@@ -196,9 +196,9 @@ public class LegalMoves {
 										current_option.setNoDice(i+1);
 										System.out.println(current_option.toString());
 										options.push(current_option);
-										
+
 									}
-								
+
 							}
 						}
 					}
@@ -216,7 +216,7 @@ public class LegalMoves {
 							current_option.setOptionNumber(no_options);
 							current_option.setNoDice(i+1);
 							System.out.println(current_option.toString());
-							options.push(current_option); 
+							options.push(current_option);
 						}
 						else if (board.isOneBlueChecker(moveToOption) || board.isMultipleBlueChecker(moveToOption)|| board.isPointEmpty(moveToOption))
 						{
@@ -235,25 +235,25 @@ public class LegalMoves {
 				}
 		}			
 	}
-	
+
 	// When player picks an option the option they picked is returned
 	public Option pickOption(int i)
 	{
 		return options.get(i);
 	}
-	
+
 	// Once an option is chosen all options need to be removed
 	public void clearOptions()
 	{
 		options.clear();
 	}
-	
+
 	// Returns the number of options available
 	public int size()
 	{
 		return options.size();
 	}
-	
-	
-	
+
+
+
 }
