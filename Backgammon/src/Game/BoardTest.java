@@ -81,34 +81,51 @@ class BoardTest {
 	@Test
 	void testIsBlueMiddlePointEmpty() {
 		assertTrue(board.isBlueMiddlePointEmpty());
-		move = new Option(1,5,2,1,false,1);
+		move = new Option(1,5,2,1,false,2);
 		board.move(move);
-		move = new Option(1,0,2,1,true,0);
+		move = new Option(1,0,2,1,true,1);
 		board.move(move);
 		assertFalse(board.isBlueMiddlePointEmpty());
+		move = new Option(1,-1,2,1,true,2);
+		board.move(move);
+		assertTrue(board.isBlueMiddlePointEmpty());
 	}
 
 	@Test
 	void testIsRedMiddlePointEmpty() {
-		fail("Not yet implemented");
+		assertTrue(board.isRedMiddlePointEmpty());
+		move = new Option(1,0,2,1,false,1);
+		board.move(move);
+		move = new Option(1,5,2,1,true,2);
+		board.move(move);
+		assertFalse(board.isRedMiddlePointEmpty());
+		move = new Option(1,-1,2,1,true,1);
+		board.move(move);
+		assertTrue(board.isRedMiddlePointEmpty());
 	}
 
-	@Test
+	/*@Test
 	void testSizeMiddlePoint() {
 		fail("Not yet implemented");
-	}
+	}*/
 
 	@Test
 	void testIsRedHomeEmpty() {
-		fail("Not yet implemented");
+		assertTrue(board.isRedHomeEmpty());
+		move = new Option(1,0,25,1,false,1);
+		board.move(move);
+		assertFalse(board.isRedHomeEmpty());
 	}
 
 	@Test
 	void testIsBlueHomeEmpty() {
-		fail("Not yet implemented");
+		assertTrue(board.isBlueHomeEmpty());
+		move = new Option(1,23,25,1,false,2);
+		board.move(move);
+		assertFalse(board.isBlueHomeEmpty());
 	}
 
-	@Test
+	/*@Test
 	void testPrintBlueMPoint() {
 		fail("Not yet implemented");
 	}
@@ -126,6 +143,6 @@ class BoardTest {
 	@Test
 	void testPrintRedHome() {
 		fail("Not yet implemented");
-	}
+	}*/
 
 }
