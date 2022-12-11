@@ -4,7 +4,7 @@ package Game;
 public class Command {
 
 	// CommandType lists all valid commands
-	private enum CommandType {ROLL, QUIT, PIP, HINT, MOVE, DICE, TEST, DOUBLE};
+	private enum CommandType {ROLL, QUIT, PIP, HINT, DICE, TEST, DOUBLE};
 	private CommandType commandType;
 	private char roll1, roll2;
 	private String fileName;
@@ -25,9 +25,7 @@ public class Command {
 		else if (inputFormatted.equals("HINT")) {
 			commandType = CommandType.HINT;
 		} 
-		//else if (inputFormatted.equals("MOVE")) {
-		//	commandType = CommandType.MOVE;
-		//}
+	
 		else if (inputFormatted.matches("DICE\s[1-6][1-6]")) {
 			commandType = CommandType.DICE;
 			roll1 = inputFormatted.charAt(5);
