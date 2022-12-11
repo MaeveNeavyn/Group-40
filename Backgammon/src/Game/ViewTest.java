@@ -42,42 +42,45 @@ class ViewTest {
 		view.displayWelcome();
 	}
 
-	@Test
+	/*@Test
 	void testGetName() {
 		view.getName();
-	}
+	}*/
 
 	@Test
 	void testGetDoubleAnswer() {
-		System.out.println("Enter accept when asked for double");
-		view.getDoubleAnswer(player1, player2);
-		System.out.println("Enter an invalid command when asked for double");
-		view.getDoubleAnswer(player1, player2);
+		String answer = "accept";
+		assertTrue(view.getDoubleAnswer(answer));
+		answer = "refuse";
+		assertFalse(view.getDoubleAnswer(answer));
 		
 	}
 
 	@Test
+	void testDisplayDoubleQuestion() {
+		view.displayDoubleQuestion(player2, player1);
+	}
+	
+	@Test
 	void testGetMatchLength() {
-		System.out.println("Enter 2");
-		view.getMatchLength();
-		System.out.println("Enter invalid answer e.g. seven");
-		view.getMatchLength();
+		String length = "2";
+		assertEquals(view.getMatchLength(length),2);
+		assertNotEquals(view.getMatchLength(length),3);
+		//length = "invalid";
+		//Will implement this after view class is changed
 		
 	}
 
 	@Test
 	void testGetCommand() {
-		System.out.println("Enter roll");
-		view.getUserInput(player1);
-		assertEquals(view.getCommand(), "ROLL");
+		
 	}
 
 	@Test
 	void testGetUserInput() {
-		System.out.println("Enter roll");
-		view.getUserInput(player1);
-		System.out.println("Enter invalid command");
-		view.getUserInput(player1);
+		assertEquals(view.getUserInput(player1,"roll"), "ROLL");
+		assertNotEquals(view.getUserInput(player1,"quit"), "ROLL");
+		view.getUserInput(player1, "fail");
 		
 	}
 

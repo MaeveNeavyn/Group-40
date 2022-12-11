@@ -63,26 +63,29 @@ class BoardTest {
 		assertTrue(board.isMultipleRedChecker(0));
 		move = new Option(1,0,4,1,false,0);
 		board.move(move);
-		assertTrue(board.isOneRedChecker(4));
-		move = new Option(1,7,6,1,false,1);
-		board.move(move);
-		assertFalse(board.isOneRedChecker(6));
+		assertFalse(board.isMultipleRedChecker(4));
+		assertFalse(board.isMultipleRedChecker(5));
 	
 	}
 
 	@Test
 	void testIsMultipleBlueChecker() {
-		fail("Not yet implemented");
+		assertTrue(board.isMultipleBlueChecker(23));
+		move = new Option(1,23,21,1,false,1);
+		board.move(move);
+		assertFalse(board.isMultipleBlueChecker(21));
+		assertFalse(board.isMultipleBlueChecker(0));
 	}
 
-	@Test
-	void testIsPointEmpty() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	void testIsBlueMiddlePointEmpty() {
-		fail("Not yet implemented");
+		assertTrue(board.isBlueMiddlePointEmpty());
+		move = new Option(1,5,2,1,false,1);
+		board.move(move);
+		move = new Option(1,0,2,1,true,0);
+		board.move(move);
+		assertFalse(board.isBlueMiddlePointEmpty());
 	}
 
 	@Test
