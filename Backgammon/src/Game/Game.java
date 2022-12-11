@@ -163,15 +163,15 @@ public class Game {
 				boolean startTurn = true;
 				//prints players pips for whoevers turn it is onto display after board print out
 				System.out.println(players[playerTurn] + " pip count: "+ players[playerTurn].getPips());
-				
+				String commandInput = in.nextLine();
 			
 				do {
 					boolean validCommand = false;
-					String commandInput;
+					//String commandInput;
 					
 					do {	
 						System.out.println(players[playerTurn].getName() + " enter command: ");	
-						commandInput = in.nextLine() + in.nextLine();
+						commandInput = in.nextLine();
 						validCommand = view.validCommand(commandInput);
 						
 					} while (validCommand == false);
