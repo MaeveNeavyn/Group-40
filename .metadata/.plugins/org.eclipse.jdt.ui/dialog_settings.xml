@@ -30,4 +30,54 @@
 	<section name="BuildPathsPropertyPage">
 		<item key="pageIndex" value="0"/>
 	</section>
+	<section name="JarPackageWizard">
+		<item key="JarPackageWizardPage.EXPORT_CLASS_FILES" value="true"/>
+		<item key="JarPackageWizardPage.EXPORT_OUTPUT_FOLDER" value="false"/>
+		<item key="JarPackageWizardPage.EXPORT_JAVA_FILES" value="true"/>
+		<item key="JarPackageWizardPage.REFACTORINGS" value="false"/>
+		<item key="JarPackageWizardPage.COMPRESS" value="true"/>
+		<item key="JarPackageWizardPage.INCLUDE_DIRECTORY_ENTRIES" value="false"/>
+		<item key="JarPackageWizardPage.OVERWRITE" value="false"/>
+		<item key="jarOptionsWizardPage.EXPORT_WARNINGS" value="true"/>
+		<item key="jarOptionsWizardPage.EXPORT_ERRORS" value="true"/>
+		<item key="jarOptionsWizardPage.STORE_USE_SRC_FOLDERS" value="false"/>
+		<item key="jarOptionsWizardPage.BUILD_IF_NEEDED" value="true"/>
+		<item key="jarOptionsWizardPage.SAVE_DESCRIPTION" value="false"/>
+		<item key="jarOptionsWizardPage.DESCRIPTION_LOCATION" value=""/>
+		<item key="JarManifestWizardPage.GENERATE_MANIFEST" value="true"/>
+		<item key="JarManifestWizardPage.SAVE_MANIFEST" value="false"/>
+		<item key="JarManifestWizardPage.REUSE_MANIFEST" value="false"/>
+		<item key="JarManifestWizardPage.MANIFEST_LOCATION" value=""/>
+		<item key="JarManifestWizardPage.SEAL_JAR" value="false"/>
+		<list key="JarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="C:\Users\mneav\OneDrive - University College Dublin\Year 4 Semester 1\COMP41670 Software Engineering\Assignments\Group Project\Group-40\Group40_JAR.jar"/>
+		</list>
+	</section>
+	<section name="javadoc">
+		<item key="javadoc_command_history" value="C:\Program Files\Java\jdk-18.0.2.1\bin\javadoc.exe"/>
+		<item key="fromStandard" value="true"/>
+		<item key="docletname" value=""/>
+		<item key="docletpath" value=""/>
+		<item key="access" value="public"/>
+		<item key="use" value="true"/>
+		<item key="author" value="true"/>
+		<item key="version" value="true"/>
+		<item key="nodeprecated" value="false"/>
+		<item key="nodeprecatedlist" value="false"/>
+		<item key="splitindex" value="true"/>
+		<item key="noindex" value="false"/>
+		<item key="notree" value="false"/>
+		<item key="nonavbar" value="false"/>
+		<item key="openinbrowser" value="false"/>
+		<item key="source" value="18"/>
+		<item key="antpath" value="C:\Users\mneav\OneDrive - University College Dublin\Year 4 Semester 1\COMP41670 Software Engineering\Assignments\Group Project\Group-40\Backgammon\javadoc.xml"/>
+		<item key="destdir" value="C:\Users\mneav\OneDrive - University College Dublin\Year 4 Semester 1\COMP41670 Software Engineering\Assignments\Group Project\Group-40\Backgammon\doc"/>
+		<section name="projects">
+			<section name="Backgammon">
+				<item key="href" value=""/>
+				<item key="destdir" value="C:\Users\mneav\OneDrive - University College Dublin\Year 4 Semester 1\COMP41670 Software Engineering\Assignments\Group Project\Group-40\Backgammon\doc"/>
+				<item key="antpath" value="C:\Users\mneav\OneDrive - University College Dublin\Year 4 Semester 1\COMP41670 Software Engineering\Assignments\Group Project\Group-40\Backgammon\javadoc.xml"/>
+			</section>
+		</section>
+	</section>
 </section>
