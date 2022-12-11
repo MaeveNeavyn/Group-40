@@ -27,35 +27,39 @@ public class View {
 	public int getMatchLength(String length) {
 
 		int matchLength = 0;
-			//Ensures input contains only digits
-			if (length.matches("\\d+") && Integer.parseInt(length)>0) {
-				matchLength = Integer.parseInt(length);
-			}
-			else {
-				System.out.println("The match length is invalid. Please try again and enter a positive integer number.");
-			}
+		//Ensures input contains only digits
+		if (length.matches("\\d+") && Integer.parseInt(length)>0) {
+			matchLength = Integer.parseInt(length);
+		}
+
+		else {
+			System.out.println("The match length is invalid. Please try again and enter a positive integer number.");
+		}
+
 		return matchLength;
 	}
 
 
-	public Command getUserInput (Player player, String input) {
-		boolean commandEntered = false;
-		do {
-			//System.out.println(player.toString() + " enter command: ");	//issue with printing player name
-			//String input = in.nextLine();
-			System.out.println(input);
-			//command = new Command(input);
-			//commandEntered = true;
-			if (Command.isValid(input)) {
-				command = new Command(input);
-				commandEntered = true;
-			} else {
-				System.out.println("The command is invalid. Try again.");
-				break;
-			}
-		}
-		while (!commandEntered);
+
+	public Command getCommand () {
 		return command;
+	}
+
+	public Command getUserInput (String input) {
+		command = new Command(input);
+		return command;
+	}
+
+	public boolean validCommand (String input) {
+		boolean commandEntered = false;
+
+		if (Command.isValid(input)) {
+			command = new Command(input);
+			commandEntered = true;
+		} else {
+			System.out.println("The command is invalid. Try again.");
+		}
+		return commandEntered;
 	}
 
 
