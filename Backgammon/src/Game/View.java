@@ -2,30 +2,12 @@ package Game;
 import java.util.*;
 
 public class View {
-
-	//private final static String BLANK = "   ";
-
-	//Scanner in;
 	Command command;
-
-	//View () {
-		//in = new Scanner(System.in);
-	//}
-
-	/*public void closeView() {
-		in.close();
-	}*/
 
 	public void displayWelcome()
 	{
 		System.out.println("Welcome to Backgammon\n");
 	}
-
-	/*public String getName () {
-		System.out.print("Enter the player name: ");
-		String name = in.nextLine();
-		return name;
-	}*/
 
 	public boolean getDoubleAnswer (String answer) {
 
@@ -45,39 +27,16 @@ public class View {
 	public int getMatchLength(String length) {
 
 		int matchLength = 0;
-		//boolean validLength = false;
-		//do {
-			//int matchLength =0;
-			//System.out.print("Enter the length of the match: ");
-			//String str = in.nextLine();
-
 			//Ensures input contains only digits
 			if (length.matches("\\d+") && Integer.parseInt(length)>0) {
 				matchLength = Integer.parseInt(length);
-				//if (matchLength > 0) {
-
-				//validLength = true;	
-				//} 
-
-				
-				//}
-
-				//validLength = true;
 			}
 			else {
 				System.out.println("The match length is invalid. Please try again and enter a positive integer number.");
 			}
-			//return matchLength;
-		//}
-		//while (validLength == false);
 		return matchLength;
 	}
 
-
-
-	public Command getCommand () {
-		return command;
-	}
 
 	public Command getUserInput (Player player, String input) {
 		boolean commandEntered = false;

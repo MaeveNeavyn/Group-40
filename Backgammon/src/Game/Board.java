@@ -4,7 +4,6 @@ import java.util.*;
 public class Board {
 	
 	public final static int NUM_POINTS = 24;
-	//private Stack<Checkers> point;
 	private List<Stack<Checkers>> points; 
 	private Stack<Checkers> blue_middle_point = new Stack<Checkers>();
 	private Stack<Checkers> red_middle_point = new Stack<Checkers>();;
@@ -267,61 +266,30 @@ public class Board {
 		else 
 			return false;
 	}
-
 	
+	public String printBlueMPoint()
+	{
+		String str = blue_middle_point.toString();
+		return str;
+	}
+		
+	public String printRedMPoint()
+	{
+		String str = red_middle_point.toString();
+		return str;
+	}
 	
-	/*
-	//Get Pip count value for all 0's
-	public int pipValueO() {
-		int pipCount = 0;
-		int i;
-		points = new ArrayList<>(NUM_POINTS);
-		point = new Stack<Checkers>(); 
-		for (i=0; i< NUM_POINTS; i++) {	//point value in terms of array number
-			//Initialize values back to 0 for each point check
-			int numCheckers = 0;
-			int pointValue = 0;
-			int pips = 0;
-			/*
-			//if (points.get(i).contains("O")) {
-				//numCheckers = points.size();
-				numCheckers = Collections.frequency(points, "O");
-				
-				pips = pointValue*numCheckers;
-				pipCount += pips;
-			//}
-			
-			pointValue = i+1;
-			System.out.println("Point value is: " + pointValue);
-			System.out.println("Number of checkers in point is: " + board.getPoint().point.size());
-		}
-		return pipCount;
-	}*/
+	public String printBlueHome()
+	{
+		String str = blue_pile.toString();
+		return str;
+	}
 	
-	
-public String printBlueMPoint()
-{
-	String str = blue_middle_point.toString();
-	return str;
-}
-	
-public String printRedMPoint()
-{
-	String str = red_middle_point.toString();
-	return str;
-}
-
-public String printBlueHome()
-{
-	String str = blue_pile.toString();
-	return str;
-}
-
-public String printRedHome()
-{
-	String str = red_pile.toString();
-	return str;
-}
+	public String printRedHome()
+	{
+		String str = red_pile.toString();
+		return str;
+	}
 	
 	
 

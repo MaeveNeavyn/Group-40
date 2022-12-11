@@ -89,6 +89,8 @@ class BoardTest {
 		move = new Option(1,-1,2,1,true,2);
 		board.move(move);
 		assertTrue(board.isBlueMiddlePointEmpty());
+		move = new Option(1,-1,3,1,false,1);
+		board.move(move);
 	}
 
 	@Test
@@ -102,6 +104,8 @@ class BoardTest {
 		move = new Option(1,-1,2,1,true,1);
 		board.move(move);
 		assertTrue(board.isRedMiddlePointEmpty());
+		move = new Option(1,-1,3,1,false,2);
+		board.move(move);
 	}
 
 	/*@Test

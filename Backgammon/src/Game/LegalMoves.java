@@ -4,7 +4,7 @@ import java.util.*;
 public class LegalMoves {
 
 	private Stack<Option> options = new Stack<Option>();
-	int no_options = 0;
+	int no_options = 0; 
 	
 	LegalMoves (Board board, Player player, List<Integer> rolls)
 	{

@@ -66,21 +66,21 @@ class ViewTest {
 		String length = "2";
 		assertEquals(view.getMatchLength(length),2);
 		assertNotEquals(view.getMatchLength(length),3);
+		view.getMatchLength("-3");
 		//length = "invalid";
-		//Will implement this after view class is changed
-		
+		//Will implement this after view class is changed	
 	}
 
-	@Test
+	/*@Test
 	void testGetCommand() {
 		
-	}
+	}*/
 
 	@Test
 	void testGetUserInput() {
-		assertEquals(view.getUserInput(player1,"roll"), "ROLL");
+		String str = "roll";
+		assertEquals(view.getUserInput(player1,str), "ROLL");
 		assertNotEquals(view.getUserInput(player1,"quit"), "ROLL");
-		view.getUserInput(player1, "fail");
 		
 	}
 
