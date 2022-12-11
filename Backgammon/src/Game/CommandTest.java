@@ -6,64 +6,125 @@ import org.junit.jupiter.api.Test;
 
 class CommandTest {
 
-	@Test
-	void testCommand() {
-		fail("Not yet implemented");
-	}
+	private String inputTest;
+	private Command commandTest;
 
 	@Test
 	void testIsQuit() {
-		fail("Not yet implemented");
+		inputTest = "quit";
+		commandTest = new Command(inputTest);
+		assertTrue(commandTest.isQuit());
+		inputTest = "pip";
+		commandTest = new Command(inputTest);
+		assertFalse(commandTest.isQuit());
 	}
+	
+	@Test
+	void testIsDouble() {
+		inputTest = "double";
+		commandTest = new Command(inputTest);
+		assertTrue(commandTest.isDouble());
+		inputTest = "quit";
+		commandTest = new Command(inputTest);
+		assertFalse(commandTest.isDouble());
+		
+	}
+	
 
 	@Test
 	void testIsRoll() {
-		fail("Not yet implemented");
+		inputTest = "roll";
+		commandTest = new Command(inputTest);
+		assertTrue(commandTest.isRoll());
+		inputTest = "quit";
+		commandTest = new Command(inputTest);
+		assertFalse(commandTest.isRoll());
+		
 	}
 
 	@Test
 	void testIsPip() {
-		fail("Not yet implemented");
+		inputTest = "pip";
+		commandTest = new Command(inputTest);
+		assertTrue(commandTest.isPip());
+		inputTest = "quit";
+		commandTest = new Command(inputTest);
+		assertFalse(commandTest.isPip());
 	}
 
 	@Test
 	void testIsHint() {
-		fail("Not yet implemented");
+		inputTest = "hint";
+		commandTest = new Command(inputTest);
+		assertTrue(commandTest.isHint());
+		inputTest = "quit";
+		commandTest = new Command(inputTest);
+		assertFalse(commandTest.isHint());
 	}
 
 	@Test
 	void testIsDice() {
-		fail("Not yet implemented");
+		inputTest = "dice 55";
+		commandTest = new Command(inputTest);
+		assertTrue(commandTest.isDice());
+		inputTest = "quit";
+		commandTest = new Command(inputTest);
+		assertFalse(commandTest.isDice());
 	}
-
-	@Test
-	void testIsMove() {
-		fail("Not yet implemented");
-	}
+ 
 
 	@Test
 	void testIsTestFile() {
-		fail("Not yet implemented");
+		inputTest = "test roll";
+		commandTest = new Command(inputTest);
+		assertTrue(commandTest.isTestFile());
+		inputTest = "quit";
+		commandTest = new Command(inputTest);
+		assertFalse(commandTest.isTestFile());
 	}
 
-	@Test
+	@Test 
 	void testIsValid() {
-		fail("Not yet implemented");
+		inputTest = "roll";
+		assertTrue(commandTest.isValid(inputTest));
+		inputTest = "pip";
+		assertTrue(commandTest.isValid(inputTest));
+		inputTest = "hint";
+		assertTrue(commandTest.isValid(inputTest));
+		inputTest = "quit";
+		assertTrue(commandTest.isValid(inputTest));
+		inputTest = "double";
+		assertTrue(commandTest.isValid(inputTest));
+		inputTest = "dice 56";
+		assertTrue(commandTest.isValid(inputTest));	
 	}
 
 	@Test
 	void testGetDice1() {
-		fail("Not yet implemented");
+		inputTest = "dice 34";
+		commandTest = new Command(inputTest);
+		assertTrue(commandTest.getDice1() == 3);
+		commandTest = new Command(inputTest);
+		assertFalse(commandTest.getDice1() == 4);
 	}
 
 	@Test
 	void testGetDice2() {
-		fail("Not yet implemented");
+		inputTest = "dice 34";
+		commandTest = new Command(inputTest);
+		assertTrue(commandTest.getDice2() == 4);
+		commandTest = new Command(inputTest);
+		assertFalse(commandTest.getDice2() == 3);
 	}
 
-	@Test
+	/*@Test
 	void testGetFileName() {
-		fail("Not yet implemented");
-	}
+		inputTest = "test roll";
+		commandTest = new Command(inputTest);
+		assertTrue(commandTest.getFileName() == "ROLL");
+		inputTest = "test roll";
+		commandTest = new Command(inputTest);
+		assertFalse(commandTest.getFileName() == "quit");
+	}*/
 
 }

@@ -71,10 +71,6 @@ public class Player {
 		this.score = gameScore;
 	}
 	
-	public void movePlayed (Command command, Board board)
-	{
-		
-	}
 	
 	public String toString()
 	{
