@@ -5,53 +5,55 @@ public class View {
 	
 	//private final static String BLANK = "   ";
 
-	Scanner in;
+	//Scanner in;
 	Command command;
 	
-	View () {
-		in = new Scanner(System.in);
-	}
+	//View () {
+		//in = new Scanner(System.in);
+	//}
 	
-	public void closeView() {
+	/*public void closeView() {
 		in.close();
-	}
+	}*/
 
 	public void displayWelcome()
 	{
 		System.out.println("Welcome to Backgammon\n");
 	}
 	
-	public String getName () {
+	/*public String getName () {
 		System.out.print("Enter the player name: ");
 		String name = in.nextLine();
 		return name;
-	}
+	}*/
 	
-	public boolean getDoubleAnswer (Player playerQ, Player playerAns) {
-		System.out.println(playerAns.toString() + ", " + playerQ.toString() + " wants to double the stakes of the game!");
-		System.out.println("If you refuse and do not answer accept, you forfeit the game and pay the number of points at stake prior to this double.");
-		System.out.println("Do you accept this Double? (accept/refuse): ");
-		String answer = in.nextLine();
+	public boolean getDoubleAnswer (String answer) {
 		
 		if (answer.equalsIgnoreCase("accept")) {
 			return true;		//other player accepts double
 		}else return false;		// other player refuses double and will forfeit game
 	}
 	
+	public void displayDoubleQuestion (Player playerQ, Player playerAns) {
+		System.out.println(playerAns.toString() + ", " + playerQ.toString() + " wants to double the stakes of the game!");
+		System.out.println("If you refuse and do not answer accept, you forfeit the game and pay the number of points at stake prior to this double.");
+		System.out.println("Do you accept this Double? (accept/refuse): ");
+	}
 	
 	
-	public int getMatchLength() {
+	
+	public int getMatchLength(String length) {
 		
 		int matchLength = 0;
 		boolean validLength = false;
 		do {
 			//int matchLength =0;
-			System.out.print("Enter the length of the match: ");
-			String str = in.nextLine();
+			//System.out.print("Enter the length of the match: ");
+			//String str = in.nextLine();
 			
 			//Ensures input contains only digits
-			if (str.matches("\\d+")) {
-				matchLength = Integer.parseInt(str);
+			if (length.matches("\\d+")) {
+				matchLength = Integer.parseInt(length);
 				//if (matchLength > 0) {
 				validLength = true;	
 				//} 
@@ -72,11 +74,11 @@ public class View {
 		return command;
 	}
 	
-	public Command getUserInput (Player player) {
+	public Command getUserInput (Player player, String input) {
 		boolean commandEntered = false;
 		do {
-			System.out.println(player.toString() + " enter command: ");	//issue with printing player name
-			String input = in.nextLine();
+			//System.out.println(player.toString() + " enter command: ");	//issue with printing player name
+			//String input = in.nextLine();
 			//System.out.println(input);
 			//command = new Command(input);
 			//commandEntered = true;
@@ -186,7 +188,7 @@ public class View {
 		System.out.println("--------------------------------------------------------------------------------------------");
 		
 		if (turn == 0 ) {
-			System.out.println("-  13  -  14  -  15  -  16  -  17  -  18  -       -   19  -  20  -  21  -  22  -  23  -  24  - ");
+			System.out.println("-  13  -  14  -  15  -  16  -  17  -  18  -       -  19  -  20  -  21  -  22  -  23  -  24  - ");
 		}
 		else if (turn == 1) {
 			System.out.println("-  12  -  11  -  10  -   9  -   8  -   7  -       -   6  -   5  -   4  -   3  -   2  -   1  - ");
