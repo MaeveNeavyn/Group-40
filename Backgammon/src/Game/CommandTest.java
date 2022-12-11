@@ -103,28 +103,26 @@ class CommandTest {
 	void testGetDice1() {
 		inputTest = "dice 34";
 		commandTest = new Command(inputTest);
-		assertTrue(commandTest.getDice1() == 3);
+		assertEquals(commandTest.getDice1() , 3);
 		commandTest = new Command(inputTest);
-		assertFalse(commandTest.getDice1() == 4);
+		assertNotEquals(commandTest.getDice1() , 4);
 	}
 
 	@Test
 	void testGetDice2() {
 		inputTest = "dice 34";
 		commandTest = new Command(inputTest);
-		assertTrue(commandTest.getDice2() == 4);
+		assertEquals(commandTest.getDice2() , 4);
 		commandTest = new Command(inputTest);
-		assertFalse(commandTest.getDice2() == 3);
+		assertNotEquals(commandTest.getDice2() , 3);
 	}
 
-	/*@Test
+	@Test
 	void testGetFileName() {
-		inputTest = "test roll";
+		inputTest = "test testroll.txt";
 		commandTest = new Command(inputTest);
-		assertTrue(commandTest.getFileName() == "ROLL");
-		inputTest = "test roll";
-		commandTest = new Command(inputTest);
-		assertFalse(commandTest.getFileName() == "quit");
-	}*/
+		assertEquals(commandTest.getFileName() , "testroll.txt");
+		assertNotEquals(commandTest.getFileName() , "quit");
+	}
 
 }

@@ -12,9 +12,7 @@ class DiceTest {
 	void testGetRoll() {
 		dice = new Dice();
 		int roll1 = dice.getRoll();
-		boolean test = (roll1>0);
-		assertTrue(test);
-		test = (roll1<7);
+		boolean test = (roll1>=1 && roll1<=6);
 		assertTrue(test);
 		
 	}

@@ -3,16 +3,14 @@ package Game;
 
 public class Command {
 
+	// CommandType lists all valid commands
 	private enum CommandType {ROLL, QUIT, PIP, HINT, MOVE, DICE, TEST, DOUBLE};
-	
-	//private char moveFrom;
-	//private char moveTo;
 	private CommandType commandType;
 	private char roll1, roll2;
 	private String fileName;
 	
 	
-	//User inputs commands for quit, roll, pips, hint, dice, test 
+	//User inputs commands for quit, roll, pips, hint, dice, test, double 
 	Command (String input) {
 		String inputFormatted = input.trim().toUpperCase();
 		if (inputFormatted.equals("QUIT")) {
@@ -44,7 +42,7 @@ public class Command {
 			String[] str = inputFormatted.split("\s");
 			str[1] = str[1].toLowerCase();
 			fileName = str[1];
-			
+		
 			
 		}
 			
@@ -52,6 +50,7 @@ public class Command {
 	}
 	
 	
+	//Methods below check which command user entered
 	public boolean isQuit() {
 		return commandType == CommandType.QUIT;
 	}
@@ -75,17 +74,12 @@ public class Command {
 		return commandType == CommandType.DICE;
 	}
 	
-	// added in move command for testing to move checker
-	/*public boolean isMove() {
-		return commandType == CommandType.MOVE;
-	}*/
-	
 	public boolean isTestFile() {
 		return commandType == CommandType.TEST;
 		
 	}
 	
-	// Used in view
+	// Used in view - Checks if the command entered is valid
 	public static boolean isValid (String input) {
 		String inputFormatted = input.trim().toUpperCase();
 		//System.out.println(inputFormatted);
@@ -103,6 +97,7 @@ public class Command {
 	}
 	
 	
+	// REturns the values of the dice
 	public int getDice1() {
 		int dice1 = roll1 -'0';
 		return dice1;
@@ -112,6 +107,7 @@ public class Command {
 		return dice2;
 	}
 	
+	// Returns the filename entered by the user as a string
 	public String getFileName() {
 		return fileName;
 	}

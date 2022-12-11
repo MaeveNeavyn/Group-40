@@ -62,8 +62,10 @@ public class LegalMoves {
 											options.push(current_option);
 										}
 									}
+									// If the move to Option is not home check if there is a blue checker at the move to option 
 									else if (board.isOneBlueChecker(moveToOption))
 									{
+										// If there is a blue checker set Knock Opponent to be true
 										Option current_option = new Option();
 										no_options = no_options +1;
 										current_option.setPlayerNumber(playerNumber);
@@ -75,6 +77,7 @@ public class LegalMoves {
 										System.out.println(current_option.toString());
 										options.push(current_option); 
 									}
+									// If there is no blue checker there we can still move onto that point 
 									else if (board.isOneRedChecker(moveToOption) || board.isMultipleRedChecker(moveToOption)|| board.isPointEmpty(moveToOption))
 									{
 										Option current_option = new Option();
@@ -94,7 +97,9 @@ public class LegalMoves {
 					
 					else
 					{
+						// If there is a red checker in the middle lane must move that first
 						moveToOption = -1 + rolls.get(i);
+						// Move option for knocking a blue checker off from middle lane
 						if (board.isOneBlueChecker(moveToOption))
 						{
 							Option current_option = new Option();
@@ -108,6 +113,7 @@ public class LegalMoves {
 							System.out.println(current_option.toString());
 							options.push(current_option); 
 						}
+						// Move option for not knocking a blue checker off moving from middle lane
 						else if (board.isOneRedChecker(moveToOption) || board.isMultipleRedChecker(moveToOption)|| board.isPointEmpty(moveToOption))
 						{
 							Option current_option = new Option();
@@ -126,6 +132,7 @@ public class LegalMoves {
 				}
 				else 
 				{
+					// If player number 2 is playing same cycle as above is used but swapped for player 2
 					if (board.isBlueMiddlePointEmpty())
 					{
 						//System.out.println("No checkers in middle point for player 2");
@@ -229,16 +236,19 @@ public class LegalMoves {
 		}			
 	}
 	
+	// When player picks an option the option they picked is returned
 	public Option pickOption(int i)
 	{
 		return options.get(i);
 	}
 	
+	// Once an option is chosen all options need to be removed
 	public void clearOptions()
 	{
 		options.clear();
 	}
 	
+	// Returns the number of options available
 	public int size()
 	{
 		return options.size();

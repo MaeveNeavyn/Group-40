@@ -26,6 +26,7 @@ class ViewTest {
 	Command command;
 	Board board;
 	Match match;
+	Option move;
 	
 	@BeforeEach
 	void testView() {
@@ -71,19 +72,15 @@ class ViewTest {
 		//Will implement this after view class is changed	
 	}
 
-	/*@Test
-	void testGetCommand() {
-		
-	}*/
-
 	@Test
-	void testGetUserInput() {
-		String str = "roll";
-		assertEquals(view.getUserInput(player1,str), "ROLL");
-		assertNotEquals(view.getUserInput(player1,"quit"), "ROLL");
+	void testValidCommand()
+	{
+		String str = "quit";
+		assertTrue(view.validCommand(str));
+		str = "fail";
+		assertFalse(view.validCommand(str));
 		
 	}
-
 	@Test
 	void testDisplayPlayer() {
 		view.displayPlayer(player1);
@@ -129,6 +126,17 @@ class ViewTest {
 	@Test
 	void testIsOStartEmpty() {
 		assertFalse(view.isOStartEmpty(board));
+		for (int i=0;i<2;i++)
+		{
+			move = new Option(1,23,10,1,false,2);
+			board.move(move);
+		}
+		for (int i=0;i<5;i++)
+		{
+			move = new Option(1,18,17,1,false,1);
+			board.move(move);
+		}
+		assertTrue(view.isOStartEmpty(board));
 	}
 
 	@Test
@@ -139,6 +147,17 @@ class ViewTest {
 	@Test
 	void testIsXStartEmpty() {
 		assertFalse(view.isXStartEmpty(board));
+		for (int i=0;i<2;i++)
+		{
+			move = new Option(1,0,8,1,false,1);
+			board.move(move);
+		}
+		for (int i=0;i<5;i++)
+		{
+			move = new Option(1,5,6,1,false,2);
+			board.move(move);
+		}
+		assertTrue(view.isXStartEmpty(board));
 	}
 
 }

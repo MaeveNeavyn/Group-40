@@ -4,11 +4,13 @@ import java.util.*;
 public class View {
 	Command command;
 
+	// Welcome displayed at the start of each game
 	public void displayWelcome()
 	{
 		System.out.println("Welcome to Backgammon\n");
 	}
 
+	// If one player want's to double the stake of the game, view checks if the other player accepts this offer or not
 	public boolean getDoubleAnswer (String answer) {
 
 		if (answer.equalsIgnoreCase("accept")) {
@@ -16,6 +18,7 @@ public class View {
 		}else return false;		// other player refuses double and will forfeit game
 	}
 
+	// If one player wants to double the stake of the game the message below is printed
 	public void displayDoubleQuestion (Player playerQ, Player playerAns) {
 		System.out.println(playerAns.toString() + ", " + playerQ.toString() + " wants to double the stakes of the game!");
 		System.out.println("If you refuse and do not answer accept, you forfeit the game and pay the number of points at stake prior to this double.");
@@ -24,6 +27,7 @@ public class View {
 
 
 
+	// Match length is entered as a string, if the match length is valid true is returned
 	public int getMatchLength(String length) {
 
 		int matchLength = 0;
@@ -39,17 +43,7 @@ public class View {
 		return matchLength;
 	}
 
-
-
-	public Command getCommand () {
-		return command;
-	}
-
-	public Command getUserInput (String input) {
-		command = new Command(input);
-		return command;
-	}
-
+	// Calls on the command class to check if the user enteres a valid command, if not an error message is printed
 	public boolean validCommand (String input) {
 		boolean commandEntered = false;
 
@@ -61,9 +55,8 @@ public class View {
 		}
 		return commandEntered;
 	}
-
-
-
+	
+	// Displays the player passed to the method
 	public void displayPlayer( Player player)
 	{
 		System.out.println("\nPlayer: " + player.getName());
@@ -72,9 +65,8 @@ public class View {
 
 	}
 
-
-
-
+	// Displays the board in it's current state
+	// Depending on which player's turn it is it displays the pips for that player above/underneath the point numbers
 	public void displayBoard (Board board, Player player1, Player player2, int turn, Match match)
 	{
 
@@ -106,6 +98,7 @@ public class View {
 			System.out.println("-  13  -  14  -  15  -  16  -  17  -  18  -       -   19  -  20  -  21  -  22  -  23  -  24  - ");
 
 		}
+		// Board layout printing
 		System.out.println("--------------------------------------------------------------------------------------------");
 		System.out.println("|  13  |  14  |  15  |  16  |  17  |  18  |       |  19  |  20  |  21  |  22  |  23  |  24  |  X checkers home: " + board.printRedHome());
 		System.out.println("---------------------------------------------------------------------------------------------");
@@ -167,26 +160,28 @@ public class View {
 
 
 
+	// Displays the players score
 	public void displayScore (Player player) {
 		System.out.println(player.toString() + ": " + player.getScore());
 	}
 
-
+	// Displays which player has quit the game
 	public void displayQuit (Player player) {
 		System.out.println(player.toString() + " has quit the game.");
 	}
 
+	// At the start of the game the first rolls of each player are displayed
 	public int displayFirstRoll (Player player, int roll) {
 		System.out.println(player.toString() + " first rolls: " + roll);
 		return roll;
 	}
 
-
+// The pip count for both players is displayed
 	public void displayPipCounts (Player player1, Player player2) {
 		System.out.println(player1.toString() + " pips: " + player1.getPips());
 		System.out.println(player2.toString() + " pips: " + player2.getPips());
 	}
-
+// Displays all valid commands that users are allowed enter
 	public void displayHints(Player player) {
 		System.out.println("Below are the possible commands you may enter:");
 		System.out.println("ROLL ->to roll the dice");
@@ -203,10 +198,9 @@ public class View {
 	// If element is an O, it gets the size of the point (number of O's)
 	// Multiplies by the point value to get pip count
 	public int pipCountO(Board board) {
-		int i;
 		int pipCount = 0;		// Initializes Pip count
 
-		for (i=0; i<24; i++) {
+		for (int i=0; i<24; i++) {
 
 			Stack<Checkers> point = board.getPoint(i);
 			int pips = 0;
@@ -228,11 +222,11 @@ public class View {
 		return pipCount;
 	}
 
-	public boolean isOStartEmpty(Board board) {
-		int i;
+	// Checks if the first 6 points are empty to determine if O won, single, gammon or backgammon
+	public boolean isXStartEmpty(Board board) {
 		int count=0;
 
-		for (i=0; i < 6; i++) {
+		for (int i=0; i < 6; i++) {
 			if (!board.isPointEmpty(i)) {		//if empty returns true
 				count++;
 			}
@@ -245,12 +239,11 @@ public class View {
 	}
 
 
-	//Going from 1 to 24
+	//Going from 1 to 24 counting the pips
 	public int pipCountX(Board board) {
-		int i;
 		int j = 24;
 		int pipCount = 0;		// Initializes Pip count
-		for (i=0; i<24; i++) {
+		for (int i=0; i<24; i++) {
 
 			Stack<Checkers> point = board.getPoint(i);
 			int numCheckers = board.getPoint(i).size();
@@ -270,11 +263,11 @@ public class View {
 		return pipCount;
 	}
 
-	public boolean isXStartEmpty(Board board) {
-		int i;
+	// Checks if points 18-24 are empty when X wins the game to determine if single, gammon or backgammon won
+	public boolean isOStartEmpty(Board board) {
 		int count=0;
 
-		for (i=23; i > 17; i--) {
+		for (int i=23; i > 17; i--) {
 			if (!board.isPointEmpty(i)) {		//if empty returns true
 				count++;
 			}

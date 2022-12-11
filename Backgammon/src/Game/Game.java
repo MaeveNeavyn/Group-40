@@ -6,7 +6,6 @@ import java.io.*;
 //import java.nio.file.Paths;
 
 
-
 public class Game {
 
 	
@@ -42,7 +41,7 @@ public class Game {
 		System.out.println("Enter Player 2 Name: ");
 		String name2 = in.nextLine();
 		
-		
+
 		players[0] = new Player(name1, 1, view.pipCountX(board), player1Score, doubleOwnership1, player1Quit);
 		players[1] = new Player(name2, 2, view.pipCountO(board), player2Score, doubleOwnership2, player2Quit);
 		
@@ -177,7 +176,7 @@ public class Game {
 					} while (validCommand == false);
 					
 					//String commandInput;
-					command = view.getUserInput(commandInput);
+					command = new Command(commandInput);
 						
 						// DOUBLE COMMAND - can only be used if player is at start of their turn and owns the double cube, and if game Stake less than 64
 						if (command.isDouble()) {

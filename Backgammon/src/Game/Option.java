@@ -13,6 +13,7 @@ public class Option {
 
 	}
 	
+	// This constructor is used in the JUnit testing
 	Option (int option_number,int moveFrom,int moveTo,int no_dice,boolean knockOpponent, int playerNumber)
 	{
 		this.option_number = option_number;
@@ -24,6 +25,7 @@ public class Option {
 		
 	}
 	
+	// Methods to set the private parameters of the legal move option
 	public void setOptionNumber (int n)
 	{
 		option_number = n;
@@ -46,6 +48,7 @@ public class Option {
 		knockOpponent = n;
 	}
 	
+	// Methods to get the parameters of the legal move option
 	public int getOptionNumber()
 	{
 		return option_number;
@@ -70,12 +73,14 @@ public class Option {
 		return knockOpponent;
 	}
 	
+	// Used when printing the option in readable manner
 	public String toString()
 	{
 		String str = "Option: "+ (option_number) + " is move from point " + (moveFrom+1) + " to point " + (moveTo+1) + " using dice number: " + no_dice;
 		return str;
 	}
 	
+	// Setting and getting the player number
 	public void setPlayerNumber(int n)
 	{
 		playerNumber = n;

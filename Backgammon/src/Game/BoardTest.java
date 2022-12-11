@@ -129,24 +129,6 @@ class BoardTest {
 		assertFalse(board.isBlueHomeEmpty());
 	}
 
-	/*@Test
-	void testPrintBlueMPoint() {
-		fail("Not yet implemented");
-	}
 
-	@Test
-	void testPrintRedMPoint() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testPrintBlueHome() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testPrintRedHome() {
-		fail("Not yet implemented");
-	}*/
 
 }

@@ -13,26 +13,26 @@ class CheckersTest {
 	void testCheckers() {
 		colour = CheckerColour.RED;
 		checker = new Checkers(colour);
-		assertTrue(colour == CheckerColour.RED);
+		assertEquals(colour, CheckerColour.RED);
 		colour = CheckerColour.BLUE;
 		checker = new Checkers(colour);
-		assertTrue(colour == CheckerColour.BLUE);
-		assertFalse(colour == CheckerColour.RED);
+		assertEquals(colour, CheckerColour.BLUE);
+		assertNotEquals(colour ,CheckerColour.RED);
 	}
 
 	@Test
 	void testGetcolour() {
 		colour = CheckerColour.RED;
 		checker = new Checkers(colour);
-		assertTrue(checker.getcolour() == CheckerColour.RED);
+		assertEquals(checker.getcolour() , CheckerColour.RED);
 	}
 
 	@Test
 	void testToString() {
 		checker = new Checkers(CheckerColour.RED);
-		assertTrue(checker.toString() == "X");
+		assertEquals(checker.toString() , "X");
 		checker = new Checkers(CheckerColour.BLUE);
-		assertTrue(checker.toString() == "O");
+		assertEquals(checker.toString() ,"O");
 		
 	}
 
