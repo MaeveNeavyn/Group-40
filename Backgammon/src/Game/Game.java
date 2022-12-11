@@ -1,8 +1,9 @@
 package Game;
 
 import java.util.*;
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
+//import java.nio.file.Path;
+//import java.nio.file.Paths;
 
 
 
@@ -20,6 +21,7 @@ public class Game {
 		Board board = new Board();
 		Player[] players = new Player[2];
 		View view = new View();
+		Scanner in = new Scanner(System.in);
 		
 		// Initializes that no player has the double cube at start of new game
 		boolean doubleOwnership1 = true;
@@ -31,12 +33,27 @@ public class Game {
 		
 		view.displayWelcome();
 		
+		
+		// PLAYER DETAILS
 		int player1Score = 0;
 		int player2Score = 0;
-		players[0] = new Player(view.getName(), 1, view.pipCountX(board), player1Score, doubleOwnership1, player1Quit);
-		players[1] = new Player(view.getName(), 2, view.pipCountO(board), player2Score, doubleOwnership2, player2Quit);
+		System.out.println("Enter Player 1 Name: ");
+		String name1 = in.nextLine();
+		System.out.println("Enter Player 2 NAme: ");
+		String name2 = in.nextLine();
 		
-		Match match = new Match(view.getMatchLength(), gameStake);
+		
+		players[0] = new Player(name1, 1, view.pipCountX(board), player1Score, doubleOwnership1, player1Quit);
+		players[1] = new Player(name2, 2, view.pipCountO(board), player2Score, doubleOwnership2, player2Quit);
+		
+		
+		// MATCH DETAILS 
+		System.out.print("Enter the length of the match: ");
+		String length = in.nextLine();
+		int matchLength = view.getMatchLength(length);
+		Match match = new Match(matchLength, gameStake);
+		
+		
 		//view.getMatchLength();
 		System.out.println("\n"+ players[0] + " is moving the X Checker");
 		System.out.println(players[1] + " is moving the O Checker");
@@ -51,7 +68,7 @@ public class Game {
 		//Need to ask user what they want to choose
 		Option option_chosen = new Option();
 		int selection = 0;
-		Scanner in = new Scanner(System.in);
+		//Scanner input = new Scanner(System.in);
 		Command command = null;  //WHY DO I NEED NULL
 		int count = 0;
 		int playerTurn;
@@ -141,9 +158,11 @@ public class Game {
 				System.out.println(players[playerTurn] + " pip count: "+ players[playerTurn].getPips());
 				
 
-					do {
-				command = view.getUserInput(players[playerTurn]); //issue with printing player name
-						
+				do {
+					System.out.println(players[playerTurn].getName() + " enter command: ");	//issue with printing player name
+					String commandInput = in.nextLine();
+					command = view.getUserInput(players[playerTurn], commandInput); //issue with printing player name
+						//System.out.println(command);
 						// DOUBLE COMMAND
 						// Need to include print statement if they try to use double again when they have already made move or already have the double
 						// can only enter double command if 1: player is at start of turn AND does not have double cube
@@ -160,7 +179,9 @@ public class Game {
 								System.out.println("You cannot use the Double command as it is at its maximum value of 64!");
 							}
 							else {
-								boolean doubleAnswer = view.getDoubleAnswer(players[playerTurn], players[otherPlayer]);
+								view.displayDoubleQuestion(players[playerTurn], players[otherPlayer]);
+								String answer = in.nextLine();
+								boolean doubleAnswer = view.getDoubleAnswer(answer);
 								startTurn = false;
 								if (doubleAnswer == true) {		// other Player has accepted double
 							
@@ -191,14 +212,53 @@ public class Game {
 						
 						// If user uses test command, it reads command from file then goes through command loop
 						if (command.isTestFile()) {
+							//throws IOException{
 							String fileName = command.getFileName();
-							File file = new File(fileName);
-							Scanner sc = new Scanner(file);
-							String fileCommand = sc.nextLine();
-							sc.close();
+							//System.out.println("Filename is: " + fileName);
+							String fileCommand;
+							fileCommand = null;
+							
+							try {
+								File file = new File(fileName);
+								FileReader filereader = new FileReader(file);
+								BufferedReader reader = new BufferedReader(filereader);
+								
+								String line = null;
+								
+								fileCommand = reader.readLine();
+								if ((line = fileCommand) != null) {
+									fileCommand = line;
+								}
+								
+								//System.out.println("FileCommand is: " + fileCommand);
+								
+								reader.close();
+								//Scanner sc = new Scanner(file);
+								//String fileCommand = sc.nextLine();
+								//sc.close();
+								
+								
+								/*Path path = Paths.get(fileName);
+								Scanner scanner = new Scanner(path);
+								System.out.println("Read text file using Scanner");
+								while (scanner.hasNextLine()) {
+									String line = scanner.nextLine();
+									System.out.println(line);
+								}
+								scanner.close();
+								 */
+								
+							
+						}
+							catch (FileNotFoundException e) {
+								e.printStackTrace();
+							}
+							catch (IOException e) {
+								e.printStackTrace();
+							}
 							
 							command = new Command(fileCommand);		// Overwrites command to be command from test file
-							
+
 						}
 						
 			
@@ -305,6 +365,7 @@ public class Game {
 			} while ((quit == false) && !players[0].isGameOver() && !players[1].isGameOver());
 			
 			//scanner view close
+			//view.closeView();
 	
 			// GAME OVER
 			// PLAYER 1 WON GAME
@@ -383,13 +444,16 @@ public class Game {
 			System.out.println("Congratulations " + players[1].getName() + "! You have won the game of Backgammon!");
 		}
 		
-		Scanner userInput = new Scanner(System.in);
+		//Scanner userInput = new Scanner(System.in);
 		System.out.println("Would you like to play another match? (Y/N)");
-		String choice = userInput.nextLine();
+		String choice = in.nextLine();
 		
 		newMatch = choice.equalsIgnoreCase("y"); 
-		userInput.close();	
+		//userInput.close();	
+		//input.close();
 		in.close();
+		//view.closeView();
+
 			
 		
 		
