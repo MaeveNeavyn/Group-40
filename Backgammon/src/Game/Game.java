@@ -172,6 +172,8 @@ public class Game {
 			playerTurn = count%2;
 				
 			// GAME DO WHILE - game continues until player quits or game is over and player pip count is 0
+			//String commandInput = in.nextLine();		//moves onto next line after selection options from first roll
+
 			do {
 				// Updating players turn
 				count++;
@@ -307,6 +309,7 @@ public class Game {
 								if (legal_moves.size() == 0)
 								{
 									System.out.println("No legal moves available");
+									commandInput = in.nextLine();
 									rolls.clear();
 									break;
 								}
