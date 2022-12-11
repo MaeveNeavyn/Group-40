@@ -8,14 +8,21 @@ public class Option {
 	private boolean knockOpponent;
 	private int playerNumber;
 	
-	/*Option()
+	Option()
 	{
-		option_number = 0;
-		moveFrom = 0;
-		moveTo = 0;
-		no_dice = 0;
-		knockOpponent = false;
-	}*/
+
+	}
+	
+	Option (int option_number,int moveFrom,int moveTo,int no_dice,boolean knockOpponent, int playerNumber)
+	{
+		this.option_number = option_number;
+		this.moveFrom=moveFrom;
+		this.moveTo=moveTo;
+		this.no_dice=no_dice;
+		this.knockOpponent=knockOpponent;
+		this.playerNumber=playerNumber;
+		
+	}
 	
 	public void setOptionNumber (int n)
 	{

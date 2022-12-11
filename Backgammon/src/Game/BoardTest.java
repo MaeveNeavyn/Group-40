@@ -1,64 +1,91 @@
 package Game;
 
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.*;
 
 import org.junit.jupiter.api.Test;
 
 class BoardTest {
 
-	@Test
-	void testBoard() {
-		fail("Not yet implemented");
-	}
+	Board board;
+	Option move;
+	View view;
 
+	@BeforeEach
+	void setUp()
+	{
+		board = new Board();
+	}
+	
 	@Test
 	void testNoRedCheckers() {
-		fail("Not yet implemented");
+		assertEquals(board.noRedCheckers(2),0);	
 	}
 
 	@Test
 	void testNoBlueCheckers() {
-		fail("Not yet implemented");
+		assertEquals(board.noBlueCheckers(2),0);	
 	}
 
-	@Test
-	void testGetPoint() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	void testMove() {
-		fail("Not yet implemented");
+		move = new Option(1,0,4,1,false,0);
+		board.move(move);
+		move = new Option(1,5,4,1,true,1);
+		
 	}
 
 	@Test
 	void testIsOneRedChecker() {
-		fail("Not yet implemented");
+		assertFalse(board.isOneRedChecker(0));
+		move = new Option(1,0,4,1,false,0);
+		board.move(move);
+		assertTrue(board.isOneRedChecker(4));
+		move = new Option(1,7,6,1,false,1);
+		board.move(move);
+		assertFalse(board.isOneRedChecker(6));
 	}
 
 	@Test
 	void testIsOneBlueChecker() {
-		fail("Not yet implemented");
+		assertFalse(board.isOneBlueChecker(0));
+		move = new Option(1,23,22,1,false,1);
+		board.move(move);
+		assertTrue(board.isOneBlueChecker(22));
+		move = new Option(1,0,4,1,false,0);
+		board.move(move);
+		assertFalse(board.isOneBlueChecker(4));
 	}
 
 	@Test
 	void testIsMultipleRedChecker() {
-		fail("Not yet implemented");
+		assertTrue(board.isMultipleRedChecker(0));
+		move = new Option(1,0,4,1,false,0);
+		board.move(move);
+		assertFalse(board.isMultipleRedChecker(4));
+		assertFalse(board.isMultipleRedChecker(5));
+	
 	}
 
 	@Test
 	void testIsMultipleBlueChecker() {
-		fail("Not yet implemented");
+		assertTrue(board.isMultipleBlueChecker(23));
+		move = new Option(1,23,21,1,false,1);
+		board.move(move);
+		assertFalse(board.isMultipleBlueChecker(21));
+		assertFalse(board.isMultipleBlueChecker(0));
 	}
 
-	@Test
-	void testIsPointEmpty() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	void testIsBlueMiddlePointEmpty() {
-		fail("Not yet implemented");
+		assertTrue(board.isBlueMiddlePointEmpty());
+		move = new Option(1,5,2,1,false,1);
+		board.move(move);
+		move = new Option(1,0,2,1,true,0);
+		board.move(move);
+		assertFalse(board.isBlueMiddlePointEmpty());
 	}
 
 	@Test
