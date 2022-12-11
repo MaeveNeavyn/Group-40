@@ -39,7 +39,7 @@ public class Game {
 		int player2Score = 0;
 		System.out.println("Enter Player 1 Name: ");
 		String name1 = in.nextLine();
-		System.out.println("Enter Player 2 NAme: ");
+		System.out.println("Enter Player 2 Name: ");
 		String name2 = in.nextLine();
 		
 		
@@ -48,9 +48,12 @@ public class Game {
 		
 		
 		// MATCH DETAILS 
+		int matchLength = 0;
+		do {
 		System.out.print("Enter the length of the match: ");
 		String length = in.nextLine();
-		int matchLength = view.getMatchLength(length);
+		matchLength = view.getMatchLength(length);
+		} while (matchLength < 1);
 		Match match = new Match(matchLength, gameStake);
 		
 		
@@ -142,6 +145,8 @@ public class Game {
 			}
 			while (player1roll == player2roll);
 	
+			//System.out.println(players[playerTurn].getName() + " enter command: ");	//issue with printing player name
+			//String commandInput = in.nextLine();
 			playerTurn = count%2;
 			// legal move for this player	
 			// do while: game is not quit or over
@@ -157,10 +162,11 @@ public class Game {
 				//prints players pips for whoevers turn it is onto display after board print out
 				System.out.println(players[playerTurn] + " pip count: "+ players[playerTurn].getPips());
 				
-
+				System.out.println(players[playerTurn].getName() + " enter command: ");	//issue with printing player name
+				String commandInput = in.nextLine();
 				do {
-					System.out.println(players[playerTurn].getName() + " enter command: ");	//issue with printing player name
-					String commandInput = in.nextLine();
+					//System.out.println(players[playerTurn].getName() + " enter command: ");	//issue with printing player name
+					//String commandInput = in.nextLine();
 					command = view.getUserInput(players[playerTurn], commandInput); //issue with printing player name
 						//System.out.println(command);
 						// DOUBLE COMMAND
