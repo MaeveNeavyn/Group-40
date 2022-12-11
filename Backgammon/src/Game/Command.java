@@ -42,6 +42,7 @@ public class Command {
 			commandType = CommandType.TEST;
 			
 			String[] str = inputFormatted.split("\s");
+			str[1] = str[1].toLowerCase();
 			fileName = str[1];
 			
 			
@@ -80,20 +81,22 @@ public class Command {
 	}
 	
 	public boolean isTestFile() {
-		
-		
 		return commandType == CommandType.TEST;
+		
 	}
 	
 	// Used in view
 	public static boolean isValid (String input) {
 		String inputFormatted = input.trim().toUpperCase();
+		//System.out.println(inputFormatted);
 		return  inputFormatted.equals("ROLL") || 
 				inputFormatted.equals("PIP") ||
 				inputFormatted.equals("HINT") ||
 				inputFormatted.equals("MOVE") ||
 				inputFormatted.equals("QUIT") ||
 				inputFormatted.equals("DOUBLE") ||
+				//inputFormatted.matches("TEST\s\\.txt") ||
+				(inputFormatted.contains("TEST") && inputFormatted.endsWith(".TXT")) ||
 				inputFormatted.matches("DICE\s[1-6][1-6]");
 				//inputFormatted.matches("[P1-7DHCS][1-7DHCS][0-9]*");
 		

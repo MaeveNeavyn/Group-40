@@ -11,6 +11,10 @@ public class View {
 	View () {
 		in = new Scanner(System.in);
 	}
+	
+	public void closeView() {
+		in.close();
+	}
 
 	public void displayWelcome()
 	{
@@ -73,6 +77,7 @@ public class View {
 		do {
 			System.out.println(player.toString() + " enter command: ");	//issue with printing player name
 			String input = in.nextLine();
+			//System.out.println(input);
 			//command = new Command(input);
 			//commandEntered = true;
 			if (Command.isValid(input)) {

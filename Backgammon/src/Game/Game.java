@@ -1,8 +1,9 @@
 package Game;
 
 import java.util.*;
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 
 
@@ -51,7 +52,7 @@ public class Game {
 		//Need to ask user what they want to choose
 		Option option_chosen = new Option();
 		int selection = 0;
-		Scanner in = new Scanner(System.in);
+		Scanner input = new Scanner(System.in);
 		Command command = null;  //WHY DO I NEED NULL
 		int count = 0;
 		int playerTurn;
@@ -91,7 +92,7 @@ public class Game {
 					// Shows options for both dice and lets user choose option
 					legal_moves = new LegalMoves(board,players[playerTurn], rolls);
 					System.out.println("Please enter option you would like to choose");
-					selection = in.nextInt();
+					selection = input.nextInt();
 					//System.out.println("Option chosen was: " + (selection-1));
 					option_chosen = legal_moves.pickOption(selection-1);
 					System.out.println(legal_moves.pickOption(selection-1).toString());
@@ -103,7 +104,7 @@ public class Game {
 					// Shows move options for the dice that wasn't picked for first move 
 					legal_moves = new LegalMoves(board,players[playerTurn], rolls);
 					System.out.println("Please enter option you would like to choose");
-					selection = in.nextInt();
+					selection = input.nextInt();
 					//System.out.println("Option chosen was: " + (selection-1));
 					option_chosen = legal_moves.pickOption(selection-1);
 					System.out.println(legal_moves.pickOption(selection-1).toString());
@@ -143,7 +144,7 @@ public class Game {
 
 					do {
 				command = view.getUserInput(players[playerTurn]); //issue with printing player name
-						
+						System.out.println(command);
 						// DOUBLE COMMAND
 						// Need to include print statement if they try to use double again when they have already made move or already have the double
 						// can only enter double command if 1: player is at start of turn AND does not have double cube
@@ -191,14 +192,53 @@ public class Game {
 						
 						// If user uses test command, it reads command from file then goes through command loop
 						if (command.isTestFile()) {
+							//throws IOException{
 							String fileName = command.getFileName();
+							//System.out.println("Filename is: " + fileName);
+							String fileCommand;
+							fileCommand = null;
+							
+							try {
 							File file = new File(fileName);
-							Scanner sc = new Scanner(file);
-							String fileCommand = sc.nextLine();
-							sc.close();
+							FileReader filereader = new FileReader(file);
+							BufferedReader reader = new BufferedReader(filereader);
+							
+							String line = null;
+							
+							fileCommand = reader.readLine();
+							if ((line = fileCommand) != null) {
+								fileCommand = line;
+							}
+							
+							//System.out.println("FileCommand is: " + fileCommand);
+							
+							reader.close();
+							//Scanner sc = new Scanner(file);
+							//String fileCommand = sc.nextLine();
+							//sc.close();
+							
+								
+								/*Path path = Paths.get(fileName);
+								Scanner scanner = new Scanner(path);
+								System.out.println("Read text file using Scanner");
+								while (scanner.hasNextLine()) {
+									String line = scanner.nextLine();
+									System.out.println(line);
+								}
+								scanner.close();
+								 */
+								
+							
+						}
+							catch (FileNotFoundException e) {
+								e.printStackTrace();
+							}
+							catch (IOException e) {
+								e.printStackTrace();
+							}
 							
 							command = new Command(fileCommand);		// Overwrites command to be command from test file
-							
+
 						}
 						
 			
@@ -243,7 +283,7 @@ public class Game {
 									break;
 								}
 								System.out.println("Please enter option you would like to choose");
-								selection = in.nextInt();
+								selection = input.nextInt();
 								option_chosen = legal_moves.pickOption(selection-1);
 								System.out.println(legal_moves.pickOption(selection-1).toString());
 								legal_moves.clearOptions();
@@ -305,6 +345,7 @@ public class Game {
 			} while ((quit == false) && !players[0].isGameOver() && !players[1].isGameOver());
 			
 			//scanner view close
+			//view.closeView();
 	
 			// GAME OVER
 			// PLAYER 1 WON GAME
@@ -389,7 +430,9 @@ public class Game {
 		
 		newMatch = choice.equalsIgnoreCase("y"); 
 		userInput.close();	
-		in.close();
+		input.close();
+		//view.closeView();
+
 			
 		
 		
