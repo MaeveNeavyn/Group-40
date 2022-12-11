@@ -45,26 +45,26 @@ public class View {
 	public int getMatchLength(String length) {
 		
 		int matchLength = 0;
-		boolean validLength = false;
-		do {
+		//boolean validLength = false;
+		//do {
 			//int matchLength =0;
 			//System.out.print("Enter the length of the match: ");
 			//String str = in.nextLine();
 			
 			//Ensures input contains only digits
-			if (length.matches("\\d+")) {
+			if (length.matches("\\d+") && Integer.parseInt(length)>0) {
 				matchLength = Integer.parseInt(length);
 				//if (matchLength > 0) {
-				validLength = true;	
+				//validLength = true;	
 				//} 
 				//validLength = true;
 			} 
 			else {
-				System.out.println("The match length is invalid. Please try again and enter an integer value.");
+				System.out.println("The match length is invalid. Please try again and enter a positive integer number.");
 			}
 			//return matchLength;
-		}
-		while (validLength == false);
+		//}
+		//while (validLength == false);
 		return matchLength;
 	}
 	
@@ -79,7 +79,7 @@ public class View {
 		do {
 			//System.out.println(player.toString() + " enter command: ");	//issue with printing player name
 			//String input = in.nextLine();
-			//System.out.println(input);
+			System.out.println(input);
 			//command = new Command(input);
 			//commandEntered = true;
 			if (Command.isValid(input)) {
@@ -87,6 +87,7 @@ public class View {
 				commandEntered = true;
 			} else {
 				System.out.println("The command is invalid. Try again.");
+				break;
 			}
 		}
 		while (!commandEntered);
