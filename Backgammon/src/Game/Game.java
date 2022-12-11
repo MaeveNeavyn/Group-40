@@ -38,9 +38,9 @@ public class Game {
 		// PLAYER DETAILS
 		int player1Score = 0;
 		int player2Score = 0;
-		System.out.println("Enter Player 1 Name: ");
+		System.out.print("Enter Player 1 Name: ");
 		String name1 = in.nextLine();
-		System.out.println("Enter Player 2 Name: ");
+		System.out.print("Enter Player 2 Name: ");
 		String name2 = in.nextLine();
 		
 
@@ -172,7 +172,7 @@ public class Game {
 			playerTurn = count%2;
 				
 			// GAME DO WHILE - game continues until player quits or game is over and player pip count is 0
-			//String commandInput = in.nextLine();		//moves onto next line after selection options from first roll
+			String commandInput = in.nextLine();		//moves onto next line after selection options from first roll
 
 			do {
 				// Updating players turn
@@ -187,7 +187,7 @@ public class Game {
 				boolean startTurn = true;
 				//prints players pips for whoevers turn it is onto display after board print out
 				System.out.println(players[playerTurn] + " pip count: "+ players[playerTurn].getPips());
-				String commandInput = in.nextLine();		//moves onto next line after selection options from first roll
+				//String commandInput = in.nextLine();		//moves onto next line after selection options from first roll
 			
 				do {
 					boolean validCommand = false;
