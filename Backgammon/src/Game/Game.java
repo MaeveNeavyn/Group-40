@@ -39,7 +39,7 @@ public class Game {
 		int player2Score = 0;
 		System.out.println("Enter Player 1 Name: ");
 		String name1 = in.nextLine();
-		System.out.println("Enter Player 2 NAme: ");
+		System.out.println("Enter Player 2 Name: ");
 		String name2 = in.nextLine();
 		
 		
@@ -145,6 +145,8 @@ public class Game {
 			}
 			while (player1roll == player2roll);
 	
+			//System.out.println(players[playerTurn].getName() + " enter command: ");	//issue with printing player name
+			//String commandInput = in.nextLine();
 			playerTurn = count%2;
 			// legal move for this player	
 			// do while: game is not quit or over
