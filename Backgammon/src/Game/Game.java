@@ -8,7 +8,6 @@ import java.io.*;
 
 public class Game {
 
-	
 	// had to include throw file exception for test file to scan in
 	public static void main(String[] args) throws FileNotFoundException {
 		// TODO Auto-generated method stub	
@@ -70,7 +69,6 @@ public class Game {
 		// SETTING UP VARIABLES/ARRAYS/LISTS TO BE USED IN GAME
 		List<Integer> rolls = new ArrayList<>();
 		LegalMoves legal_moves = new LegalMoves(board, players[0], rolls);
-		//Need to ask user what they want to choose
 		Option option_chosen = new Option();
 		int selection = 0;
 		
